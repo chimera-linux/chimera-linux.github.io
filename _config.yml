@@ -1,1 +1,3 @@
 theme: jekyll-theme-minimal
+title: "Chimera Linux"
+description: "A Linux distribution based on FreeBSD userland and LLVM"

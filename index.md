@@ -1,37 +1,60 @@
-## Welcome to GitHub Pages
+## Chimera Linux
 
-You can use the [editor on GitHub](https://github.com/chimera-linux/chimera-linux.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+Chimera is a Linux distribution with the following goals:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- Built entirely with LLVM
+- No GNU components in base system
+- FreeBSD-based userland
+- Binary packaging based, with a fast source build system
+- Bootstrappable
+- Portable
 
-### Markdown
+### Built with LLVM
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Chimera uses LLVM and Clang as its system toolchain. This is used to
+build all core components of the system.
 
-```markdown
-Syntax highlighted code block
+There is currently no GCC in the source repository. The `compiler-rt`
+component is used as the core runtime, and `libc++` is used as the
+standard C++ library.
 
-# Header 1
-## Header 2
-### Header 3
+### No GNU
 
-- Bulleted
-- List
+There are no GNU components in the base system, except currently GNU
+Make (used to build a few components) and `ncurses`. The rest of the
+userland comes mostly from FreeBSD (no `busybox`).
 
-1. Numbered
-2. List
+The `musl` libc is used as the standard C library.
 
-**Bold** and _Italic_ and `Code` text
+### Fast source package build system
 
-[Link](url) and ![Image](src)
-```
+Chimera has a completely new source packaging system that is not written
+in shell as is conventional, but rather in the Python scripting language.
+This reduces the build system overhead to a minimum, as well as making
+it introspectable and so on.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+The builds are always containerized, with a minimal Chimera system being
+used as the build environment for every package. This system is sandboxed
+using `bubblewrap` and run completely unprivileged.
 
-### Jekyll Themes
+The binary packaging system used is `apk-tools`, originally from Alpine
+Linux. It was chosen because of its speed and ease of integration.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/chimera-linux/chimera-linux.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Bootstrappable
 
-### Support or Contact
+The system can build itself. You can use any `musl` based distribution
+as the initial system, as long as it has the few required components
+needed for the system build.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+After that, Chimera uses a 3-stage bootstrap path, with stage 0 building
+all components needed to assemble the build container, stage 1 rebuilding
+itself using components from stage 0, and stage 2 rebuilding itself using
+components from stage 1. This is done to ensure that the final system is
+not influenced by the initial host system.
+
+### Portable
+
+Chimera currently targets the `ppc64le`, `aarch64` and `x86_64` architectures.
+It should, however, be easily portable to any architecture supported by
+LLVM/Clang (and its related components like `compiler-rt` and `libunwind`)
+and `musl`.
