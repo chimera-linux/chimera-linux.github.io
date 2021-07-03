@@ -1,5 +1,9 @@
 ## Chimera Linux
 
+**The project is currently heavily WIP.** It does not yet include a
+kernel or an init system, and the packaging is rough (both the build
+system and the templates themselves are in the state of flux).
+
 Chimera is a Linux distribution with the following goals:
 
 - Built entirely with LLVM
