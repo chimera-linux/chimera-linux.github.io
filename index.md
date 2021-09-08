@@ -48,7 +48,8 @@ Linux. It was chosen because of its speed and ease of integration.
 
 The system can build itself. You can use any `musl` based distribution
 as the initial system, as long as it has the few required components
-needed for the system build.
+needed for the system build. It is also possible to bootstrap from a
+completely foreign system using our scripts.
 
 After that, Chimera uses a 3-stage bootstrap path, with stage 0 building
 all components needed to assemble the build container, stage 1 rebuilding
@@ -58,7 +59,9 @@ not influenced by the initial host system.
 
 ### Portable
 
-Chimera currently targets the `ppc64le`, `aarch64` and `x86_64` architectures.
-It should, however, be easily portable to any architecture supported by
-LLVM/Clang (and its related components like `compiler-rt` and `libunwind`)
-and `musl`.
+Chimera can target a variety of CPU architectures, including `ppc64le`,
+`aarch64`, `x86_64`, `riscv64` and `ppc64`. It is very easy to bring up
+a new architecture if necessary, as long as the required LLVM components
+support it - one simply needs to create a profile describing some basics
+of the target architecture. The build system has full support for
+cross-compiling (not only for bootstrap - all of it is cross-aware).
