@@ -1,15 +1,17 @@
 ## Chimera Linux
 
 **The project is currently heavily WIP.** It does not yet include a
-kernel or an init system, and the packaging is rough (both the build
-system and the templates themselves are in the state of flux).
+kernel or an init system, so it cannot boot yet. The package build
+system and core collection are stabilizing rapidly.
+
+For specific questions, read our [FAQ](./faq.html).
 
 Chimera is a Linux distribution with the following goals:
 
 - Built entirely with LLVM
-- No GNU components in base system
+- Few to no GNU or GPL3 components in base system
 - FreeBSD-based userland
-- Binary packaging based, with a fast source build system
+- Binary packaging and a well designed source build system
 - Bootstrappable
 - Portable
 

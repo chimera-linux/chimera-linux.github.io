@@ -1,0 +1,81 @@
+## Chimera Linux FAQ
+
+This page should answer some of the common questions.
+
+### Why FreeBSD and not Net/Open/...BSD?
+
+The FreeBSD tools are generally more featureful and I don't see much
+of a benefit in the others. Additionally, I am a long-time FreeBSD user
+and familiar with them.
+
+Lastly, there is the `bsdutils` project which we rely on, so it was not
+actually necessary to do the entire porting from scratch.
+
+### Why not use ports or pkgsrc?
+
+I consider these pretty much the worst thing about the BSD systems from
+technical standpoint. They are slow, painful to maintain alongside binary
+packages, and contain decades of technical debt.
+
+Since this is a new project created from scratch, the goal is to be
+legacy-free where it makes sense, and none of the existing systems did
+exactly what I wanted.
+
+### Why Python for cbuild?
+
+Python is more or less omnipresent and over time has become the standard
+scripting language on Linux. Also, its implementation is robust, portable
+and allows us to write the entire build system without utilizing anything
+outside the standard library. The syntax is also nice and flexible enough
+so that it can be reused for the templates themselves, which reduces work.
+
+### What init system is Chimera going to use?
+
+The current plan is to use [dinit](https://github.com/davmac314/dinit)
+as it provides a neat, complete package with a good feature set.
+
+### Why not s6?
+
+While s6 is a good project, it's more of a framework than something that
+is ready to use - setting it up is needlessly complicated.
+
+### Why not BSD init?
+
+It's an explicit goal of the distro to abandon legacy cruft where it
+makes sense, and BSD-style init is lacking in various aspects, such
+as missing process supervision and parallelism.
+
+### Any plans to make use of LLVM's hardening features (e.g. CFI)?
+
+Yes.
+
+### Why apk-tools?
+
+There is no special reason - the original plan was to use FreeBSD's `pkg`,
+but that ended up not happening as it's simply not ready for this type
+of use on Linux and would need a ton of work, and common Linux package
+managers are typically lacking in various ways, and `apk-tools` just
+happened to be the thing that was easiest to integrate and matched the
+intended featureset well.
+
+### Why musl?
+
+It's currently the most complete/usable alternative Linux `libc`.
+
+### Is Chimera a suckless/minimal distribution?
+
+There is no explicit "minimalism" goal in the distro. Of course, currently
+it is small, but that is only because it has just started. The actual main
+goal of the distro is correctness, cleanliness and portability, and to a
+lesser degree security.
+
+### What is Chimera's relation to Void Linux?
+
+The `cbuild` system started as a rewrite of `xbps-src`, but has since
+diverged a lot. Additionally, I am also a Void Linux developer, so it has
+influenced the distro in some ways. However, it is also an explicit goal
+not to repeat Void's mistakes.
+
+### Something is missing here.
+
+Feel free to ask in the IRC or Matrix channels, and it may get added here.
