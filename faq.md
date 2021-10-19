@@ -11,6 +11,15 @@ and familiar with them.
 Lastly, there is the `bsdutils` project which we rely on, so it was not
 actually necessary to do the entire porting from scratch.
 
+### Why not GNU?
+
+A goal of the project is to provide alternatives to common tools. The
+FreeBSD components are a better fit for the system, since they are lighter
+weight, smaller and less crufty. Licensing also plays a minor role.
+
+There are some GNU components in `main`, but for most part they are avoided
+when there is a viable BSD alternative.
+
 ### Why not use ports or pkgsrc?
 
 I consider these pretty much the worst thing about the BSD systems from

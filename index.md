@@ -1,15 +1,14 @@
 ## Chimera Linux
 
-**The project is currently heavily WIP.** It does not yet include a
-kernel or an init system, so it cannot boot yet. The package build
-system and core collection are stabilizing rapidly.
+**The project is currently heavily WIP.** It is not capable of booting
+yet, but is getting there. Currently it is still missing its own kernel,
+and the service manager is not fully set up.
 
 For specific questions, read our [FAQ](./faq.html).
 
 Chimera is a Linux distribution with the following goals:
 
 - Built entirely with LLVM
-- Few to no GNU or GPL3 components in base system
 - FreeBSD-based userland
 - Binary packaging and a well designed source build system
 - Bootstrappable
@@ -24,13 +23,13 @@ There is currently no GCC in the source repository. The `compiler-rt`
 component is used as the core runtime, and `libc++` is used as the
 standard C++ library.
 
-### No GNU
+### FreeBSD userland
 
-There are no GNU components in the base system, except currently GNU
-Make (used to build a few components) and `ncurses`. The rest of the
-userland comes mostly from FreeBSD (no `busybox`).
+The userland is based around FreeBSD components rather than GNU coreutils
+and related. There are few GNU components in `main`, and the only one that
+is strictly required for bootstrap and the build environment is GNU Make.
 
-The `musl` libc is used as the standard C library.
+The `musl` libc is used as the standard C library in place of `glibc`.
 
 ### Fast source package build system
 
