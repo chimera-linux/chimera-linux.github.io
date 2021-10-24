@@ -1,11 +1,5 @@
 ## Chimera Linux
 
-**The project is currently heavily WIP.** It is not capable of booting
-yet, but is getting there. Currently it is still missing its own kernel,
-and the service manager is not fully set up.
-
-For specific questions, read our [FAQ](./faq.html).
-
 Chimera is a Linux distribution with the following goals:
 
 - Built entirely with LLVM
@@ -13,6 +7,13 @@ Chimera is a Linux distribution with the following goals:
 - Binary packaging and a well designed source build system
 - Bootstrappable
 - Portable
+
+For specific questions, read our [FAQ](./faq.html).
+
+The distribution is currently in heavy development and subject to
+breaking changes. It is capable of booting and building itself, but
+does not include a lot of software yet and packaging is not entirely
+set in stone.
 
 ### Built with LLVM
 
