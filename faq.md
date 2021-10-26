@@ -38,10 +38,10 @@ and allows us to write the entire build system without utilizing anything
 outside the standard library. The syntax is also nice and flexible enough
 so that it can be reused for the templates themselves, which reduces work.
 
-### What init system is Chimera going to use?
+### What init system does Chimera use?
 
-The current plan is to use [dinit](https://github.com/davmac314/dinit)
-as it provides a neat, complete package with a good feature set.
+It uses [dinit](https://github.com/davmac314/dinit) as it provides a neat,
+complete package with a good feature set.
 
 ### Why not s6?
 
