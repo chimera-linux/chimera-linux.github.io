@@ -27,8 +27,11 @@ standard C++ library.
 ### FreeBSD userland
 
 The userland is based around FreeBSD components rather than GNU coreutils
-and related. There are few GNU components in `main`, and the only one that
-is strictly required for bootstrap and the build environment is GNU Make.
+and related. This was chosen in order to break the monoculture in the
+Linux ecosystem as well as because of their quality. While there is no
+particular reason to avoid packaging GNU components, there is a goal to
+avoid requiring them for bootstrapping as well as in a minimal bootable
+system.
 
 The `musl` libc is used as the standard C library in place of `glibc`.
 
