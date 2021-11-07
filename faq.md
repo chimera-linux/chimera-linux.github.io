@@ -2,6 +2,13 @@
 
 This page should answer some of the common questions.
 
+### When will there be binary packages and stable versioning?
+
+The plan is currently to wait for `apk-tools` 3.x to go stable. Since
+the new version is bringing a completely new package format, we will use
+this opportunity to avoid having to transition the potential repos, and
+publish things after we have transitioned the build system.
+
 ### Why FreeBSD and not Net/Open/...BSD?
 
 The FreeBSD tools are generally more featureful and I don't see much

@@ -15,6 +15,8 @@ breaking changes. It is capable of booting and building itself, but
 does not include a lot of software yet and packaging is not entirely
 set in stone.
 
+Current plan is to wait for `apk-tools` 3.x before releasing any repos.
+
 ### Built with LLVM
 
 Chimera uses LLVM and Clang as its system toolchain. This is used to
