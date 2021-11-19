@@ -2,6 +2,10 @@
 
 This page should answer some of the common questions.
 
+### Not GNU/Linux?
+
+Nope.
+
 ### When will there be binary packages and stable versioning?
 
 The plan is currently to wait for `apk-tools` 3.x to go stable. Since
@@ -80,10 +84,11 @@ It's currently the most complete/usable alternative Linux `libc`.
 
 ### Is Chimera a suckless/minimal distribution?
 
-There is no explicit "minimalism" goal in the distro. Of course, currently
-it is small, but that is only because it has just started. The actual main
-goal of the distro is correctness, cleanliness and portability, and to a
-lesser degree security.
+Chimera does aim to suck less, but not in the way "suckless" usually
+means. Being lightweight is important, but being "minimal" is a rather
+vague term and typically leads to pointless dogmatism. Chimera aims
+to be practical and easy to grok, recognizing the danger of complexity,
+but not avoiding useful things for the sake of that.
 
 ### What is Chimera's relation to Void Linux?
 
@@ -91,6 +96,11 @@ The `cbuild` system started as a rewrite of `xbps-src`, but has since
 diverged a lot. Additionally, I am also a Void Linux developer, so it has
 influenced the distro in some ways. However, it is also an explicit goal
 not to repeat Void's mistakes.
+
+### What is your relation to ChimeraOS?
+
+There is none. ChimeraOS renamed from GamerOS about a month after public
+development was started. This is simply an unfortunate coincidence.
 
 ### Something is missing here.
 
