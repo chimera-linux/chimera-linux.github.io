@@ -1,11 +1,13 @@
 ## Chimera Linux
 
 Chimera aims to be a modern, general purpose Linux distribution.
+
 For that, it aims to break free from the usual conventions of most
-other other Linux distros and do its own thing. While at it, we aim
-to increase the diversity of software choices in the Linux ecosystem
-through a combination of new software ports and fixing existing stuff
-to work better with alternative userland.
+other other Linux distros and do its own thing.
+
+While at it, we aim to increase the diversity of software choices in
+the Linux ecosystem through a combination of new software ports and
+fixing existing stuff to work better with alternative userland.
 
 For specific questions, read our [FAQ](./faq.html).
 
