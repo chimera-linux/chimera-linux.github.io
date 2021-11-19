@@ -1,19 +1,21 @@
 ## Chimera Linux
 
-Chimera aims to be a modern general purpose Linux distribution.
+Chimera aims to be a modern, general purpose Linux distribution.
 For that, it aims to break free from the usual conventions of most
 other other Linux distros and do its own thing. While at it, we aim
-to increase the diversity of software choices on Linux by increasing
-portability across the ecosystem.
+to increase the diversity of software choices in the Linux ecosystem
+through a combination of new software ports and fixing existing stuff
+to work better with alternative userland.
 
 For specific questions, read our [FAQ](./faq.html).
 
-The distribution is currently in heavy development and subject to
-breaking changes. It is capable of booting and building itself, but
-does not include a lot of software yet and packaging is not entirely
-set in stone.
+The distribution is currently in heavy development. It can boot as well
+as build itself, and the software collection is growing rapidly, but
+version numbers are not stable right now.
 
-Current plan is to wait for `apk-tools` 3.x before releasing any repos.
+Current plan is to wait for `apk-tools` 3.x before releasing any repos,
+in order to avoid transition pains to the new package format. Once that
+is out, the distro will stabilize.
 
 ### Non-GNU, non-systemd userland
 
@@ -24,8 +26,8 @@ Its "coreutils" as well as other associated basic tools come from FreeBSD.
 Many have been ported specifically for this purpose.
 
 The whole system is compiled with LLVM/Clang. This includes the runtime
-components as well (`compiler-rt`, `libunwind` and `libc++`) as well as
-the linker (`lld`). The robust `musl` library provides the libc.
+components (`compiler-rt`, `libunwind` and `libc++`) as well as the linker
+(`lld`). The robust `musl` library provides the libc.
 
 Here is an example table of some tools and their providers:
 
@@ -103,6 +105,9 @@ This includes things such as the build having no network access after all
 declared sources have been fetched, and the root file system used during
 building being strictly read-only, and the whole build not requiring and
 outright rejecting root privileges.
+
+Unit tests are run for all builds by default to help catch issues and
+keep track of what's broken.
 
 The result are binary packages in the `apk` format. We use `apk-tools`
 originally from Alpine Linux as the binary packaging system.
