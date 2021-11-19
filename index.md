@@ -92,7 +92,7 @@ and emphasis is put on the system being simple and easy to grok. However,
 user choice is also important. We are explicitly not a minimalist or
 "suckless" distro, eschewing any kind of software fundamentalism.
 
-### Easily bootstrapping and building
+### Easy bootstrapping and building
 
 The source packages system was written from scratch in Python. Likewise,
 the source package templates themselves are Python scripts. The goal here
