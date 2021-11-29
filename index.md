@@ -29,7 +29,9 @@ Many have been ported specifically for this purpose.
 
 The whole system is compiled with LLVM/Clang. This includes the runtime
 components (`compiler-rt`, `libunwind` and `libc++`) as well as the linker
-(`lld`). The robust `musl` library provides the libc.
+(`lld`). The robust `musl` library provides the libc. The whole system is
+built with link-time optimziation (Thin LTO) to enable further opportunities
+regarding e.g. CFI.
 
 Here is an example table of some tools and their providers:
 
