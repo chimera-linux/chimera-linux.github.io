@@ -2,73 +2,72 @@
 
 Chimera aims to be a modern, general purpose Linux distribution.
 
-For that, it aims to break free from the usual conventions of most
-other other Linux distros and do its own thing.
+A major goal of the system is to break free from the common conventions
+of most Linux distributions and do its own thing. To achieve that, it
+seeks alternative solutions to various aspects of the stack.
 
-While at it, we aim to increase the diversity of software choices in
-the Linux ecosystem through a combination of new software ports and
-fixing existing stuff to work better with alternative userland.
+In addition to new ways of doing things in the system itself, this should
+result in increased diversity of software choices in the ecosystem and
+indirectly benefit other projects as well.
 
 For specific questions, read our [FAQ](./faq.html).
 
-The distribution is currently in heavy development. It can boot as well
-as build itself, and the software collection is growing rapidly, but
-version numbers are not stable right now.
+**The distribution is in heavy development.** Right now, it is a relatively
+complete graphical system with a multimedia stack and a web browser, capable
+of running Wayland and X11 environments. However, it is still source-based
+(meaning you have to compile everything yourself) and undergoes frequent
+refactoring, so it is not yet safe to use.
 
-Current plan is to wait for `apk-tools` 3.x before releasing any repos,
-in order to avoid transition pains to the new package format. Once that
-is out, the distro will stabilize.
+It is currently planned that the distribution will stabilize once `apk-tools`
+has released a stable 3.x version and the distribution has transitioned to it.
+This is in order to avoid pains with switching to a new package format.
 
-### Non-GNU, non-systemd userland
+### Alternative userland
 
-Chimera comes with an alternative userland that is quite different from
-even the unconventional distributions such as Alpine.
+Chimera comes with a userland that is quite different from most distributions,
+even lightweight busybox-based ones such as Alpine. The core userland (what
+would normally be `coreutils` and various related packages) is ported from
+FreeBSD.
 
-Its "coreutils" as well as other associated basic tools come from FreeBSD.
-Many have been ported specifically for this purpose.
+The entire system is additionally compiled with the LLVM/Clang suite. This
+includes the runtime components (`compiler-rt`, `libunwind`, `libc++`) as
+well as the linker (`lld`); the `libc` is provided by `musl`. The GCC
+compiler is currently not present in the system at all.
 
-The whole system is compiled with LLVM/Clang. This includes the runtime
-components (`compiler-rt`, `libunwind` and `libc++`) as well as the linker
-(`lld`). The robust `musl` library provides the libc. The whole system is
-built with link-time optimziation (Thin LTO) to enable further opportunities
-regarding e.g. CFI.
+ThinLTO (link-time optimization) is used system-wide for nearly all packages
+to gain extra size and performance benefits and further ahead prepare for
+enablement of more things such as CFI.
 
-Here is an example table of some tools and their providers:
+The `dinit` project provides the init system/service manager combo. It's
+a lightweight, dependency-based, supervising system with a good balance of
+features to simplicity. Chimera uses it to also provide out of box support
+for user services, which are used to manage session daemons such as the
+D-Bus session bus and the PipeWire multimedia server. It is intended that
+most long-running processes should be managed as services so that they are
+easy to track and reliable.
 
-| Software             | Source                 |
-|----------------------|------------------------|
-| C/C++ compiler       | LLVM                   |
-| C runtime            | LLVM                   |
-| C++ standard library | LLVM                   |
-| Linker               | LLVM                   |
-| Unwinder             | LLVM                   |
-| C standard library   | `musl`                 |
-| `binutils`           | Elf Toolchain          |
-| `elfutils`           | Elf Toolchain          |
-| `coreutils`          | FreeBSD                |
-| `findutils`          | FreeBSD                |
-| `diffutils`          | FreeBSD                |
-| `sed`, `ed`          | FreeBSD                |
-| `grep`, `m4`         | FreeBSD                |
-| `make`               | NetBSD                 |
-| `awk`                | One True Awk           |
-| Shell                | `dash`, `mksh`         |
-| `yacc`               | `byacc`                |
-| `tar`, `cpio`        | `libarchive`           |
-| Readline             | NetBSD `libedit`       |
-| Init system          | `dinit`                |
+The system is bootstrappable without GNU components (except their `make`)
+and you can have an entirely GNU-free bootable system. Therefore, Chimera
+should not be considered a GNU/Linux system. This is in line with the
+alternatives-seeking policy; the project does not actually reject GNU
+or the GPL (though permissively-licensed software is preferred when
+there are two otherwise equivalent options).
 
-This does not mean the other tools are banned from being packaged. Just
-like FreeBSD packages them in their ports, Chimera does too; it is not
-here to make your software choices for you. The defaults were chosen
-in general for technical merits (for instance, the default text editor
-in the `full` metapackage is GNU `nano`, as it was determined to be
-the highest quality choice).
+Here is an example table of some major system components and their providers:
 
-However, there is a goal of being fully bootstrappable without GNU
-components, and it is possible to have a bootable system without them.
-The only GNU component required for bootstrapping right now is GNU
-Make, and this is a build-time-only dependency.
+| Software                   | Source                  |
+|----------------------------|-------------------------|
+| Compiler and runtime stack | LLVM                    |
+| C standard library         | Musl                    |
+| `binutils`, `elfutils`     | ELF Toolchain           |
+| Core userland              | FreeBSD, NetBSD         |
+| Init and logging           | Dinit, syslog-ng        |
+| Audio stack                | PipeWire                |
+| Desktop environment        | GNOME (future)          |
+| Web browser                | GNOME Web               |
+
+There is, of course, a lot more software in the repository, and some
+of the above have other alternatives available that you can choose from.
 
 ### Consistency and clean design
 
@@ -89,20 +88,25 @@ Examples of this are:
 * Software is in general enabled for `elogind` by default and SUID bits
   are frowned upon.
 
-The "There should be one obvious way to do it" motto is always considered
-and emphasis is put on the system being simple and easy to grok. However,
-user choice is also important. We are explicitly not a minimalist or
-"suckless" distro, eschewing any kind of software fundamentalism.
+The system follows the rule of "there should be one obvious way to do it".
+That does not mean pointlessly restricting user choice, but there should
+be well supported defaults for most things, and the system should be
+easy to grok and not take roundabout technical choices.
+
+Chimera is explicitly not a minimalist or "suckless" system, and likewise
+rejects all sorts of reactionary tendencies or pointless traditionalism.
+It's not a goal to work like something else or hold onto something for
+the sake of it; it should be its own system and have its own ways, when
+necessary.
 
 ### Easy bootstrapping and building
 
-The source packages system was written from scratch in Python. Likewise,
-the source package templates themselves are Python scripts. The goal here
-is to make the build system fast (unlike shell-based solutions that are
-very common) and introspectable.
-
-It strictly follows the idea that good things should be easy and concise,
-while bad things should be verbose and obvious.
+All the source packaging is made from scratch, and uses a custom build
+system written in Python. The source package templates are also simply
+Python scripts. The collection is designed to be fast and strict by
+default, to prevent technical debt and enable introspection. Best
+practices are strictly enforced through a combination of a sandbox
+and well designed API.
 
 All builds are containerized using Linux namespaces (thanks to Bubblewrap).
 This includes things such as the build having no network access after all
@@ -131,20 +135,21 @@ can be used for any further builds.
 Once bootstrapped, you can build packages for Chimera on a completely
 foreign system without any further problems thanks to the container.
 
-The build system has support for transparent cross-compiling for both
-bootstrap and non-bootstrap packages. This can be used to bring Chimera
-to new architectures as well as say, cross-compile custom packages for
-slow hardware of another architecture.
-
 ### Portability
 
-Chimera currently targets a variety of CPU architectures, including
-`aarch64`, `ppc64le` and `x86_64` for the highest support tier, `riscv64`
-for second tier and big-endian `ppc64` for third tier.
+Chimera considers portability very important, to avoid monoculture as well
+as to help catch bugs, so it supports a variety of CPU architectures,
+including `aarch64`, `ppc64le` and `x86_64` for the highest support tier,
+`riscv64` for second tier and big-endian `ppc64` for third tier.
 
-As long as LLVM fully supports the target, it is very easy to add support
-for new architectures - one simply needs to create a profile, which is
-a small configuration file.
+Adding support for a new architecture is extremely easy, as long as the
+LLVM stack properly supports it. One simply needs to create a `cbuild`
+profile, bootstrap the system, and possibly modify build templates that
+have architecture-specific parts in them (which is kept to a minimum).
 
-Portability is an important goal of the distro - it is not here to make
-your hardware choices for you.
+The build system supports transparent cross-compiling, and the same
+profile configuration can be used for both native and cross builds.
+Cross-compiling can be used to bootstrap for previously unsupported
+architectures as well as compile regular packages for them (however,
+native builds are encouraged, as cross-builds do not provide the
+same guarantees and not everything cross-compiles cleanly).
