@@ -2,6 +2,8 @@
 
 Chimera aims to be a modern, general purpose Linux distribution.
 
+[![Screenshot](/assets/chimera-sshot-thumb.png)](/assets/chimera-sshot.png)
+
 A major goal of the system is to break free from the common conventions
 of most Linux distributions and do its own thing. To achieve that, it
 seeks alternative solutions to various aspects of the stack.
@@ -14,9 +16,9 @@ For specific questions, read our [FAQ](./faq.html).
 
 **The distribution is in heavy development.** Right now, it is a relatively
 complete graphical system with a multimedia stack and a web browser, capable
-of running Wayland and X11 environments. However, it is still source-based
-(meaning you have to compile everything yourself) and undergoes frequent
-refactoring, so it is not yet safe to use.
+of running Wayland and X11 environments, such as GNOME and Enlightenment.
+However, it is still source-based (meaning you have to compile everything
+yourself) and undergoes frequent refactoring, so it is not yet safe to use.
 
 It is currently planned that the distribution will stabilize once `apk-tools`
 has released a stable 3.x version and the distribution has transitioned to it.
@@ -63,7 +65,7 @@ Here is an example table of some major system components and their providers:
 | Core userland              | FreeBSD, NetBSD         |
 | Init and logging           | Dinit, syslog-ng        |
 | Audio stack                | PipeWire                |
-| Desktop environment        | GNOME (future)          |
+| Desktop environment        | GNOME                   |
 | Web browser                | GNOME Web               |
 
 There is, of course, a lot more software in the repository, and some
