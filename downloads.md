@@ -20,6 +20,9 @@ The `x86_64` images can boot on either BIOS or UEFI machines. The `ppc64le`
 images require a SLOF-based or OpenPOWER machine with at least POWER8
 processor or equivalent (VSX support is required).
 
+The images are hybrid (you can boot them off either USB stick or optical
+media).
+
 At least **1GB of RAM** is recommended for graphical desktop. You may need
 more than that if you choose to boot with the ramdisk option, as the whole
 system is copied into RAM in those cases. Console images should be able to
