@@ -20,6 +20,11 @@ of running Wayland and X11 environments, such as GNOME and Enlightenment.
 However, it is still source-based (meaning you have to compile everything
 yourself) and undergoes frequent refactoring, so it is not yet safe to use.
 
+**Initial bootable ISO images for x86_64 and ppc64le are now available.**
+Check the [Downloads](./downloads.html) page for links and instructions.
+Note that these are pre-alpha quality and are provided solely for testing
+purposes.
+
 It is currently planned that the distribution will stabilize once `apk-tools`
 has released a stable 3.x version and the distribution has transitioned to it.
 This is in order to avoid pains with switching to a new package format.
