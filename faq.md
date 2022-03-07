@@ -8,10 +8,10 @@ Nope.
 
 ### When will there be binary packages and stable versioning?
 
-The plan is currently to wait for `apk-tools` 3.x to go stable. Since
-the new version is bringing a completely new package format, we will use
-this opportunity to avoid having to transition the potential repos, and
-publish things after we have transitioned the build system.
+The plan is currently to wait for `apk-tools` 3.x to go stable. Chimera
+currently relies on a Git snapshot of `apk-tools`, which is not ideal as
+it is still changing upstream. However, this also gives the distro some
+time to get everything ready.
 
 ### Why FreeBSD and not Net/Open/...BSD?
 

@@ -26,8 +26,8 @@ Note that these are pre-alpha quality and are provided solely for testing
 purposes.
 
 It is currently planned that the distribution will stabilize once `apk-tools`
-has released a stable 3.x version and the distribution has transitioned to it.
-This is in order to avoid pains with switching to a new package format.
+has released a stable 3.x version. Chimera currently relies on a Git snapshot
+of `apk-tools`.
 
 ### Alternative userland
 
