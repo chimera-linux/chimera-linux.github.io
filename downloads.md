@@ -40,3 +40,7 @@ for POWER machines. The image will detect this and enable the respective
 
 **Log in as either `anon` or `root` with the password `chimera`**. Graphical
 boot will log in automatically straight into desktop.
+
+For the time being, the ISO images contain the complete toolchain to bootstrap
+the `cports` tree from source code without using `bootstrap.sh`. This will not
+be the case with production images with binary repositories available.
