@@ -1,0 +1,119 @@
+---
+layout: main
+title: Chimera Linux
+---
+<div id="title">
+    <a href="/"><img id="logo" src="/assets/logo.png" alt="Chimera Linux logo"></a>
+    <span>
+        Linux distribution based on FreeBSD userland and LLVM
+    </span>
+    <nav class="buttons">
+        <a id="button_download" href="/downloads">Downloads</a>
+        <a id="button_github" href="{{ site.github_link }}">GitHub</a>
+    </nav>
+    <nav class="social">
+        {% for soc in site.social_links %}
+            <a href="{{ soc[2] }}"><img src="/assets/icons/{{ soc[0] }}.svg" alt="{{ soc[1] }}"></a>
+        {% endfor %}
+    </nav>
+</div>
+
+<main id="desc">
+    <p>Chimera aims to be a modern, general purpose Linux distribution.</p>
+    <p>
+        A major goal of the system is to break free from the common conventions
+        of most Linux distributions and do its own thing. To achieve that,
+        it seeks alternative solutions to various aspects of the stack.
+    </p>
+    <p>
+        <a href="/about">Read more</a> for details.
+    <p>
+</main>
+
+<div id="screenshot">
+    <a href="/assets/screenshot.png"><img src="/assets/thumb.png" alt="Desktop screenshot thumbnail"></a>
+</div>
+
+<div id="tile1" class="tile">
+    <h1>Alternative userland.</h1>
+    <p>
+        Chimera is not a GNU/Linux - its userland tools are based on
+        FreeBSD, LLVM serves as the system toolchain, and <code>musl</code>
+        provides the C library implementation.
+    </p>
+    <div class="more">
+        <a href="/about#alternative-userland"></a>
+    </div>
+</div>
+
+<div id="tile2" class="tile">
+    <h1>Clean and consistent.</h1>
+    <p>
+        Chimera aims to eliminate legacy cruft where possible to deliver
+        a modern, general purpose, fully featured operating system that
+        is simple but complete.
+    </p>
+    <div class="more">
+        <a href="/about#clean-and-consistent"></a>
+    </div>
+</div>
+
+<div id="tile3" class="tile">
+    <h1>Buildable from source.</h1>
+    <p>
+        While the system uses <code>apk-tools</code> and therefore binary
+        packaging, it aims to be trivially buildable from source using a
+        build system and package collection created from scratch.
+    </p>
+    <div class="more">
+        <a href="/about#buildable-from-source"></a>
+    </div>
+</div>
+
+<div id="tile4" class="tile">
+    <h1>Portable.</h1>
+    <p>
+        You can use Chimera on all kinds of processors, including Intel/AMD,
+        ARM AArch64, POWER and RISC-V. Architecture tiering system
+        ensures optimal support.
+    </p>
+    <div class="more">
+        <a href="/about#portable"></a>
+    </div>
+</div>
+
+<div id="bottom">
+    <div id="bottom_warn">
+        <p>
+            <strong>The distribution is in heavy development.</strong> Right
+            now, it is a relatively complete graphical system with a multimedia
+            stack and a web browser, capable of running Wayland and X11
+            environments, such as GNOME and Enlightenment. However, it is still
+            source-based (meaning you have to compile everything yourself) and
+            undergoes frequent refactoring, so it is not yet safe to use.
+        </p>
+    </div>
+    <div id="bottom_iso">
+        <p>
+            <strong>Initial bootable ISO images for x86_64 and ppc64le are now
+            available.</strong> Check the <a href="/downloads">Downloads</a>
+            page for links and instructions. Note that these are pre-alpha
+            quality and are provided solely for testing purposes.
+        </p>
+        <p>
+            It is currently planned that the distribution will stabilize once
+            apk-tools has released a stable 3.x version. Chimera currently
+            relies on a Git snapshot of apk-tools.
+        </p>
+    </div>
+    <div id="bottom_news">
+        <h2><a href="/news">Recent news</a></h2>
+        {% for post in site.posts limit:2 %}
+        <div class="bottom_post">
+            <h4>{{ post.date | date: "%B %d, %Y" }}</h4>
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            {{ post.content }}
+        </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+{% if page.layout == "page" %}
+{% capture page_title %}
+{{ site.title }} - {{ page.title }}
+{% endcapture %}
+{% else %}
+{% assign page_title = page.title %}
+{% endif %}
+<title>{{ page_title }}</title>
+
+<meta property="og:title" content="{{ page_title }}">
+{% if page.layout == "post" %}
+<meta property="og:description" content="{{ page.excerpt | strip_html | normalize_whitespace }}">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ page.date | date: "%Y-%m-%d" }}">
+{% else %}
+<meta property="og:description" content="{{ site.title }}">
+{% endif %}
+<meta property="og:site_name" content="Chimera Linux">
+<meta property="og:image:url" content="/assets/chimera-logo.png">
+<meta property="og:image:alt" content="Chimera Linux Logo">
+<meta name="theme-color" content="#d64f5d">
+
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon96.png">
+<link rel="icon" type="image/png" sizes="144x144" href="/assets/icons/favicon144.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon192.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/icons/favicon120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/icons/favicon152.png">
+<link rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/icons/favicon167.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/icons/favicon180.png">
+<link rel="stylesheet" href="/assets/css/reset.css">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/common.css">
+{% if page.layout == "main" %}
+<link rel="stylesheet" href="/assets/css/mainpage.css">
+{% else %}
+<link rel="stylesheet" href="/assets/css/post.css">
+{% endif %}
+</head>
+<body>
+<div id="container">
+    <div id="header_bg"></div>
+    <nav id="header">
+        <div class="menu">
+            <a href="/">Home</a>
+            <a href="/news">News</a>
+            <a href="/downloads">Downloads</a>
+            <a href="/about">About</a>
+            <a href="{{ site.docs_link }}">Docs</a>
+            <a href="{{ site.github_link }}">GitHub</a>
+        </div>
+        <div class="social">
+            {% for soc in site.social_links %}
+                <a href="{{ soc[2] }}"><img src="/assets/icons/{{ soc[0] }}.svg" alt="{{ soc[1] }}"></a>
+            {% endfor %}
+        </div>
+    </nav>
+    <svg id="title_bg" width="100%" height="100%">
+        <defs>
+            <pattern
+                id="bgpattern" x="0" y="0" width="176" height="176"
+                patternUnits="userSpaceOnUse" patternTransform="rotate(8)"
+            >
+                <rect x="16" y="16" width="72" height="72" style="fill: var(--scolor-t1)"/>
+                <rect x="104" y="16" width="72" height="72" style="fill: var(--scolor-t2)"/>
+                <rect x="16" y="104" width="72" height="72" style="fill: var(--scolor-t3)"/>
+                <rect x="104" y="104" width="72" height="72" style="fill: var(--scolor-t4)"/>
+            </pattern>
+            <linearGradient id="bggrad">
+                <stop style="stop-color: var(--scolor-bg)" offset="15%"/>
+                <stop style="stop-color: var(--scolor-bg)" offset="100%" stop-opacity="0"/>
+            </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#bgpattern)"/>
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#bggrad)"/>
+    </svg>
+    <div id="tile_bg"></div>
+    {{ content }}
+    <div id="footer_bg"></div>
+    <div id="footer">
+        Copyright 2021-2022 Chimera Linux developers
+    </div>
+</div>
+</body>
+</html>

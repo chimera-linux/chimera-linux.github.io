@@ -1,0 +1,274 @@
+/* base style that we can rely on */
+
+html {
+    height: 100%;
+}
+
+body {
+    /* color constants for this theme; some are overridden for dark theme */
+    --color-bg: rgb(223, 228, 232); /* default background */
+    --color-tbg: rgb(249, 249, 249); /* content background (tiles, post) */
+    --color-hdr: rgb(50, 59, 67); /* header and footer background */
+    --color-menuh: rgb(26, 30, 34); /* header menu hover */
+    --color-chred: rgb(214, 79, 93); /* generic red (logo area bg) */
+    --color-drred: rgb(179, 35, 52); /* slightly darker red */
+    --color-fontlight: rgb(249, 249, 249); /* light fonts */
+    --color-fontdark: rgb(80, 80, 80); /* dark fonts */
+    --color-fontdef: var(--color-fontdark); /* default fonts */
+    --color-tblsep: rgba(0, 0, 0, 0.2); /* table cell separator */
+    --color-codebg: rgba(0, 0, 0, 0.05); /* code background */
+    --color-chead: var(--color-chred); /* content h2 */
+    --color-clink: var(--color-chred); /* content link */
+    --color-hlink: var(--color-drred); /* content hover link */
+    /* basic constants */
+    --content-width: 960px;
+    --content-gap: 32px;
+    --content-halfgap: 16px;
+    --content-altgap: 24px;
+    --desc-height: calc(var(--content-gap) * 6);
+    --menu-padding: var(--content-gap);
+    --side-padding: var(--content-gap);
+    --icon-padding: calc(var(--content-gap) / 4);
+    --column-width: calc((var(--content-width) - var(--content-gap)) / 2);
+    --table-pad: calc(var(--icon-padding) / 2);
+    /* font sizes */
+    --content-fontsize: 11pt;
+    --btn-fontsize: 12pt;
+    /* base attributes */
+    background-color: var(--color-bg);
+    color: var(--color-fontdef);
+    font-family: "Noto Sans";
+    font-size: var(--content-fontsize);
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --color-bg: rgb(50, 59, 67);
+        --color-tbg: rgb(60, 67, 78);
+        --color-fontdef: var(--color-fontlight);
+        --color-tblsep: rgba(255, 255, 255, 0.2);
+        --color-codebg: rgba(255, 255, 255, 0.1);
+        --color-chead: rgb(240, 86, 102);
+        --color-clink: var(--color-chead);
+        --color-hlink: var(--color-chred);
+    }
+}
+
+#container {
+    display: grid;
+    height: 100%;
+    gap: 0px;
+}
+
+/* set reasonable defaults again after css reset */
+
+body {
+    line-height: 1.4;
+}
+
+strong {
+    font-weight: 700;
+}
+
+p, ul, ol {
+    margin-top: var(--content-halfgap);
+    margin-bottom: var(--content-halfgap);
+    line-height: 1.55;
+}
+
+ul, ol {
+    padding-left: var(--content-gap);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins";
+    font-weight: 500;
+    margin-top: var(--content-altgap);
+    margin-bottom: var(--content-halfgap);
+    color: var(--color-chead);
+}
+
+h1 {
+    font-size: 34pt;
+    line-height: 1.35;
+}
+
+h2 {
+    font-size: 22pt;
+}
+
+h3 {
+    font-size: 18pt;
+}
+
+ul {
+    list-style-type: square;
+    line-height: 1.55;
+}
+
+ol {
+    list-style-type: decimal;
+    line-height: 1.55;
+}
+
+/* normally monospace text can blend into the rest, so style it accordingly */
+code, .highlight pre {
+    font-family: "Noto Sans Mono";
+    background-color: var(--color-codebg);
+    border: 1px solid var(--color-codebg);
+    border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    overflow-x: auto;
+}
+
+/* cancel this out so we don't get double background */
+.highlight pre > code {
+    background-color: transparent;
+    border: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+a {
+    color: var(--color-clink);
+    font-weight: 700;
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover {
+    color: var(--color-hlink);
+    text-decoration: none;
+}
+a:active { text-decoration: none; }
+
+/* navigation header */
+
+#header_bg {
+    grid-row: header;
+    grid-column: 1 / span 5;
+    background-color: var(--color-hdr);
+}
+
+#header {
+    grid-area: header;
+    display: flex;
+    max-width: var(--content-width);
+    color: var(--color-fontlight);
+}
+
+#header .menu {
+}
+
+#header .menu > a {
+    display: inline-flex;
+    align-items: center;
+    height: var(--content-gap);
+    padding-left: var(--menu-padding);
+    padding-right: var(--menu-padding);
+    color: var(--color-fontlight);
+    font-weight: 400;
+}
+
+#header .menu > a:hover {
+    background-color: var(--color-menuh);
+    color: var(--color-fontlight);
+}
+
+#header .social {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+#header .social > a {
+    display: inline-flex;
+    align-items: center;
+    height: var(--content-gap);
+    padding-left: var(--icon-padding);
+    padding-right: var(--icon-padding);
+    color: var(--color-fontlight);
+    font-weight: 400;
+}
+
+#header .social > a:hover {
+    filter: brightness(90%);
+}
+
+#header .social img {
+    height: var(--content-altgap);
+}
+
+/* footer */
+
+#footer_bg {
+    grid-row: footer;
+    grid-column: 1 / span 5;
+    background-color: var(--color-hdr);
+}
+
+#footer {
+    display: flex;
+    grid-area: footer;
+    color: var(--color-fontlight);
+    align-items: center;
+    justify-content: center;
+}
+
+/* title background */
+
+#title_bg {
+    /* colors for the background fade + 4 tiles */
+    --scolor-bg: var(--color-chred);
+    --scolor-t1: rgba(171, 118, 228, 0.5);
+    --scolor-t2: rgba(247, 134, 243, 0.5);
+    --scolor-t3: var(--scolor-t2);
+    --scolor-t4: rgba(212, 92, 146, 0.5);
+    /* fit it */
+    grid-row: title;
+    grid-column: 1 / span 5;
+    background-color: var(--scolor-bg);
+}
+
+#title {
+    grid-area: title;
+    color: var(--color-fontlight);
+}
+
+/* responsive bits
+ *
+ * we make it so that the smallest display that gets the full layout is 1024
+ * pixels wide, and so that the smallest display that gets non-scrolling
+ * narrow layout is at least 480 pixels wide; this should cover even potatoes
+ */
+
+@media (max-width: 1023px) {
+    body {
+        --menu-padding: calc(var(--content-altgap) / 2);
+        --content-width: 720px;
+        --content-minwidth: 448px;
+        --column-width: calc(var(--content-width) / 2);
+        --column-minwidth: calc(var(--content-minwidth) / 2);
+    }
+
+    /* hide social media links in mobile layout, they are elsewhere */
+    #header .social {
+        display: none;
+    }
+
+    #header .menu {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 524px) {
+    /* for tiny screens, make minimum side space smaller */
+    body {
+        --side-padding: var(--content-halfgap);
+    }
+}

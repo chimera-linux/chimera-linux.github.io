@@ -1,0 +1,19 @@
+host: 127.0.0.1
+port: 4000
+
+title: "Chimera Linux"
+markdown: kramdown
+highlighter: rouge
+
+permalink: /news/:year/:month/:title.html
+
+plugins:
+  - jekyll-redirect-from
+
+social_links:
+  - ["irc", "IRC chat", "https://webchat.oftc.net/?channels=#chimera-linux"]
+  - ["matrix", "Matrix chat", "https://matrix.to/#/%23chimera-linux:matrix.org"]
+  - ["reddit", "Chimera Linux reddit", "https://www.reddit.com/r/chimeralinux"]
+
+docs_link: "https://docs.chimera-linux.org"
+github_link: "https://github.com/chimera-linux"

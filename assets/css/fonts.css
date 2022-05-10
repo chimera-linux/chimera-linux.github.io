@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 400;
+    src: url("/assets/fonts/noto-sans-v27-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("/assets/fonts/noto-sans-v27-latin-700.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans Mono";
+    font-weight: 400;
+    src: url("/assets/fonts/noto-sans-mono-v14-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans Mono";
+    font-weight: 500;
+    src: url("/assets/fonts/noto-sans-mono-v14-latin-500.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans Mono";
+    font-weight: 700;
+    src: url("/assets/fonts/noto-sans-mono-v14-latin-700.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    src: url("/assets/fonts/poppins-v20-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 500;
+    src: url("/assets/fonts/poppins-v20-latin-500.woff2") format("woff2");
+}
