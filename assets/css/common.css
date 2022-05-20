@@ -272,3 +272,12 @@ a:active { text-decoration: none; }
         --side-padding: var(--content-halfgap);
     }
 }
+
+@media (max-width: 480px) {
+    /* make nav bar scrollable on even smaller screens */
+    #header .menu {
+        overflow-x: auto;
+        max-width: 100vw;
+        justify-content: left;
+    }
+}
