@@ -141,7 +141,7 @@ body {
 }
 
 .tile .more > a::after {
-    content: "Read more >";
+    content: " >";
 }
 
 #tile1 {
