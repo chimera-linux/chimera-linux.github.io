@@ -161,10 +161,18 @@ a:active { text-decoration: none; }
     color: var(--color-fontlight);
 }
 
-#header .menu {
+#header > ul {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
 }
 
-#header .menu > a {
+#header > ul > li {
+    float: left;
+}
+
+#header > ul > li > a {
     display: inline-flex;
     align-items: center;
     height: var(--content-gap);
@@ -174,7 +182,7 @@ a:active { text-decoration: none; }
     font-weight: 400;
 }
 
-#header .menu > a:hover {
+#header > ul > li > a:hover {
     background-color: var(--color-menuh);
     color: var(--color-fontlight);
 }
@@ -259,7 +267,7 @@ a:active { text-decoration: none; }
         display: none;
     }
 
-    #header .menu {
+    #header > ul {
         display: flex;
         width: 100%;
         justify-content: center;
@@ -275,7 +283,7 @@ a:active { text-decoration: none; }
 
 @media (max-width: 480px) {
     /* make nav bar scrollable on even smaller screens */
-    #header .menu {
+    #header > ul {
         overflow-x: auto;
         max-width: 100vw;
         justify-content: left;

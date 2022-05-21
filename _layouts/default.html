@@ -46,14 +46,14 @@
 <div id="container">
     <div id="header_bg"></div>
     <nav id="header">
-        <div class="menu">
-            <a href="/">Home</a>
-            <a href="/news">News</a>
-            <a href="/downloads">Downloads</a>
-            <a href="/about">About</a>
-            <a href="{{ site.docs_link }}">Docs</a>
-            <a href="{{ site.github_link }}">GitHub</a>
-        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/downloads">Downloads</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="{{ site.docs_link }}">Docs</a></li>
+            <li><a href="{{ site.github_link }}">GitHub</a></li>
+        </ul>
         <div class="social">
             {% for soc in site.social_links %}
                 <a href="{{ soc[2] }}"><img src="/assets/icons/{{ soc[0] }}.svg" alt="{{ soc[1] }}"></a>
