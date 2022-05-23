@@ -28,7 +28,8 @@ body {
 /* title part */
 
 #title #logo {
-    height: var(--logo-height);
+    max-height: var(--logo-height);
+    max-width: 100%;
     margin-top: var(--content-altgap);
     margin-bottom: var(--content-halfgap);
 }
@@ -221,7 +222,7 @@ body {
         /* fit social media icons */
         --title-height: calc(var(--content-gap) * 9);
 
-        grid-template-columns: minmax(var(--side-padding), 1fr) repeat(2, minmax(var(--column-minwidth), var(--column-width))) 0fr minmax(var(--side-padding), 1fr);
+        grid-template-columns: minmax(var(--side-padding), 1fr) repeat(3, auto) minmax(var(--side-padding), 1fr);
         grid-template-rows: auto var(--title-height) repeat(6, auto) 1fr var(--content-gap);
         grid-template-areas:
             ". header header header ."
@@ -279,6 +280,11 @@ body {
         grid-row: tile1 / tile2;
     }
 
+    /* tiles should use as much height as they need */
+    .tile {
+        height: auto;
+    }
+
     #tile2 {
         margin-top: var(--content-halfgap);
         margin-bottom: var(--content-gap);
@@ -288,30 +294,5 @@ body {
     }
     #tile4 {
         margin-bottom: var(--content-halfgap);
-    }
-}
-
-@media (max-width: 480px) {
-    /* keep logo aspect ratio */
-    #logo {
-        max-height: var(--logo-height);
-        max-width: 100%;
-        height: auto !important;
-    }
-
-    #container {
-        grid-template-columns: minmax(0, 1fr) minmax(var(--column-minwidth), var(--column-width));
-    }
-
-    /* tiles should use as much height as they need */
-    .tile {
-        height: auto !important;
-    }
-
-    /* first children of #container that have an id
-    that doesn't end in "bg", get 1rem x padding */
-    #container > :not(nav, [id$='bg']) {
-        padding-left: 1rem;
-        padding-right: 1rem;
     }
 }

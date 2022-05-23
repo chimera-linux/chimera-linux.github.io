@@ -72,7 +72,7 @@ body {
     }
 
     #container {
-        grid-template-columns: minmax(var(--side-padding), 1fr) minmax(var(--content-minwidth), var(--content-width)) minmax(var(--side-padding), 1fr);
+        grid-template-columns: minmax(var(--side-padding), 1fr) auto minmax(var(--side-padding), 1fr);
     }
 
     #content {
@@ -80,11 +80,5 @@ body {
         padding-right: var(--side-padding);
         padding-top: var(--table-pad);
         padding-bottom: var(--table-pad);
-    }
-}
-
-@media (max-width: 480px) {
-    #container {
-        grid-template-columns: minmax(0, 1fr) minmax(var(--column-minwidth), var(--column-width)) minmax(0, 1fr);
     }
 }
