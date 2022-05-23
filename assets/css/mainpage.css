@@ -14,7 +14,7 @@ body {
 
 #container {
     grid-template-columns: 1fr min(var(--column-width)) var(--content-gap) min(var(--column-width)) 1fr;
-    grid-template-rows: var(--content-gap) var(--title-height) fit-content(var(--desc-height)) repeat(2, auto) 1fr var(--content-gap);
+    grid-template-rows: auto var(--title-height) fit-content(var(--desc-height)) repeat(2, auto) 1fr var(--content-gap);
     grid-template-areas:
         ". header header header ."
         ". title  . thumb  ."
@@ -222,7 +222,7 @@ body {
         --title-height: calc(var(--content-gap) * 9);
 
         grid-template-columns: minmax(var(--side-padding), 1fr) repeat(2, minmax(var(--column-minwidth), var(--column-width))) 0fr minmax(var(--side-padding), 1fr);
-        grid-template-rows: var(--content-gap) var(--title-height) repeat(6, auto) 1fr var(--content-gap);
+        grid-template-rows: auto var(--title-height) repeat(6, auto) 1fr var(--content-gap);
         grid-template-areas:
             ". header header header ."
             ". title  title  title  ."

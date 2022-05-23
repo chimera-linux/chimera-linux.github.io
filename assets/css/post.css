@@ -9,7 +9,7 @@ body {
 
 #container {
     grid-template-columns: 1fr min(var(--content-width)) 1fr;
-    grid-template-rows: var(--content-gap) var(--title-height) auto var(--content-gap);
+    grid-template-rows: auto var(--title-height) 1fr var(--content-gap);
     grid-template-areas:
         ". header ."
         ". title  ."
