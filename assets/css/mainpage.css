@@ -280,11 +280,6 @@ body {
         grid-row: tile1 / tile2;
     }
 
-    /* tiles should use as much height as they need */
-    .tile {
-        height: auto;
-    }
-
     #tile2 {
         margin-top: var(--content-halfgap);
         margin-bottom: var(--content-gap);
@@ -294,5 +289,12 @@ body {
     }
     #tile4 {
         margin-bottom: var(--content-halfgap);
+    }
+}
+
+@media (max-width: 480px) {
+    /* content may not fit anymore with tile-height */
+    .tile {
+        height: auto;
     }
 }
