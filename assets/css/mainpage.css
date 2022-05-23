@@ -280,15 +280,22 @@ body {
         grid-row: tile1 / tile2;
     }
 
+    #tile1 {
+        margin-top: var(--side-padding);
+        margin-bottom: 0;
+    }
     #tile2 {
-        margin-top: var(--content-halfgap);
-        margin-bottom: var(--content-gap);
+        /* in mobile layout, this is the bottom tile */
+        margin-top: var(--side-padding);
+        margin-bottom: var(--side-padding);
     }
     #tile3 {
-        margin-bottom: var(--content-halfgap);
+        margin-top: var(--side-padding);
+        margin-bottom: 0;
     }
     #tile4 {
-        margin-bottom: var(--content-halfgap);
+        margin-top: var(--side-padding);
+        margin-bottom: 0;
     }
 }
 
