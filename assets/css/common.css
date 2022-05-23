@@ -182,7 +182,7 @@ a:active { text-decoration: none; }
 #header > ul > li > a {
     display: inline-flex;
     align-items: center;
-    height: var(--content-gap);
+    height: var(--header-height);
     padding-left: var(--menu-padding);
     padding-right: var(--menu-padding);
     color: var(--color-fontlight);
@@ -293,6 +293,7 @@ a:active { text-decoration: none; }
         background-size: var(--content-altgap);
         background-repeat: no-repeat;
         background-position: center;
+        background-color: rgba(0, 0, 0, 0);
     }
 
     /* hovered and checked burger button has darkened background */
