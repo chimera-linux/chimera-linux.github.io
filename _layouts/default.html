@@ -41,6 +41,9 @@
 {% else %}
 <link rel="stylesheet" href="/assets/css/post.css">
 {% endif %}
+{% if page.layout == "book" %}
+<link rel="stylesheet" href="/assets/css/book.css">
+{% endif %}
 </head>
 <body>
 <div id="container">
@@ -52,7 +55,7 @@
             <li><a href="/news">News</a></li>
             <li><a href="/downloads">Downloads</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="{{ site.docs_link }}">Docs</a></li>
+            <li><a href="/docs">Docs</a></li>
             <li><a href="{{ site.github_link }}">GitHub</a></li>
         </ul>
         <div class="social">

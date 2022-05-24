@@ -15,5 +15,7 @@ social_links:
   - ["matrix", "Matrix chat", "https://matrix.to/#/%23chimera-linux:matrix.org"]
   - ["reddit", "Chimera Linux reddit", "https://www.reddit.com/r/chimeralinux"]
 
-docs_link: "https://docs.chimera-linux.org"
+collections:
+  - docs
+
 github_link: "https://github.com/chimera-linux"

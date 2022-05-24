@@ -1,0 +1,21 @@
+/* handbook-specific styling */
+
+#content {
+    grid-column: 1 / span 3;
+    display: flex;
+    padding: 0;
+    gap: var(--content-gap);
+}
+
+#content > nav {
+    background-color: var(--color-bg);
+    width: 256px;
+    flex-shrink: 0;
+}
+
+#content > main {
+    max-width: var(--content-width);
+    padding-top: var(--content-halfgap);
+    padding-bottom: var(--content-halfgap);
+    padding-right: var(--content-gap);
+}
