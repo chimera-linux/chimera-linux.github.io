@@ -16,6 +16,7 @@ social_links:
   - ["reddit", "Chimera Linux reddit", "https://www.reddit.com/r/chimeralinux"]
 
 collections:
-  - docs
+  docs:
+    output: true
 
 github_link: "https://github.com/chimera-linux"

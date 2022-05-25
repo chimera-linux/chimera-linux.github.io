@@ -1,14 +1,46 @@
 ---
-layout: default
+layout: page_base
 ---
-<div id="title">
-    <a href="/"><img id="logo" src="/assets/logo.png" alt="Chimera Linux logo"></a>
-    <h1>{{ page.title }}</h1>
-</div>
 <div id="content">
-    <nav>
-    </nav>
-    <main>
-        {{ content }}
-    </main>
+<nav>
+<ol>
+    {% assign docs = site.docs | sort_natural: 'section' %}
+    {% assign hasli = false %}
+    {% assign nestl = 1 %}
+    {% for it in docs %}
+        {% assign oldnest = nestl %}
+        {% assign sects = it.section | split: "." %}
+        {% if sects.size > nestl %}
+<ol>
+        {% else %}
+            {% if sects.size < nestl %}
+                {% assign nestdiff = nestl | minus: sects.size %}
+                {% for i in (1..nestdiff) %}
+</li>
+</ol>
+                {% endfor %}
+            {% endif %}
+            {% if hasli == true %}
+</li>
+            {% endif %}
+        {% endif %}
+        {% assign nestl = sects.size %}
+        {% assign hasli = true %}
+<li>
+<a href="{{ it.url }}">{{ it.title }}</a>
+    {% endfor %}
+    {% if nestl > 1 %}
+        {% for i in (2..nestl) %}
+</li>
+</ol>
+        {% endfor %}
+    {% endif %}
+    {% if hasli == true %}
+</li>
+    {% endif %}
+</ol>
+</nav>
+<main>
+    {{ content }}
+</main>
 </div>

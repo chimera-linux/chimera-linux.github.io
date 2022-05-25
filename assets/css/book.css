@@ -9,8 +9,36 @@
 
 #content > nav {
     background-color: var(--color-bg);
-    width: 256px;
+    width: calc(var(--content-gap) * 5);
     flex-shrink: 0;
+    padding: var(--content-halfgap);
+}
+
+#content ol {
+    list-style-type: none;
+    counter-reset: item;
+    padding: 0;
+    margin: 0;
+}
+
+#content ol > li {
+    display: table;
+    counter-increment: item;
+}
+
+#content ol > li:before {
+    content: counters(item, ".") ". ";
+    display: table-cell;
+    padding-right: 0.6em;
+}
+
+#content li ol > li {
+    margin: 0;
+}
+
+/* make sure sub-categories don't end with a dot */
+#content li ol > li:before {
+    content: counters(item, ".") " ";
 }
 
 #content > main {
