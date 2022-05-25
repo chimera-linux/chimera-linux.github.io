@@ -9,9 +9,9 @@
 
 #content > nav {
     background-color: var(--color-bg);
-    width: calc(var(--content-gap) * 5);
     flex-shrink: 0;
     padding: var(--content-halfgap);
+    padding-right: var(--content-altgap);
 }
 
 #content > nav ol {
