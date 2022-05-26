@@ -2,7 +2,7 @@
 layout: book
 title: Documentation
 section: 1
-permalink: /docs
+permalink: /docs/
 ---
 
 Welcome to the Chimera Linux handbook.

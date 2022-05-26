@@ -5,38 +5,31 @@ layout: page_base
 <nav>
 <ol>
     {% assign docs = site.docs | sort_natural: 'section' %}
-    {% assign hasli = false %}
     {% assign nestl = 1 %}
     {% for it in docs %}
-        {% assign oldnest = nestl %}
         {% assign sects = it.section | split: "." %}
         {% if sects.size > nestl %}
-<ol>
+            <ol>
         {% else %}
-            {% if sects.size < nestl %}
-                {% assign nestdiff = nestl | minus: sects.size %}
-                {% for i in (1..nestdiff) %}
-</li>
-</ol>
-                {% endfor %}
-            {% endif %}
-            {% if hasli == true %}
-</li>
+            {% assign nestdiff = nestl | minus: sects.size %}
+            {% for i in (1..nestdiff) %}
+                </li>
+                </ol>
+            {% endfor %}
+            {% if it.section != 1 %}
+                </li>
             {% endif %}
         {% endif %}
         {% assign nestl = sects.size %}
-        {% assign hasli = true %}
-<li>
-<a href="{{ it.url }}">{{ it.title }}</a>
+        <li>
+        <a href="{{ it.url }}">{{ it.title }}</a>
     {% endfor %}
-    {% if nestl > 1 %}
-        {% for i in (2..nestl) %}
-</li>
-</ol>
-        {% endfor %}
-    {% endif %}
-    {% if hasli == true %}
-</li>
+    {% for i in (2..nestl) %}
+        </li>
+        </ol>
+    {% endfor %}
+    {% if docs.size > 0 %}
+        </li>
     {% endif %}
 </ol>
 </nav>
