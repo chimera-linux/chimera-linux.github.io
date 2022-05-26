@@ -26,6 +26,10 @@
     counter-increment: item;
 }
 
+#content > nav ol > li > span {
+    font-weight: 700;
+}
+
 #content > nav ol > li:before {
     content: counters(item, ".") ". ";
     display: table-cell;
@@ -46,4 +50,6 @@
     padding-top: var(--content-halfgap);
     padding-bottom: var(--content-halfgap);
     padding-right: var(--content-gap);
+    margin-left: auto;
+    margin-right: auto;
 }
