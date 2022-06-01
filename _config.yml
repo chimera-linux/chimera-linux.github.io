@@ -13,7 +13,8 @@ plugins:
 social_links:
   - ["irc", "IRC chat", "https://webchat.oftc.net/?channels=#chimera-linux"]
   - ["matrix", "Matrix chat", "https://matrix.to/#/%23chimera-linux:matrix.org"]
-  - ["reddit", "Chimera Linux reddit", "https://www.reddit.com/r/chimeralinux"]
+  - ["reddit", "Chimera Linux Reddit", "https://www.reddit.com/r/chimeralinux"]
+  - ["twitter", "Chimera Linux Twitter", "https://twitter.com/chimera_linux"]
 
 collections:
   docs:
