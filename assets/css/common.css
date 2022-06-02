@@ -191,7 +191,6 @@ a:active { text-decoration: none; }
 
 #header > ul > li > a:hover {
     background-color: var(--color-menuh);
-    color: var(--color-fontlight);
 }
 
 #header .social {
@@ -210,7 +209,7 @@ a:active { text-decoration: none; }
 }
 
 #header .social > a:hover {
-    filter: brightness(90%);
+    background-color: var(--color-menuh);
 }
 
 #header .social img {
