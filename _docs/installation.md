@@ -107,8 +107,8 @@ Also add it to `/etc/hosts`; this prevents `syslog-ng` from doing a blocking
 DNS lookup, which may take some time:
 
 ```
-# echo 127.0.0.1 chimera >> /etc/hosts
-# echo ::1 chimera >> /etc/hosts
+# echo 127.0.0.1 myhost >> /etc/hosts
+# echo ::1 myhost >> /etc/hosts
 ```
 
 Certain EFI firmwares require a bootable file at a known location before they
