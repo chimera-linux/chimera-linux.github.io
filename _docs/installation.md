@@ -100,7 +100,7 @@ for `boot` target. An equivalent with `dinitctl` would be something like
 Set a hostname:
 
 ```
-# echo myhost > /etc/hostname
+# echo chimera > /etc/hostname
 ```
 
 Also add it to `/etc/hosts`; this prevents `syslog-ng` from doing a blocking
