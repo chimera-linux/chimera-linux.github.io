@@ -248,6 +248,8 @@ a:active { text-decoration: none; }
 }
 
 #title {
+    display: flex;
+    flex-direction: column;
     grid-area: title;
     color: var(--color-fontlight);
 }
