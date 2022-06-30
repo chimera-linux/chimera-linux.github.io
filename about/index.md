@@ -142,31 +142,3 @@ Cross-compiling can be used to bootstrap for previously unsupported
 architectures as well as compile regular packages for them (however,
 native builds are encouraged, as cross-builds do not provide the
 same guarantees and not everything cross-compiles cleanly).
-
-## Frequently asked questions
-
-With the basics out of the way, there are some things to be clarified.
-
-### What is the distro's relation to Void Linux?
-
-If Chimera build templates and process seem suspciously similar to Void
-Linux's `xbps-src`, `cbuild` originally started as a rewrite of `xbps-src`
-to attempt to eliminate its various issues, and the main developer/founder
-of Chimera also worked on Void Linux. However, no actual code is shared
-with `xbps-src`.
-
-### Why Python for the source packaging?
-
-Python was chosen as it's more or less the standard scripting language on
-Unix-like systems nowadays and is robust and portable. The `cbuild` system
-does not rely on any modules outside of Python's standard library. The
-Python syntax is also flexible and adjustable enough to make for a nice
-syntax for templates without having to invent yet another DSL that would
-introduce its own bugs and need its own parsing.
-
-### How about ChimeraOS?
-
-The system also has no relation to ChimeraOS, besides the unfortunate name
-similarity. ChimeraOS used to be called GamerOS and renamed itself to
-ChimeraOS later; however, at this point Chimera Linux was already in
-public development with its name in place.
