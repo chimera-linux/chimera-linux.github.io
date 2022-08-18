@@ -3,6 +3,8 @@ layout: page
 title: Downloads
 ---
 
+[![Desktop screenshot thumbnail](/assets/thumb.png)](/assets/screenshot.png)
+
 While the project does not have any repositories yet, there are some
 initial live ISO images available for testing. Keep in mind that these
 may have various issues and are pre-alpha quality.

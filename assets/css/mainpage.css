@@ -17,15 +17,21 @@ body {
     grid-template-rows: auto var(--title-height) fit-content(var(--desc-height)) repeat(2, auto) 1fr var(--content-gap);
     grid-template-areas:
         ". header header header ."
-        ". title  . thumb  ."
-        ". desc   . thumb  ."
-        ". tile1  . tile2  ."
-        ". tile3  . tile4  ."
+        ". title  title  title  ."
+        ". desc   desc   desc   ."
+        ". tile1  .      tile2  ."
+        ". tile3  .      tile4  ."
         ". bottom bottom bottom ."
         ". footer footer footer .";
 }
 
 /* title part */
+
+#title {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+}
 
 #title #logo {
     max-height: var(--logo-height);
@@ -81,17 +87,6 @@ body {
 
 #desc {
     grid-area: desc;
-}
-
-/* screenshot */
-
-#screenshot {
-    grid-area: thumb;
-}
-
-#screenshot img {
-    width: 100%;
-    margin-top: var(--content-altgap);
 }
 
 /* tile section */
@@ -227,7 +222,6 @@ body {
         grid-template-areas:
             ". header header header ."
             ". title  title  title  ."
-            ". thumb  thumb  thumb  ."
             ". desc   desc   desc   ."
             ". tile1  tile1  tile1  ."
             ". tile3  tile3  tile3  ."
@@ -235,21 +229,6 @@ body {
             ". tile2  tile2  tile2  ."
             ". bottom bottom bottom ."
             ". footer footer footer .";
-    }
-
-    #screenshot {
-        display: flex;
-        justify-content: center;
-    }
-
-    #screenshot img {
-        max-width: var(--sshot-mwidth);
-    }
-
-    #title {
-        display: flex;
-        flex-flow: column;
-        align-items: center;
     }
 
     /* social media icons */
