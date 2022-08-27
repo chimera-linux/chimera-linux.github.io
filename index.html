@@ -88,17 +88,18 @@ title: Chimera Linux
             <strong>The distribution is in heavy development.</strong> Right
             now, it is a relatively complete graphical system with a multimedia
             stack and a web browser, capable of running Wayland and X11
-            environments, such as GNOME and Enlightenment. However, it is still
-            source-based (meaning you have to compile everything yourself) and
-            undergoes frequent refactoring, so it is not yet safe to use.
+            environments, such as GNOME and Enlightenment. However, the
+            repositories (source and binary) are subject to arbitrary changes
+            and rebuilds, so it is not yet safe for daily use.
         </p>
     </div>
     <div id="bottom_iso">
         <p>
-            <strong>Initial bootable ISO images for x86_64 and ppc64le are now
-            available.</strong> Check the <a href="/downloads">Downloads</a>
-            page for links and instructions. Note that these are pre-alpha
-            quality and are provided solely for testing purposes.
+            <strong>Initial bootable ISO images for x86_64 and ppc64le as well
+            as binary package repositories are now available.</strong> Check
+            the <a href="/downloads">Downloads</a> page for links and
+            instructions. Note that these are pre-alpha quality and are
+            provided solely for testing purposes.
         </p>
         <p>
             It is currently planned that the distribution will stabilize once
@@ -112,7 +113,8 @@ title: Chimera Linux
         <div class="bottom_post">
             <h4>{{ post.date | date: "%B %d, %Y" }}</h4>
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-            {{ post.content }}
+            {{ post.excerpt }}
+            <p><a href="{{ post.url }}">Read more</a></p>
         </div>
         {% endfor %}
     </div>

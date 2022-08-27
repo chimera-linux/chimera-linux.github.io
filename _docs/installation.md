@@ -80,20 +80,15 @@ Add a user, set a password for it and root, add it to groups you want:
 
 Pre-enable some services; you can also do this from a booted system with
 the `dinitctl` command, but it's good to do this ahead of time. Following
-is an example that enables `udevd` for early target, `dhcpcd` for network
-target, `syslog-ng`, `elogind` and `dbus` for `login` target and `gdm`
-for `boot` target. An equivalent with `dinitctl` would be something like
-`dinitctl enable --from login dbus` (without `--from`, `boot` is assumed).
+is an example that enables `udevd`, `dhcpcd`, `elogind`, `dbus` and `gdm`.
+An equivalent with `dinitctl` would be something like `dinitctl enable dbus`.
 
 ```
-# cd /etc/dinit.d/init.d
+# cd /etc/dinit.d/boot.d
 # ln -s ../udevd .
-# cd ../network.d
 # ln -s ../dhcpcd .
-# cd ../login.d
 # ln -s ../elogind .
 # ln -s ../dbus .
-# cd ../boot.d
 # ln -s ../gdm .
 ```
 
