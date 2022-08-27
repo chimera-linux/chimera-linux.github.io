@@ -5,8 +5,8 @@ title: Downloads
 
 [![Desktop screenshot thumbnail](/assets/thumb.png)](/assets/screenshot.png)
 
-While the project does not have any repositories yet, there are some
-initial live ISO images available for testing. Keep in mind that these
+There are some initial live ISO images available for testing, alongside
+experimental binary package repositories. Keep in mind that these
 may have various issues and are pre-alpha quality.
 
 You can download images for the following targets:
