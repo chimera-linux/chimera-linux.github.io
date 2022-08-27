@@ -35,6 +35,13 @@ Additionally, repos, images as well as auxiliary files such as bootstrap
 tarballs for language toolchains can now be found on a stable URL, which
 is [https://repo.chimera-linux.org](https://repo.chimera-linux.org).
 
+## Cports and bootstrapping
+
+Most importantly this means you no longer have to bootstrap the system from
+source. The binary repos have been integrated into `cports` which means that
+`binary-bootstrap` now works out of box, and you can build any package you
+want without having to bring up the whole system from scratch.
+
 ## Future plans
 
 The immediate goal is to launch the `aarch64` repos and images.
