@@ -16,7 +16,7 @@ You can download images for the following targets:
 * `ppc64le` - graphical (GNOME)
 * `ppc64le` - console only
 
-All images are available [here](https://ftp.octaforge.org/chimera/live).
+All images are available [here](https://repo.chimera-linux.org/live).
 
 The graphical images are universal (you can boot them either into GUI
 or into console depending on the bootloader menu entry).
