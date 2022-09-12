@@ -18,6 +18,15 @@ You can download images for the following targets:
 
 All images are available [here](https://repo.chimera-linux.org/live).
 
+There are also `aarch64` platform images for Raspberry Pi (3 and 4, all
+variants including 400 and compute modules) and Pinebook Pro. There
+are no ISO images for aarch64 yet (GRUB is not ready). The device images
+are console-only, but a desktop environment can be installed into them.
+
+In addition to ISOs and device images, there are also rootfs tarballs
+(in `base-minimal` and `base-core` variants for all architectures as
+well as platform tarballs for the same devices as the device images).
+
 The graphical images are universal (you can boot them either into GUI
 or into console depending on the bootloader menu entry).
 
@@ -27,6 +36,9 @@ processor or equivalent (VSX support is required).
 
 The images are hybrid (you can boot them off either USB stick or optical
 media).
+
+The AArch64 device images can be flashed directly onto storage media,
+typically an SD card (or eMMC storage).
 
 At least **1GB of RAM** is recommended for graphical desktop. You may need
 more than that if you choose to boot with the ramdisk option, as the whole
