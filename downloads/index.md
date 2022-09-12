@@ -15,13 +15,14 @@ You can download images for the following targets:
 * `x86_64` - console only
 * `ppc64le` - graphical (GNOME)
 * `ppc64le` - console only
+* `aarch64` - graphical (GNOME)
+* `aarch64` - console only
 
 All images are available [here](https://repo.chimera-linux.org/live).
 
 There are also `aarch64` platform images for Raspberry Pi (3 and 4, all
-variants including 400 and compute modules) and Pinebook Pro. There
-are no ISO images for aarch64 yet (GRUB is not ready). The device images
-are console-only, but a desktop environment can be installed into them.
+variants including 400 and compute modules) and Pinebook Pro. These are
+strictly console-only, but it is possible to install a desktop into them.
 
 In addition to ISOs and device images, there are also rootfs tarballs
 (in `base-minimal` and `base-core` variants for all architectures as
@@ -32,7 +33,8 @@ or into console depending on the bootloader menu entry).
 
 The `x86_64` images can boot on either BIOS or UEFI machines. The `ppc64le`
 images require a SLOF-based or OpenPOWER machine with at least POWER8
-processor or equivalent (VSX support is required).
+processor or equivalent (VSX support is required). The `aarch64` images
+are purely for UEFI machines.
 
 The images are hybrid (you can boot them off either USB stick or optical
 media).
