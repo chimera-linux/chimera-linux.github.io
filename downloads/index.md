@@ -5,42 +5,50 @@ title: Downloads
 
 [![Desktop screenshot thumbnail](/assets/thumb.png)](/assets/screenshot.png)
 
-There are some initial live ISO images available for testing, alongside
-experimental binary package repositories. Keep in mind that these
-may have various issues and are pre-alpha quality.
+There are some pre-alpha quality installation media available, alongside
+experimental binary package repositories.
 
-You can download images for the following targets:
+These include:
 
-* `x86_64` - graphical (GNOME)
-* `x86_64` - console only
-* `ppc64le` - graphical (GNOME)
-* `ppc64le` - console only
-* `aarch64` - graphical (GNOME)
-* `aarch64` - console only
+* Live ISO images
+* Device images
+* Root filesystem tarballs
 
 All images are available [here](https://repo.chimera-linux.org/live).
 
-There are also `aarch64` platform images for Raspberry Pi (3 and 4, all
-variants including 400 and compute modules) and Pinebook Pro. These are
-strictly console-only, but it is possible to install a desktop into them.
+Live ISO media are available for the following architectures:
 
-In addition to ISOs and device images, there are also rootfs tarballs
-(in `base-minimal` and `base-core` variants for all architectures as
-well as platform tarballs for the same devices as the device images).
+* `aarch64` (EFI)
+* `ppc64le` (OpenPOWER + SLOF, POWER8 or newer)
+* `x86_64` (EFI + BIOS)
 
-The graphical images are universal (you can boot them either into GUI
-or into console depending on the bootloader menu entry).
+All live ISO media are available in bare console variant and GNOME desktop
+variant (which can also boot to console). They are also hybrid (for both
+optical media and USB removable media).
 
-The `x86_64` images can boot on either BIOS or UEFI machines. The `ppc64le`
-images require a SLOF-based or OpenPOWER machine with at least POWER8
-processor or equivalent (VSX support is required). The `aarch64` images
-are purely for UEFI machines.
+Root file system tarballs are available for the following architectures:
 
-The images are hybrid (you can boot them off either USB stick or optical
-media).
+* `aarch64`
+* `ppc64le`
+* `riscv64`
+* `x86_64`
 
-The AArch64 device images can be flashed directly onto storage media,
-typically an SD card (or eMMC storage).
+Root file system tarballs are available at least in `minimal` and `core`
+variants. They represent the `base-minimal` and `base-core` packages
+respectively.
+
+Device images are available for the following devices:
+
+* Raspbery Pi 3/4/400
+* Pinebook Pro
+* MNT Reform 2 (i.MX8MQ)
+
+Device images also have corresponding root file system tarballs
+available. These are like the generic tarballs, but using `base-full`
+alongside a device-specific base package.
+
+Device images can be flashed onto storage media, which is device-specific.
+Typically that is an SD card (for the initial boot).
 
 At least **1GB of RAM** is recommended for graphical desktop. You may need
 more than that if you choose to boot with the ramdisk option, as the whole
@@ -51,17 +59,17 @@ The GNOME images **by default boot into Wayland**, unless that is not
 possible for some reason. If you want to force X11, there is a special
 bootloader option for that.
 
-It is also possible to boot the images via **serial console**. You can do
-that by editing the right bootloader entry and adding a `console=` parameter,
-e.g. `console=ttyS0` for x86_64 machines and `console=hvc0` or `console=hvsi0`
-for POWER machines. The image will detect this and enable the respective
-`agetty` services.
+It is possible to use all images with serial console, in addition to regular
+display. For ISO images, the right `console=` parameter must be added to
+enable it (which will also result in the corresponding `agetty` service
+getting enabled). Device images typically come with everything already
+set up out of box.
+
+The `console=` parameters include `ttyS0` for `x86_64` machines, `hvc0` or
+`hvsi0` for POWER machines, `ttySIF0` for RISC-V machines and `ttyAMA0`,
+`ttyS2` or `ttymxc0` for AArch64 machines. It may vary device by device.
 
 **Log in as either `anon` or `root` with the password `chimera`**. Graphical
 boot will log in automatically straight into desktop.
-
-For the time being, the ISO images contain the complete toolchain to bootstrap
-the `cports` tree from source code without using `bootstrap.sh`. This will not
-be the case with production images with binary repositories available.
 
 There are also [installation instructions](/docs/installation).
