@@ -16,22 +16,21 @@ These include:
 
 All images are available [here](https://repo.chimera-linux.org/live).
 
-Live ISO media are available for the following architectures:
-
-* `aarch64` (EFI)
-* `ppc64le` (OpenPOWER + SLOF, POWER8 or newer)
-* `x86_64` (EFI + BIOS)
-
-All live ISO media are available in bare console variant and GNOME desktop
-variant (which can also boot to console). They are also hybrid (for both
-optical media and USB removable media).
-
-Root file system tarballs are available for the following architectures:
+Live ISO media and root filesystem tarballs are available for the following
+architectures:
 
 * `aarch64`
 * `ppc64le`
 * `riscv64`
 * `x86_64`
+
+The `aarch64` and `riscv64` ISO media require UEFI. The `x86_64` media can
+use either UEFI or BIOS. The `ppc64le` media work on OpenPOWER (petitboot)
+as well as SLOF (PowerVM, qemu) systems.
+
+All live ISO media are available in bare console variant and GNOME desktop
+variant (which can also boot to console). They are also hybrid (for both
+optical media and USB removable media).
 
 Root file system tarballs are available at least in `minimal` and `core`
 variants. They represent the `base-minimal` and `base-core` packages
