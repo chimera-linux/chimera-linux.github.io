@@ -9,7 +9,7 @@ body {
 
 #container {
     grid-template-columns: 1fr min(var(--content-width)) 1fr;
-    grid-template-rows: auto var(--title-height) 1fr var(--content-gap);
+    grid-template-rows: auto fit-content(var(--title-height)) 1fr var(--content-gap);
     grid-template-areas:
         ". header ."
         ". title  ."
@@ -56,10 +56,9 @@ body {
 }
 
 #content .post_date {
+    display: block;
     font-family: "Poppins";
     font-weight: 500;
-    margin-top: var(--content-altgap);
-    margin-bottom: var(--content-halfgap);
     color: var(--color-chead);
     font-size: 17pt;
 }
@@ -78,7 +77,11 @@ body {
     #content {
         padding-left: var(--side-padding);
         padding-right: var(--side-padding);
-        padding-top: var(--table-pad);
-        padding-bottom: var(--table-pad);
+        padding-top: 0;
+        padding-bottom: var(--content-halfgap);
+    }
+
+    #content .post_date {
+        margin-top: vaR(--content-altgap);
     }
 }
