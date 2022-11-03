@@ -138,8 +138,6 @@ Specific examples of things considered harmful and not welcome:
 * Far-right and adjacent movements
 * Racism, sexism, homophobia, transphobia, etc.
 * Complaining about SJWs
-* Religious anti-systemd nonsense
-* Dogmatic suckless/"minimalism"
-* cat-v and adjacent
-* Cryptocurrency
+* Loud anti-systemd nonsense, dogmatic suckless/"minimalism",
+  cat-v, cryptocurrencies and other sketchy religious movements
 * etc.
