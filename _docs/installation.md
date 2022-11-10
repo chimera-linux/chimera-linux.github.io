@@ -4,117 +4,105 @@ title: Installation
 section: 2
 ---
 
-Currently, you can install Chimera using the images that are available on
-the [Downloads](/downloads) page.
+This section describes how to install Chimera in different scenarios.
 
-Keep in mind that those images are provided for preview purposes and
-installation is currently officially unsupported.
+**Please note that Chimera is in a pre-alpha state.** The system is not
+yet suitable for production or daily driving.
 
-Following is an example for an x86_64 EFI machine (for EFI machines of other
-architectures, it should be largely equivalent, besides some minor things).
-Other architectures and firmwares may need various alterations to the process.
+## System requirements
 
-First, log in as root. Then, locate the drive you will be installing on. Let's
-use `/dev/sda` as an example.
+Chimera is supported on various types of computers. The documentation is
+going to cover those that are officially supported and have binary package
+repositories.
 
-```
-# wipefs -a /dev/sda
-# cfdisk /dev/sda
-```
+You will need the following:
 
-Create a partition table (GPT for EFI) and on it two partitions (~200MB first
-partition of type `EFI System`, and a regular Linux partition on the rest).
+| Architecture | Requirements                                        |
+|--------------|-----------------------------------------------------|
+| `x86_64`     | Any UEFI or BIOS-based 64-bit computer              |
+| `ppc64le`    | POWER8 or better (OpenPOWER, PowerVM)               |
+| `aarch64`    | UEFI devices supported by mainline kernel, or below |
+| `riscv64`    | UEFI devices supported by mainline kernel, or below |
 
-Now format them:
+In general, for a console-based system, you will need at least 128MB
+or more RAM for the system to be truly usable. A graphical desktop will
+need more, depending on the desktop (1GB is recommended for GNOME installs).
 
-```
-# mkfs.vfat /dev/sda1
-# mkfs.ext4 /dev/sda2
-```
+### AArch64 devices
 
-Mount the root partition:
+In addition to generic UEFI targets supported by mainline kernel, there
+are also devices with device-specific images, typically using U-Boot.
 
-```
-# mkdir /media/root
-# mount /dev/sda2 /media/root
-```
+Currently, officially supported are the following:
 
-Install Chimera:
+* 64-bit Raspberry Pi (3/4 and variants such as 400 and compute modules)
+* PINE64 Pinebook Pro
+* MNT Reform 2 with i.MX8MQ SOM
 
-```
-# chimera-live-install /media/root
-```
+You will need to obtain the correct image for these. The list is subject
+to expansion.
 
-Bind pseudo-filesystems:
+### RISC-V devices
 
-```
-# mount --rbind /dev /media/root/dev
-# mount --rbind /proc /media/root/proc
-# mount --rbind /sys /media/root/sys
-# mount --rbind /tmp /media/root/tmp
-```
+This is similar to AArch64.
 
-Change into the target system:
+Officially supported are the following:
 
-```
-# chroot /media/root
-```
+* SiFive HiFive Unmatched
+* Qemu virtual machines (with and without OpenSBI)
 
-Then from within, install the bootloader:
+This list is also subject to expansion.
 
-```
-# mkdir /boot/efi
-# mount /dev/sda1 /boot/efi
-# grub-install --efi-directory=/boot/efi
-# update-grub
-```
+## Downloading system media
 
-Add a user, set a password for it and root, add it to groups you want:
+All system media are available [here](https://repo.chimera-linux.org/live).
+In general you will want to pick those with the latest date.
 
-```
-# useradd myuser
-# passwd myuser
-# passwd root
-# usermod -a -G other,groups,you,want myuser
-```
+In general, for all architectures the following is available:
 
-Pre-enable some services; you can also do this from a booted system with
-the `dinitctl` command, but it's good to do this ahead of time. Following
-is an example that enables `udevd`, `dhcpcd`, `elogind`, `dbus` and `gdm`.
-An equivalent with `dinitctl` would be something like `dinitctl enable dbus`.
+* Live images in ISO format
+* Device-specific images if available
+* Root filesystem tarballs
 
-```
-# cd /etc/dinit.d/boot.d
-# ln -s ../udevd .
-# ln -s ../dhcpcd .
-# ln -s ../elogind .
-# ln -s ../dbus .
-# ln -s ../gdm .
-```
+### Live ISOs
 
-Set a hostname:
+For generic computers, this is usually preferred. Use these if you are not
+installing on a device that requires device-specific media, such as all
+Intel or AMD `x86_64` computers, most POWER architecture systems, and
+supported AArch64/RISC-V systems with UEFI.
 
-```
-# echo chimera > /etc/hostname
-```
+### Device-specific images
 
-Also add it to `/etc/hosts`; this prevents `syslog-ng` from doing a blocking
-DNS lookup, which may take some time:
+Use these if your device is explicitly supported.
 
-```
-# echo 127.0.0.1 chimera >> /etc/hosts
-# echo ::1 chimera >> /etc/hosts
-```
+### Root filesystem tarballs
 
-Certain EFI firmwares require a bootable file at a known location before they
-show any NVRAM entries. In this case, the system may not boot. This does not
-affect most systems, but for some you may want to put GRUB at the fallback
-boot path:
+As a bit of a special case, Chimera also provides root file system tarballs.
+This is a small, pre-packaged Chimera installation. The following flavors
+are always available:
 
-```
-# mv /boot/efi/EFI/chimera /boot/efi/EFI/BOOT
-# mv /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI
-```
+* Minimal tarballs (bootstrapped from the `base-minimal` metapackage) are
+  suitable for setting up small containers that you can add more software
+  into, e.g. with Docker. They do not contain any bootloader or any software
+  beyond bare necessities.
+* Core tarballs (bootstrapped from `base-core` metapackage) are larger and
+  contain packages suitable for most deployments. Like minimal tarballs
+  they do not contain a kernel or a bootloader, but they do contain
+  programs such as those for manipulating filesystems and networks,
+  or CA certificates for TLS.
 
-You can then perform whatever other post-installation tasks you want before
-rebooting. When you are done, simply reboot into the new system and log in.
+They are handy for chroot-style installations that are fully manual, mostly
+to save time bootstrapping with `apk` from scratch.
+
+In addition to this, tarball counterpart for every device-specific image
+is available. You can use these for manual installation on such devices,
+or you can create device images using Chimera's `mkimage.sh` using these.
+
+## Verifying system media
+
+In each media bundle, the `sha256sums.txt` file contains SHA256 checksums
+of every file. Use this to check that your downloaded file is not corrupt.
+
+## Installing
+
+Proceed to the section relevant to you.
