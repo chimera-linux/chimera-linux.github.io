@@ -22,10 +22,6 @@ To install PipeWire:
 This will also automatically install WirePlumber, the default
 session manager.
 
-In order for PipeWire to function, you will need `XDG_RUNTIME_DIR`
-to be handled. In a typical setup, this is done with `elogind`,
-but other options are possible. See [Seat management](/docs/configuration/seat).
-
 The primary supported way to get the daemon running is through
 a user service. Simply enable WirePlumber as your user:
 

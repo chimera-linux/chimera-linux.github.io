@@ -125,9 +125,28 @@ system can also enable some user services for all users implicitly, by
 placing links in `/usr/lib/dinit.d/user/boot.d`.
 
 There are more things `dinit-userservd` also does, such as managing the
-`XDG_RUNTIME_DIR` environment variable and path when there is nothing else
-to manage it (e.g. `elogind`) as well as track the D-Bus session bus address
-in the user's environment.
+`XDG_RUNTIME_DIR` environment variable and directory as well as track the
+D-Bus session bus address in the user's environment. See the
+[Seat management](/docs/configuration/seat) page for more information.
+
+### User service lingering
 
 By default, upon first login of the user, the user's activated services come
-up, while upon last logout of the user, they are shut down.
+up, while upon last logout of the user, they are shut down. This is not
+always the desired behavior.
+
+In order to fix that, `dinit-userservd` provides the "linger" functionality.
+When this is on, user services come up with the first login as usual, but
+they do not shut down with the last logout.
+
+By default, this is configured per user. To enable lingering for user `myuser`:
+
+```
+# touch /var/lib/dinit-userservd/linger/myuser
+```
+
+To disable it, simply remove the file.
+
+Lingering is checked on last logout. That means if you log in, create the
+linger file and then log out, your services will stay up. If you log in
+again, remove the file and log out again, the services will shut down.
