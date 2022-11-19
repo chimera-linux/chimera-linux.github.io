@@ -1,6 +1,6 @@
 ---
 layout: book
-title: Encrypted root with LUKS and LVM
+title: Disk encryption
 section: 2.3
 ---
 
