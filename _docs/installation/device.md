@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Device images
-section: 2.3
+section: 2.2
 ---
 
 Some devices cannot be supported with the [live images](/docs/installation/live).

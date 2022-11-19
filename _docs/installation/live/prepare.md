@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Preparing media
-section: 2.2.1
+section: 2.1.1
 ---
 
 This page describes media preparation using the live ISO method.

@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Installing
-section: 2.2.4
+section: 2.1.4
 ---
 
 This assumes you have partitioned your target drive.

@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Live images
-section: 2.2
+section: 2.1
 ---
 
 This page describes installation using live images. If you are reading

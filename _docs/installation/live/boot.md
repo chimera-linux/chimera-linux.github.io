@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Booting
-section: 2.2.2
+section: 2.1.2
 ---
 
 Once you have prepared your removable media, you can boot from
