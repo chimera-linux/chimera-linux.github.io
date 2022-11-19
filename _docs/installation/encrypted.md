@@ -12,8 +12,7 @@ your device, so that you can understand the differences.
 
 The first part that is different from regular installation is partitioning.
 
-There are multiple ways you can arrange your drive when using encryption
-with LUKS:
+There are multiple ways you can arrange your drive when using encryption:
 
 1. Unencrypted `/boot`, other partitions in LVM on LUKS
 2. Unencrypted `/boot` with ZFS pool on LUKS
@@ -49,7 +48,7 @@ partition separate from ESP, we will create a GPT on the disk, along with
 
 1. The EFI system partition
 2. The `/boot` Linux partition of a desired size and filesystem (e.g. `ext4`)
-3. A Linux partition that covers the rest of the spcae
+3. A Linux partition that covers the rest of the space
 
 Adjust this to whatever your computer uses. For example a BIOS or OpenPOWER
 system would have only two partitions here and so on.
