@@ -47,9 +47,9 @@ Assuming a target device `/dev/sda` and an EFI system with dedicated `/boot`
 partition separate from ESP, we will create a GPT on the disk, along with
 3 partitions:
 
-1) The EFI system partition
-2) The `/boot` Linux partition of a desired size and filesystem (e.g. `ext4`)
-3) A Linux partition that covers the rest of the spcae
+1. The EFI system partition
+2. The `/boot` Linux partition of a desired size and filesystem (e.g. `ext4`)
+3. A Linux partition that covers the rest of the spcae
 
 Adjust this to whatever your computer uses. For example a BIOS or OpenPOWER
 system would have only two partitions here and so on.
@@ -184,10 +184,10 @@ and it describes the encrypted devices to set up.
 In our previous example we only have one LUKS device. The `crypttab` consists
 of one or more device lines, each with four fields. The fields are the following:
 
-1) The name (as in `luksOpen /dev/device name`)
-2) The device
-3) A key file path
-4) Options, comma-separated
+1. The name (as in `luksOpen /dev/device name`)
+2. The device
+3. A key file path
+4. Options, comma-separated
 
 There are many options which are out of scope here, and in a lot of cases you do
 not even need any. In our case we will use the `luks` option. If you have an SSD
