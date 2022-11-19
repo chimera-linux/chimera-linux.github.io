@@ -15,12 +15,12 @@ The first part that is different from regular installation is partitioning.
 There are multiple ways you can arrange your drive when using encryption
 with LUKS:
 
-1) Unencrypted `/boot`, other partitions in LVM on LUKS
-2) Unencrypted `/boot` with ZFS pool on LUKS
-3) Full disk encryption with LVM/ZFS on LUKS
-4) LUKS without LVM
-4) Native ZFS encryption
-5) and other combos
+1. Unencrypted `/boot`, other partitions in LVM on LUKS
+2. Unencrypted `/boot` with ZFS pool on LUKS
+3. Full disk encryption with LVM/ZFS on LUKS
+4. LUKS without LVM
+5. Native ZFS encryption
+6. and other combos
 
 Each way has some advantages and some disadvantages. We will not cover all
 of them here.
