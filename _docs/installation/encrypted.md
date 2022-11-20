@@ -212,6 +212,12 @@ need to refresh your initial ramdisk, so that this is included. Keep in mind tha
 it is necessary to have your `crypttab` set up in order for the initial ramdisk to
 open the LUKS device and find a root filesystem on it.
 
+To refresh the initramfs:
+
+```
+# update-initramfs -c -k all
+```
+
 ### LVM and initramfs
 
 Handling of LVM is automatic thanks to `udev`. The necessary mappings are created
