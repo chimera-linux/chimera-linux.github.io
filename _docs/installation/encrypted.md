@@ -133,7 +133,20 @@ it requires support from the bootloader. It will only work if you use GRUB.
 With just passphrases, you will also have to unlock the drive twice. The first
 time will be by GRUB (which understands LUKS) in order to access the kernel,
 and the second time will be by the `initramfs`, in order to mount the root
-file system.
+file system. You can work around this by using a keyfile (stored in your
+initramfs) to unlock the volume the second time.
+
+Additionally, there is yet another caveat, and that is limited support for
+LUKS2 in GRUB. Starting with version 2.06, LUKS2 is partially supported,
+but only with the PBKDF2 key derivation function. The default for LUKS2
+is Argon2i, so it will not work.
+
+Therefore, you are best off forcing LUKS1. You can do that with a parameter
+passed to `luksFormat`:
+
+```
+# cryptsetup luksFormat --type luks1 /dev/...
+```
 
 With these precautions, this is also an arrangement you can use. Set up your
 drive and install the system as usual.
