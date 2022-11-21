@@ -64,7 +64,7 @@ at `/dev/sda` and the above layout:
 
 ```
 # mkdir /media/root
-# zpool create -o ashift=12 -O acltype=posix -O canount=off -O dnodesize=auto -O normalization=formD -O realtime=on -O xattr=sa -O mountpoint=/ -R /media/root rpool /dev/sda3
+# zpool create -o ashift=12 -O acltype=posix -O canmount=off -O dnodesize=auto -O normalization=formD -O relatime=on -O xattr=sa -O mountpoint=/ -R /media/root rpool /dev/sda3
 # zfs create -o canmount=off -o mountpoint=none rpool/ROOT
 # zfs create -o canmount=noauto -o mountpoint=/ rpool/ROOT/chimera
 # zfs mount rpool/ROOT/chimera
