@@ -87,3 +87,19 @@ primary selling point. The userland tools are a means to an end, and the
 end is creating a well-rounded, general-purpose, practical operating system
 that addresses various real issues that Linux distributions tend to have.
 The tools simply exist to help us get there eventually.
+
+## Speaking of which, why not busybox or toybox?
+
+Because Busybox is functionally more limited than what we have, while also
+not providing any other real benefit. A lot of parts of its codebase are
+also rather sketchy, and it can be configured in a countless ways with
+different sets of tools, because in the end it's a single multi-call
+executable.
+
+When your goal is a tiny embedded system, using such thing may seem like
+a good idea. This is not the case in Chimera, so there is no point.
+
+As far as Toybox goes, it's pretty much the same story, except it's even
+more limited, with a lot of the tools being extremely bare. The code seems
+to be somewhat higher quality than Busybox's, but the other aspects make it
+even less of a good fit.
