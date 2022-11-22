@@ -38,3 +38,36 @@ does not rely on any modules outside of Python's standard library. The
 Python syntax is also flexible and adjustable enough to make for a nice
 syntax for templates without having to invent yet another DSL that would
 introduce its own bugs and need its own parsing.
+
+## So, why use a BSD-based userland anyway?
+
+While coreutils may seem lightweight enough to not cause any issues already,
+there are some specific reasons the system uses a BSD-derived userland.
+The primary one is probably that the code of the BSD versions is overall
+much cleaner and easier to read. There are no cursed components such as
+gnulib, the codebase is leaner, and more aligned with the project's goals.
+
+Other reasons include helping the goal of improving software portability,
+as using a different userland tends to expose a lot of assumptions in
+various codebases, as well as improving bootstrappability and additional
+convenience; the core userland tools are not just coreutils, but also a
+a lot of tools around that (findutils, grep, sed, and so on) and some of
+those actually already introduce undesired dependencies into the bootstrap
+path. In Chimera, all those tools are neatly wrapped in a single package
+that depends on very little, while providing pretty much all functionality
+one needs to get things done. This means we are not only replacing the GNU
+utilities, but we also have a replacement for things such as Busybox at the
+same time, re-using the same environment to power our initramfs and other
+components.
+
+Some people may also say that the BSD licensing is its own benefit. We do
+not say that, because as far as core userland goes, the licensing is more
+or less meaningless for us and we could easily live with the GPL. Therefore,
+this is largely a technical decision for us. While the benefits may seem
+small to some, they are there, and they matter to the project.
+
+However, using an alternative userland is not and never was the project's
+primary selling point. The userland tools are a means to an end, and the
+end is creating a well-rounded, general-purpose, practical operating system
+that addresses various real issues that Linux distributions tend to have.
+The tools simply exist to help us get there eventually.
