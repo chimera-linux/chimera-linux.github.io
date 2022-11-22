@@ -60,6 +60,22 @@ utilities, but we also have a replacement for things such as Busybox at the
 same time, re-using the same environment to power our initramfs and other
 components.
 
+Relatedly, it also helps cbuild/cports a lot. The way cbuild works, you are
+building everything in a little container that dependencies are installed
+into. Our BSD-ported utilities also replace some core portions of `util-linux`,
+which need to be present in the build containers. The `util-linux` package
+normally depends on things such as PAM and udev. That means if we were to
+use GNU utilities, we'd need a separate, stripped-down build of `util-linux`
+just for the containers, because everything that's in the build container as
+well as every dependency of it is a part of the bootstrap process. That would
+mean either having to make this stripped-down version coexist with the full
+version installed in target systems, or make them conflict. For example Void
+Linux does the latter, and it creates trouble for instance whenever something
+wants to run a test suite and the test suite has a dependency on some missing
+`util-linux` tool. In Chimera, there is no need for `util-linux` anywhere in
+the base container or its bootstrap path, and such templates can simply add
+`util-linux` to their `checkdepends`.
+
 Some people may also say that the BSD licensing is its own benefit. We do
 not say that, because as far as core userland goes, the licensing is more
 or less meaningless for us and we could easily live with the GPL. Therefore,
