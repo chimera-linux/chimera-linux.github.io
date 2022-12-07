@@ -90,10 +90,18 @@ Chimera's services suite comes with support for targets. Targets are
 services which do not track any daemons (they are Dinit's `internal`
 service type) and act as ordering sentinels.
 
-Example targets include:
+Example targets include (not necessarily in this order):
 
-* `early.target` - early startup has finished
-* `init.target` - post-early startup has finished
+* `init-prepare.target` - pseudo-filesystems, cgroups and so on are up
+* `init-modules.target` - kernel modules have been loaded
+* `init-devices.target` - `udev` has been run and has settled
+* `init-root-rw.target` - root filesystem has been remounted read-write
+* `init-fs-pre.target` - device-mapper targets are up, but not yet filesystems
+* `init-fs-local.target` - local filesystems have been mounted
+* `init-keyboard.target` - console keymap has been set
+* `init-console.target` - console font and so on has been set
+* `init-done.target` - run before `rc.local` after early services are up
+* `init-local.target` - run after `rc.local`
 * `login.target` - getty is up (login prompt)
 * `network.target` - network is up (after init.target)
 
