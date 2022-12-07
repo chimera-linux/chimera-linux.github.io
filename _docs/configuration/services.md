@@ -158,3 +158,11 @@ To disable it, simply remove the file.
 Lingering is checked on last logout. That means if you log in, create the
 linger file and then log out, your services will stay up. If you log in
 again, remove the file and log out again, the services will shut down.
+
+## rc.local
+
+The system administrator can create the script `/etc/rc.local`, which is run
+after early init is done, and either before or in parallel with regular
+service startup.
+
+This can be used to run things that are unfit for regular service handling.
