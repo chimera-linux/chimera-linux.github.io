@@ -51,7 +51,7 @@ Other reasons include helping the goal of improving software portability,
 as using a different userland tends to expose a lot of assumptions in
 various codebases, as well as improving bootstrappability and additional
 convenience; the core userland tools are not just coreutils, but also a
-a lot of tools around that (findutils, grep, sed, and so on) and some of
+lot of tools around that (findutils, grep, sed, and so on) and some of
 those actually already introduce undesired dependencies into the bootstrap
 path. In Chimera, all those tools are neatly wrapped in a single package
 that depends on very little, while providing pretty much all functionality
