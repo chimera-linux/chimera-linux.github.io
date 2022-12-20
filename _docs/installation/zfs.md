@@ -19,13 +19,22 @@ you do not have to do anything as far as preparation goes.
 For device-specific images, you will want to create a removable media
 with Chimera (typically an SD card), boot it and install ZFS in there.
 
-For devices using our generic kernel, you can use the binary modules:
+Packaged kernels in Chimera generally also come with ZFS binary module
+packages, suffixed with `-zfs-bin`.
+
+For default, generic LTS kernel:
 
 ```
-# apk add linux-modules-zfs
+# apk add linux-lts-zfs-bin
 ```
 
-For devices using other kernels:
+For Raspberry Pi:
+
+```
+# apk add linux-rpi-zfs-bin
+```
+
+If you have your own kernel:
 
 ```
 # apk add zfs-ckms
