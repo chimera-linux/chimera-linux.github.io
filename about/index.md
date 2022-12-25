@@ -7,53 +7,46 @@ title: About
 
 Chimera comes with a novel userland setup based on FreeBSD core tools
 (replacing `coreutils` and related projects like `findutils`, `diffutils`,
-`sed` or `grep`).
+`sed` or `grep`; read our [FAQ](/docs/faq) for details about why).
 
 The FreeBSD tools were chosen for their high quality code and solid feature
-set. Some source code is also taken from NetBSD and OpenBSD.
+set. Some source code is also taken from NetBSD and OpenBSD. While we are
+not philosophically opposed to GNU/GPL and licensing is not really a factor,
+there are real benefits to using them, and they are overall a better fit for
+the project.
 
 The LLVM/Clang suite provides the system toolchain (`clang`, `lld`) as well
-as runtime parts (`compiler-rt`, `libunwind`, `libc++`). The `musl` project
-serves as the C library, as it's standards-compliant and widely compatible.
-Chimera does not currently ship GCC in any part of its package collection.
+as runtime parts (`compiler-rt`, `libunwind`, `libc++`). The C library is
+provided by `musl`, patched to use LLVM's (also used e.g. in Android and
+Fuchsia) Scudo allocator for performance as well as security.
 
-This means Chimera is not a GNU/Linux system. While this is debatable for
-certain other distributions as well (e.g. Alpine), they typically still
-tend to use the GNU compiler and other things.
+This means Chimera is not a GNU/Linux system, as it utilizes neither GNU
+utilities, nor GNU libc, nor GNU toolchain. The system is bootstrappable
+almost entirely without any GNU components (other than `make`) and is
+capable of booting without them (however, most people will have some).
 
-The system is bootstrappable almost entirely without GNU components (`make`
-is still needed) and you can have an entirely GNU-free bootable system if
-you want (however, common setups will still contain GNU parts).
+Chimera's package collection is hardened, utilizing multiple techniques as
+needed/allowed, including common software ones (such as stack canaries), less
+common software ones (Clang Control Flow Integrity, SafeStack, as well as a
+subset of UBSan) and hardware-assisted (such as Intel CET and ARM PAC/BTI).
 
-The project is not philosophically opposed to the GNU or the GPL, and various
-GPL components are shipped in the system. However, BSD utilities are a better
-fit for the OS technically, simplifying the system, its build and bootstrap
-path, and being less crufty.
-
-The use of the LLVM toolchain enables use of LTO (Link-Time Optimization)
-across the system (thanks to ThinLTO) for smaller size, better performance
-and future use of additional e.g. hardening features such as CFI. It also
-allows for much cleaner cross-compiling (one toolchain for everything).
+This is partially enabled by Chimera's system-wide deployment of LTO, or
+Link-Time Optimization, which additionally has other benefits when it comes
+to performance and binary size. Clang's ThinLTO is utilized to mitigate the
+build-time cost of LTO.
 
 The `dinit` project provides the service manager and init system for the
-OS. It's a lightweight, dependency-based, supervising system with a good
-balance of features to simplicity and Chimera uses it extensively across
-the system; besides system services, it also manages user services, and
-most long-running processes should be managed through it.
-
-Various other options were evaluated, but were found to be generally
-insufficient. These include `sysvinit` and BSD-style init (no supervision
-with `rc` scripts), OpenRC (no supervision by default), `runit` and other
-`daemontools`-style systems (no dependencies, oneshots and other features),
-`s6` (too complex and frameworky) and `systemd` (excess complexity and
-reliance on `glibc` API extensions).
+OS. It's a lightweight, dependency-based (unlike e.g. `runit`), supervising
+(unlike e.g. `sysvinit`) and portable (unlike `systemd`) system with a good
+balance of features to simplicity and ease of use/deployment (unlike e.g.
+`s6`) and Chimera uses it extensively for both system and user services.
 
 Here is an example table of some major system components and their providers:
 
 | Software                   | Source                   |
 |----------------------------|--------------------------|
 | Compiler and runtime stack | LLVM                     |
-| C standard library         | Musl                     |
+| C standard library         | Musl with Scudo          |
 | `binutils`, `elfutils`     | ELF Toolchain            |
 | Core userland              | FreeBSD, NetBSD, OpenBSD |
 | Init and logging           | Dinit, syslog-ng         |
@@ -61,8 +54,8 @@ Here is an example table of some major system components and their providers:
 | Desktop environment        | GNOME                    |
 | Web browser                | GNOME Web                |
 
-There is, of course, a lot more software in the repository, and some
-of the above have other alternatives available that you can choose from.
+Typically there is more than one option available for each component,
+but the defaults tend to be well tested and recommended.
 
 ## Clean and consistent
 
@@ -80,8 +73,8 @@ Examples of this are:
   fonts may ship both OpenType and TrueType, with OpenType being the
   default, and users being given a choice.
 * Only Python 3 is shipped.
-* Software is in general enabled for `elogind` by default and SUID bits
-  are frowned upon.
+* Software is in general enabled for `elogind` or similar solution instead
+  of suid bits and root privileges.
 
 The system aims to have one default, recommended way to do most things.
 That means endorsing specific software (through inclusion in the `main`
@@ -127,9 +120,9 @@ run directly regardless of host environment.
 ## Portable
 
 Various CPU architectures are supported by Chimera to avoid monoculture
-and to help catch bugs. The architecture support is tiered, with tier 1
-supporting `aarch64`, `ppc64le` and `x86_64`. Subsequent tiers provide
-`riscv64` and big endian `ppc64` at this point.
+and to help catch bugs. It is already possible to use the system with
+binary repositories on architectures such as AArch64, little endian
+POWER, 64-bit RISC-V and obviously the common x86_64.
 
 Adding support for a new architecture is extremely easy, as long as the
 LLVM stack properly supports it. One simply needs to create a `cbuild`
@@ -142,3 +135,6 @@ Cross-compiling can be used to bootstrap for previously unsupported
 architectures as well as compile regular packages for them (however,
 native builds are encouraged, as cross-builds do not provide the
 same guarantees and not everything cross-compiles cleanly).
+
+Repositories will be expanded as needed over time with support for new
+CPU architectures. Current plans include big-endian POWER.
