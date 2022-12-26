@@ -238,3 +238,23 @@ As far as Toybox goes, it's pretty much the same story, except it's even
 more limited, with a lot of the tools being extremely bare. The code seems
 to be somewhat higher quality than Busybox's, but the other aspects make it
 even less of a good fit.
+
+## Why choose GNOME as the default desktop?
+
+There are two major desktops that provide a properly functional Wayland
+implementation, and that is GNOME and KDE. Compared to KDE, GNOME is much
+smaller and simpler to build (and less time/resource-consuming), and its
+Wayland support feels more stable. Additionally, it has consistent and
+well-defined UX. GNOME is also more portable than KDE, primarily due to
+relying on WebKit rather than a Chromium derivative as its web browser
+engine of choice. The founder of Chimera also uses GNOME as their daily
+driver.
+
+Other desktops usually do not meet the Wayland requirement, and tend to
+have UI/UX that is way more all over the place. Simpler WMs and compositors
+also tend to be much more of a "do it yourself" thing, and tend to target
+niches that only suit a relatively small number of people (e.g. tiling).
+The default desktop in Chimera should be comprehensive and unassuming.
+
+Of course, users are free to choose any desktop they desire. If one is
+not available in the package collection, patches are welcome.
