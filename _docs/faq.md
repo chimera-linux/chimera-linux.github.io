@@ -4,6 +4,11 @@ title: FAQ
 section: 99
 ---
 
+<nav>
+  <h2>Table of Contents</h2>
+  {:toc}
+</nav>
+
 ## Is Chimera a fork?
 
 No, it's an independent project not directly derived from anything else.
