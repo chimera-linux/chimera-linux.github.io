@@ -5,6 +5,7 @@ section: 99
 ---
 
 <nav>
+  <h2>FAQ index</h2>
   * TOC
   {:toc}
 </nav>
