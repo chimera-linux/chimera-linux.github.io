@@ -6,6 +6,7 @@ section: 99
 
 <nav>
   <h2>Table of Contents</h2>
+  * TOC
   {:toc}
 </nav>
 
