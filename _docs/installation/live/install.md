@@ -232,6 +232,20 @@ DNS lookup on boot:
 # echo ::1 chimera >> /etc/hosts
 ```
 
+Set your timezone:
+
+Find the zoneinfo for your specific timezone
+
+```
+# ls /usr/share/zoneinfo
+```
+
+Then symlink it to `/etc/localtime`
+
+```
+# ln -s /usr/share/zoneinfo/Europe/Monaco /etc/localtime
+```
+
 ## Booting
 
 At this point you should be able to reboot and do any other post-installation
