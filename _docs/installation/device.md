@@ -46,3 +46,6 @@ You can log in as `root`, with the password `chimera`.
 
 If the device supports serial console, it is usually set up to use it
 by default, as well as graphical output, if supported.
+
+You will then want to take a look at
+[Post-installation](/docs/configuration/post-installation).

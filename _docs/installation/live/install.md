@@ -204,35 +204,20 @@ In any case, once you are done, refresh your GRUB configuration file:
 # update-grub
 ```
 
-## Creating a user
+## Set a root password
 
-You will want to create a user for yourself, as well as change the root
-password. Otherwise, you would not be able to log in.
+If you do not set a root password, you will not be able to log in, as you
+do not have any other user yet. Therefore, do it now:
 
 ```
-# useradd myuser
-# passwd myuser
 # passwd root
-# usermod -a -G any,groups,you,want myuser
 ```
 
 ## Other post-installation tasks
 
-Set a hostname:
+At this point, the system should be capable of booting on its own.
 
-```
-# echo chimera > /etc/hostname
-```
+If you wish, you can perform other post-installation tasks here, or you can
+do so after you have booted into the system.
 
-Also add it to `/etc/hosts` to prevent `syslog-ng` from doing a blocking
-DNS lookup on boot:
-
-```
-# echo 127.0.0.1 chimera >> /etc/hosts
-# echo ::1 chimera >> /etc/hosts
-```
-
-## Booting
-
-At this point you should be able to reboot and do any other post-installation
-tasks in the final system, such as enabling more services.
+Either way, proceed to [Post-installation](/docs/configuration/post-installation).

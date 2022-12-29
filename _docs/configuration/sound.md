@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Sound
-section: 4.4
+section: 4.5
 ---
 
 The officially supported way to get sound on Chimera is through

@@ -1,7 +1,7 @@
 ---
 layout: book
 title: D-Bus
-section: 4.2
+section: 4.3
 ---
 
 The D-Bus setup in Chimera is different from a typical non-systemd
