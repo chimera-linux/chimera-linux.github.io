@@ -26,9 +26,8 @@ almost entirely without any GNU components (other than `make`) and is
 capable of booting without them (however, most people will have some).
 
 Chimera's package collection is hardened, utilizing multiple techniques as
-needed/allowed, including common software ones (such as stack canaries), less
-common software ones (Clang Control Flow Integrity, SafeStack, as well as a
-subset of UBSan) and hardware-assisted (such as Intel CET and ARM PAC/BTI).
+needed/allowed, including common ones such as stack canaries and PIE as
+well as less common ones such as a subset of UBSan and CFI.
 
 This is partially enabled by Chimera's system-wide deployment of LTO, or
 Link-Time Optimization, which additionally has other benefits when it comes
@@ -59,22 +58,9 @@ but the defaults tend to be well tested and recommended.
 
 ## Clean and consistent
 
-Since Chimera is a new distribution, it aims to use this to get rid of
-some legacy compatibility that is holding things back.
-
-Examples of this are:
-
-* The preferred display server is Wayland.
-* Audio shall be handled through a sound server. The ALSA library will
-  only serve as a backend for sound servers, and be significantly stripped
-  down. The recommended sound server will be PipeWire.
-* Scalable fonts shall be distributed in the OpenType/CFF format. It is
-  a goal to do so when possible for higher quality font rendering. Some
-  fonts may ship both OpenType and TrueType, with OpenType being the
-  default, and users being given a choice.
-* Only Python 3 is shipped.
-* Software is in general enabled for `elogind` or similar solution instead
-  of suid bits and root privileges.
+The system does not insist on legacy cruft and since it's a new system,
+it can afford to start over. That is also reflected in its software
+choices, preferring modern solutions such as Wayland and PipeWire.
 
 The system aims to have one default, recommended way to do most things.
 That means endorsing specific software (through inclusion in the `main`
