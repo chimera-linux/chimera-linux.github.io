@@ -26,6 +26,7 @@
 }
 
 #content > nav > #content_list {
+    width: 256px;
     padding: var(--content-halfgap);
     padding-right: 0;
 }
