@@ -3,7 +3,8 @@ layout: page_base
 ---
 <div id="content">
 <nav>
-<ol>
+<input type="checkbox">
+<ol id="content_list">
     {%- assign docs = site.docs | sort_natural: 'section' -%}
     {%- assign nestl = 1 -%}
     {%- for it in docs -%}

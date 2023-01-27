@@ -10,8 +10,24 @@
 #content > nav {
     background-color: var(--color-bg);
     flex-shrink: 0;
+    padding: 0;
+}
+
+#content > nav > input {
+    display: block;
+    flex-shrink: 0;
+    float: right;
+    width: var(--content-altgap);
+    height: 100%;
+    margin: 0;
+    appearance: none;
+    --moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+#content > nav > #content_list {
     padding: var(--content-halfgap);
-    padding-right: var(--content-altgap);
+    padding-right: 0;
 }
 
 #content > nav ol {
@@ -52,4 +68,27 @@
     padding-right: var(--content-gap);
     margin-left: auto;
     margin-right: auto;
+}
+
+/* hide docs navigation in mobile layout */
+@media (max-width: 1023px) {
+    #content > nav > #content_list {
+        display: none;
+    }
+
+    #content > nav > input {
+        background: url("/assets/icons/expand.svg");
+        background-size: var(--content-altgap);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    #content > nav > input:hover {
+        cursor: pointer;
+    }
+
+    #content > nav > input:checked ~ #content_list {
+        display: block;
+    }
 }
