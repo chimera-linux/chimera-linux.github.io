@@ -63,12 +63,14 @@
 }
 
 #content > main {
-    max-width: var(--content-width);
     padding-top: var(--content-halfgap);
     padding-bottom: var(--content-halfgap);
     padding-right: var(--content-gap);
     margin-left: auto;
     margin-right: auto;
+    /* ensure that long code fields do not overflow the page */
+    width: 0;
+    flex-grow: 1;
 }
 
 /* hide docs navigation in mobile layout */
