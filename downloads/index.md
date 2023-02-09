@@ -22,7 +22,9 @@ architectures:
 * `riscv64`
 * `x86_64`
 
-All images are available [here](https://repo.chimera-linux.org/live).
+Latest images are available [here](https://repo.chimera-linux.org/live/latest).
+It is also possible to download some of the historical images, by visiting
+the [parent directory](https://repo.chimera-linux.org/live).
 
 The [installation](/docs/installation) section has more detailed information
 about what is actually available and what you should end up using, as well
