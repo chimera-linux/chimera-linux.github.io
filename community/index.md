@@ -35,6 +35,7 @@ be keeping their own logs though.
 These are official:
 
 * [Reddit](https://www.reddit.com/r/chimeralinux)
+* [Mastodon](https://floss.social/@chimera_linux)
 * [Twitter](https://twitter.com/chimera_linux)
 
 Unless listed here, anything else is an unofficial space. Creation of such
