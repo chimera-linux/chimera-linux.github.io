@@ -17,6 +17,7 @@ social_links:
   - ["irc", "IRC chat", "https://webchat.oftc.net/?channels=#chimera-linux"]
   - ["matrix", "Matrix chat", "https://matrix.to/#/%23chimera-linux:matrix.org"]
   - ["reddit", "Chimera Linux Reddit", "https://www.reddit.com/r/chimeralinux"]
+  - ["mastodon", "Chimera Linux Mastodon", "https://floss.social/@chimera_linux"]
   - ["twitter", "Chimera Linux Twitter", "https://twitter.com/chimera_linux"]
 
 collections:
