@@ -20,4 +20,5 @@ Additionally, social media icons use the following third party branding:
 
 * Matrix icon, public domain
 * Reddit icon, subject to Reddit's brand guidelines
+* Mastodon icon, subject to Mastodon's brand guidelines
 * Twitter icon, subject to Twitter's brand guidelines
