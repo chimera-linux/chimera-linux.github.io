@@ -26,6 +26,9 @@ partitions is with the `cfdisk` TUI program:
 # cfdisk /dev/sda
 ```
 
+If you wish to have your root file system on ZFS, please read this
+page and then go to [Root on ZFS](/docs/installation/zfs).
+
 ## BIOS x86 systems
 
 Keep in mind that using a BIOS system will make you unable to boot

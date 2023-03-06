@@ -41,8 +41,12 @@ console has to be used instead.
 
 The live media initramfs is set up to automatically configure
 a `getty` for your serial console, as long as the console is
-enabled. Enabling the console involves editing the boot entry
-you want and inserting a kernel command line parameter.
+enabled. This may be implicit (e.g. on some setups where there
+is no graphical display; your login prompt may come up completely
+automatically without doing anything) but in other cases you may
+have to set it on the kernel command line. This is particularly
+when you get the bootloader on your serial terminal, but no
+output after kernel selection.
 
 On most `x86_64` setups, this will be `console=ttyS0`.
 

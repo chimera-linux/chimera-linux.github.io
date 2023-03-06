@@ -30,7 +30,9 @@ is Ext4. Assuming your root is `/dev/sda2`, do something like this:
 
 You can use any file system you like, such as XFS, ZFS or Btrfs.
 The ISO images come with ZFS prebuilt kernel modules as well as
-userspace utilities to simplify such setups.
+userspace utilities to simplify such setups. Please follow the
+[Root on ZFS](/docs/installation/zfs) page if you wish to have
+your root filesystem on ZFS.
 
 If you have a swap partition, create your swap space, e.g. like:
 
@@ -54,87 +56,48 @@ Then mount it:
 
 ## Install the system
 
-The `chimera-live-install` script allows you to install the
-system as it is on the live image, minus live-specific setup,
-onto the target drive.
+There are two ways you can install the system onto a partitioned,
+mounted drive. One is a local installation, which copies the live
+system onto the drive (but without live-related bits), the other
+is a remote installation from the repositories.
+
+### Local installation
+
+The `chimera-live-install` utility exists for that. The usage is
+simple:
 
 ```
 # chimera-live-install /media/root
 ```
 
-Once done, mount pseudo-filesystems in there:
+### Network installation
+
+The `chimera-live-bootstrap` utility lets you do that. Like the
+local installation tool, it takes the target root, but additionally
+it also needs a list of packages to install.
+
+Typically you would run something like this:
 
 ```
-# mount --rbind /dev /media/root/dev
-# mount --rbind /proc /media/root/proc
-# mount --rbind /sys /media/root/sys
-# mount --rbind /tmp /media/root/tmp
+# chimera-live-bootstrap /media/root base-full
 ```
 
-Ensure that you can access the network in there:
+## Prepare the system
+
+Regardless of the installation method you choose, you will need to
+open a shell in the target system to install updates, possibly other
+packages you need to boot, and the bootloader.
+
+The `chimera-live-chroot` tool exists to simplify that task for you.
+It will mount the pseudo-filesystems for the session as well as
+ensure you have network access inside.
 
 ```
-# cp /etc/resolv.conf /media/root/etc
+# chimera-live-chroot /media/root
 ```
 
-And change into the target system:
-
-```
-# chroot /media/root
-```
-
-### Using apk to install
-
-Instead of using `chimera-live-install`, you can also use `apk`
-to install the system from the network. At the moment, this is a
-little bit complicated. This is a simple, rough example.
-
-Install base files package:
-
-```
-# apk --root /media/root --keys-dir /etc/apk/keys --repositories-file /etc/apk/repositories --initdb add base-files
-```
-
-This is not aware of proper permissions yet, so fix them:
-
-```
-# chown -R root:root /media/root
-```
-
-Add the minimal metapackage:
-
-```
-# apk --root /media/root --keys-dir /etc/apk/keys --repositories-file /etc/apk/repositories add base-minimal
-```
-
-After that, mount the pseudo-filesystems there as well as copy
-`resolv.conf` like above, and change root into the target system.
-
-When inside, install the rest of the system:
-
-```
-# apk update
-# apk add base-full linux
-```
-
-You will also want to install the right bootloader package. For
-`x86_64` EFI systems, it is `grub-x86_64-efi` (`grub-i386-efi`
-for machines with 32-bit EFI), for BIOS systems it is `grub-i386-pc`,
-for AArch64 it's `grub-arm64-efi`, for RISC-V it's `grub-riscv64-efi`,
-for PowerVM and POWER virtual machines it's `grub-powerpc-ieee1275`.
-OpenPOWER systems do not need any bootloader per se, but you will
-still want to generate the GRUB config file for bootloader entries,
-so install just `grub`.
-
-Of course, you should also install anything else you need for your
-specific setup.
-
-## Updating the system
-
-First thing you do after changing root is updating the system so you
-are using latest packages. This is especially important in Chimera
-because of how fast it currently changes, so you want to make sure
-you have the very latest version of e.g. service management files.
+First, update the system. If installing from the network, this might
+not do anything.
 
 ```
 # apk update
@@ -154,20 +117,86 @@ After that, try again and there should be no more errors:
 # apk upgrade --available
 ```
 
-## Bootloader setup
+If you've installed from the network, you might need to add more
+packages.
 
-This will differ depending on the kind of hardware/firmware you have.
+For example the kernel:
 
-Example for BIOS systems:
+```
+# apk add linux-lts
+```
+
+Or ZFS:
+
+```
+# apk add linux-lts-zfs-bin
+```
+
+While inside the shell, you may also want to install any other initial
+package you want.
+
+At this point, also add your filesystems to `/etc/fstab` as needed, in
+order to make sure e.g. your `/boot` gets mounted accordingly, or to
+make sure your root file system is mounted with the flags you want or
+follows the `fsck` behavior you want.
+
+It is recommended to use `PARTUUID` or `UUID` values for devices in
+`fstab` to make sure they will not change.
+
+At the end, create or refresh the initramfs:
+
+```
+# update-initramfs -c -k all
+```
+
+## Bootloader
+
+You have a few choices as far as bootloader goes.
+
+### GRUB
+
+GRUB is a universal choice that will work on more or less every platform
+that Chimera supports.
+
+If your installation does not come with it, add it.
+
+Example for x86 BIOS:
+
+```
+# apk add grub-i386-pc
+```
+
+Example for x86_64 EFI:
+
+```
+# apk add grub-x86_64-efi
+```
+
+Example for a POWER virtual machine or PowerVM hardware:
+
+```
+# apk add grub-powerpc-ieee1275
+```
+
+On a PowerNV machine with Petitboot, you do not need any low level bootloader
+as the machine comes with one, so just add `grub`. On other platforms, there
+are more choices, e.g. `grub-arm64-efi`, `grub-i386-coreboot`, `grub-i386-efi`,
+`grub-riscv64-efi`, `grub-x86_64-xen`.
+
+The installation will differ slightly depending on the platform. For exmaple
+for BIOS systems:
 
 ```
 # grub-install /dev/sda
 ```
 
-If installing for BIOS while being booted in UEFI mode, you will also
-want to pass `--target=i386-pc`.
+On POWER systems with a PReP partition:
 
-Example for UEFI systems of any architecture:
+```
+# grub-install /dev/sda1
+```
+
+On EFI systems with separate ESP:
 
 ```
 # mkdir -p /boot/efi
@@ -175,8 +204,8 @@ Example for UEFI systems of any architecture:
 # grub-install --efi-directory=/boot/efi
 ```
 
-You will want `--target=x86_64-efi` as well if installing while booted
-in BIOS mode.
+And so on. You will want `--target=x86_64-efi` as well if installing EFI on
+x86_64 while booted in BIOS mode.
 
 If you do not want GRUB to alter firmware boot entries, `--no-nvram` can be
 passed. Additionally, certain EFI firmwares are buggy and require a bootable
@@ -192,17 +221,32 @@ Without using `--removable`, a similar workaround will also work:
 # mv /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI
 ```
 
-For POWER systems with a PReP partition, you will want something like this:
-
-```
-# grub-install /dev/sda1
-```
-
-In any case, once you are done, refresh your GRUB configuration file:
+In any case, you will want to generate a GRUB configuration file on all
+platforms:
 
 ```
 # update-grub
 ```
+
+### EFISTUB
+
+**Note that this may not work on every EFI implementation, and it also requires
+functional persistent NVRAM, and is considered experimental.**
+
+On many EFI systems, it is possible to boot Linux kernels directly thanks to
+EFISTUB. You do not necessarily need a bootloader for this, as Chimera can
+automatically manage EFI boot entries for all kernels.
+
+Uncomment the `EFIBOOTMGR_ENABLE_HOOK` variable in `/etc/default/efibootmgr-hook`
+and set it to some value, e.g. `1`.
+
+Then generate the initial entries:
+
+```
+# /etc/kernel.d/99-efibootmgr-hook.sh
+```
+
+You do not need to manually regenerate this on kernel updates.
 
 ## Set a root password
 

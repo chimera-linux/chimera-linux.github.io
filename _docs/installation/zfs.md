@@ -43,6 +43,10 @@ If you have your own kernel:
 Keep in mind that ZFS managed through CKMS wil need to build its kernel
 modules from source, which may take time, especially on slow devices.
 
+CKMS and prebuilt modules do not conflict. If you have prebuilt modules
+installed for a kernel, CKMS will not attempt to build it for that
+kernel.
+
 You may have to `modprobe` the `zfs` module afterwards to be able to
 use the filesystem.
 
@@ -90,41 +94,7 @@ And the other partitions:
 # mount /dev/sda1 /media/root/boot/efi
 ```
 
-After that, install Chimera like normal, for example using the `chimera-live-install`
-convenience script.
-
-## Bootloader setup
-
-Everything when it comes to mounting pseudo-filesystems, chrooting, updating
-and so on is identical to a regular installation.
-
-The bootloader installation is likewise identical, outside of one thing: GRUB
-does not know how to generate a correct `root=` parameter for kernel command
-line. That means when you run `update-grub`, the generated configuration
-file will be incorrect, and it will not boot.
-
-You can remedy that by modifying `/etc/default/grub` and adding the following
-into it:
-
-```
-GRUB_CMDLINE_LINUX="root=ZFS=rpool/ROOT/chimera"
-```
-
-This variable is added into kernel command line parameters for all boot entries.
-Once done, just run `update-grub` again.
-
-## Initramfs setup
-
-You will also want to refresh your initramfs during the post-installation,
-to ensure that everything is in there:
-
-```
-# update-initramfs -c -k all
-```
-
-There is nothing else to do, as the system comes with out of box support
-for ZFS in initramfs. The ZFS boot mode is enabled through the correct
-`root=ZFS=...` parameter.
+After that, install Chimera like normal, as everything else is identical.
 
 ## ZFS and LUKS
 
