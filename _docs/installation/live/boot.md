@@ -35,18 +35,15 @@ When using virtual machines, you can pass the image like this:
 
 ## Serial console
 
-In general, the images are set up to boot graphically. A lot of
-systems do not have any kind of display connected, and a serial
-console has to be used instead.
+If you wish to use a serial terminal, you might have to do some
+additional setup, depending on the configuration.
 
-The live media initramfs is set up to automatically configure
-a `getty` for your serial console, as long as the console is
-enabled. This may be implicit (e.g. on some setups where there
-is no graphical display; your login prompt may come up completely
-automatically without doing anything) but in other cases you may
-have to set it on the kernel command line. This is particularly
-when you get the bootloader on your serial terminal, but no
-output after kernel selection.
+In a lot of cases, the kernel will output to serial console
+automatically, without doing anything. This is especially the
+case if you don't have a graphical output. However, if you do
+not get kernel output on your serial terminal (i.e. if the
+bootloader does appear but the kernel messages do not) you
+will have to enable it manually, with the `console=` parameter.
 
 On most `x86_64` setups, this will be `console=ttyS0`.
 
@@ -56,6 +53,9 @@ other POWER systems this might be `console=hvsi0`.
 AArch64 and RISC-V systems vary. Refer to the documentation for your
 system. Examples include `ttyAMA0`, `ttyS2`, `ttymxc0`, `ttySIF0`
 and others.
+
+The Chimera live images are set up to automatically enable a
+login prompt (`getty`) for all consoles the kernel outputs to.
 
 ## Picking the boot option
 

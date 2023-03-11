@@ -1,60 +1,65 @@
 ---
 layout: book
 title: Installing
-section: 2.1.4
+section: 2.1.5
 ---
 
-This assumes you have partitioned your target drive.
-
-## Filesystems
-
-The next step is to format the partitions so that there is a file
-system on them.
-
-On EFI systems, the ESP needs to be FAT32 formatted. Assuming that
-your ESP is `/dev/sda1`, do the following:
-
-```
-# mkfs.vfat /dev/sda1
-```
-
-On POWER systems that need a PReP boot partition, this partition
-should be left raw and not formatted with anything.
-
-On all systems, you will need to format your root. A typical choice
-is Ext4. Assuming your root is `/dev/sda2`, do something like this:
-
-```
-# mkfs.ext4 /dev/sda2
-```
-
-You can use any file system you like, such as XFS, ZFS or Btrfs.
-The ISO images come with ZFS prebuilt kernel modules as well as
-userspace utilities to simplify such setups. Please follow the
-[Root on ZFS](/docs/installation/zfs) page if you wish to have
-your root filesystem on ZFS.
-
-If you have a swap partition, create your swap space, e.g. like:
-
-```
-# mkswap /dev/sda3
-```
+This assumes you have partitioned your target drive and formatted
+your partitions with the necessary filesystems.
 
 ## Mounting
 
-Create a mount point for the root partition.
+The first thing before you install the OS is to mount the partitions
+with the desired layout matching the final system.
+
+First, you need to mount the root partition. Create a mount point
+for it first:
 
 ```
 # mkdir /media/root
 ```
 
-Then mount it:
+Then mount it (assuming `/dev/sda2` for root partition):
 
 ```
 # mount /dev/sda2 /media/root
 ```
 
-## Install the system
+### UEFI
+
+You will want to mount the EFI System Partition as well. There
+are several locations, based on your layout. First, let's assume
+that the ESP is `/dev/sda1`.
+
+If you have a dedicated `/boot` partition (let's say `sda3`),
+mount it first:
+
+```
+# mkdir /media/root/boot
+# mount /dev/sda3 /media/root/boot
+```
+
+Regardless, mount the ESP:
+
+```
+# mkdir -p /media/root/boot/efi
+# mount /dev/sda1 /media/root/boot/efi
+```
+
+If your ESP and `/boot` are merged, do this instead:
+
+```
+# mkdir /media/root/boot
+# mount /dev/sda1 /media/root/boot
+```
+
+### Other partitions
+
+You will also want to mount other physical partitions you are
+using in the locations where they are going to be. Do keep in mind
+that for nested mountpoints, always mount parent partitions first.
+
+## Installation
 
 There are two ways you can install the system onto a partitioned,
 mounted drive. One is a local installation, which copies the live
@@ -117,48 +122,102 @@ After that, try again and there should be no more errors:
 # apk upgrade --available
 ```
 
-If you've installed from the network, you might need to add more
-packages.
+### Kernel installation
 
-For example the kernel:
+If you performed a local installation from the live image, it already
+comes with a kernel.
+
+Otherwise you might have to add it:
 
 ```
 # apk add linux-lts
 ```
 
-Or ZFS:
+If you wish to use ZFS, add that too:
 
 ```
 # apk add linux-lts-zfs-bin
 ```
 
-While inside the shell, you may also want to install any other initial
-package you want.
+### Fstab
 
-At this point, also add your filesystems to `/etc/fstab` as needed, in
-order to make sure e.g. your `/boot` gets mounted accordingly, or to
-make sure your root file system is mounted with the flags you want or
-follows the `fsck` behavior you want.
+Chimera comes with a default example `/etc/fstab`. It only contains
+a definition for the `tmpfs` at `/tmp`.
 
-It is recommended to use `PARTUUID` or `UUID` values for devices in
-`fstab` to make sure they will not change.
+Strictly speaking, this is technically enough, as having an entry
+for the root filesystem is optional and you might not have any other
+filesystems. However, it is recommended that you have a proper `fstab`,
+with which you can control mount flags as well as `fsck` behavior or
+e.g. whether the root filesystem is mounted read-only.
 
-At the end, create or refresh the initramfs:
+An example `/etc/fstab` for a root partition, ESP and `/tmp` may look
+for exmaple like this:
 
 ```
-# update-initramfs -c -k all
+/dev/disk/by-partuuid/... / ext4 defaults 0 1
+/dev/disk/by-partuuid/... /boot/efi vfat defaults 0 2
+tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 ```
 
-## Bootloader
+It is not necessary to add entries for pseudo-filesystems such as the
+`/proc` or `/sys` mounts, but there is also no harm in adding them.
 
-You have a few choices as far as bootloader goes.
+The first column identifies the device. It is recommended that you always
+use unique paths such as `/dev/disk/by-partuuid` or `/dev/disk/by-uuid`,
+as names such as `/dev/sda` may change. For encrypted devices, you will
+want to use the `/dev/mapper` paths, e.g. `/dev/mapper/crypt-root`.
+
+The second column is the mount point. The entries should be specified
+in an order so that parent mounts come first.
+
+The third column specifies the file system, and the fourth column contains
+the mount options for it.
+
+The fifth column should usually be `0` and relates to `dump(8)`. The sixth
+column specifies the order for `fsck(8)`. Normally the root filesystem
+should specify `1` and other filesystems should specify `2`.
+
+If the root filesystem is not specified in `fstab`, Chimera will mount it
+as if it was specified with `defaults`, and will `fsck` it as if the sixth
+column was `1`.
+
+For more information, see `fstab(5)`.
+
+### Other packages
+
+You can install whichever other packages you like.
+
+### Root password
+
+Set your root password here, or you will not be able to log in:
+
+```
+# passwd root
+```
+
+### Serial login prompt (getty)
+
+While the live image autodetects this and lets you log in over serial
+terminal, the final system does not, and will only by default enable
+graphical `getty`.
+
+So for example you might want to do something like:
+
+```
+# ln -s ../agetty-ttyS0 /etc/dinit.d/boot.d/agetty-ttyS0
+```
+
+If the baud rate or other parameters need tweaking, you can copy them
+from the live system (e.g. `/etc/default/agetty-ttyS0`), as the live
+autodetection generates a configuration file if necessary.
 
 ### GRUB
 
-GRUB is a universal choice that will work on more or less every platform
-that Chimera supports.
+GRUB is a common bootloader that works on more or less every platform
+that Chimera supports. If you wish to use a different way to boot your
+system, skip this section.
 
-If your installation does not come with it, add it.
+First you will need to add it.
 
 Example for x86 BIOS:
 
@@ -231,11 +290,13 @@ platforms:
 ### EFISTUB
 
 **Note that this may not work on every EFI implementation, and it also requires
-functional persistent NVRAM, and is considered experimental.**
+functional persistent NVRAM, and is considered highly experimental.**
 
 On many EFI systems, it is possible to boot Linux kernels directly thanks to
 EFISTUB. You do not necessarily need a bootloader for this, as Chimera can
 automatically manage EFI boot entries for all kernels.
+
+Skip this section if this does not apply to you, e.g. if using GRUB.
 
 Uncomment the `EFIBOOTMGR_ENABLE_HOOK` variable in `/etc/default/efibootmgr-hook`
 and set it to some value, e.g. `1`.
@@ -248,13 +309,12 @@ Then generate the initial entries:
 
 You do not need to manually regenerate this on kernel updates.
 
-## Set a root password
+### Initramfs refresh
 
-If you do not set a root password, you will not be able to log in, as you
-do not have any other user yet. Therefore, do it now:
+After you have done everything else, create or refresh the initramfs:
 
 ```
-# passwd root
+# update-initramfs -c -k all
 ```
 
 ## Other post-installation tasks

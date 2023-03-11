@@ -12,6 +12,9 @@ The first part of any installation is to partition your target drive.
 This will differ depending on your architecture and system firmware,
 but some parts will always be the same.
 
+If you wish to use [Disk encryption](/docs/installation/encrypted),
+that will influence the way you partition your drive.
+
 Let's assume that the target disk drive is `/dev/sda`. Let's start
 with wiping everything on it:
 
@@ -29,65 +32,118 @@ partitions is with the `cfdisk` TUI program:
 If you wish to have your root file system on ZFS, please read this
 page and then go to [Root on ZFS](/docs/installation/zfs).
 
-## BIOS x86 systems
+## Legacy BIOS x86 systems
 
-Keep in mind that using a BIOS system will make you unable to boot
-from an NVMe SSD if you have one. Linux will still see the SSD, but
-the system firmware will not be able to locate it. Therefore, if you
-have one, use UEFI.
+**Required partitions:**
 
-In general BIOS systems should use the MBR partition table. This is
-somewhat limiting (only 4 partitions) but also the most compatible.
+1. Root filesystem partition
+
+**Partition table: MBR (DOS)**
+
+Legacy BIOS setups only strictly need one partition. Do keep in mind
+that if you have an NVMe SSD, you will be unable to boot from it.
+Linux will see the SSD, but the BIOS will not. Use UEFI for NVMe.
+In fact, use UEFI unless you really can't.
+
+MBR is limited to 4 partitions and 2 terabytes. When using BIOS,
+you should nearly always use MBR.
+
+Use the `dos` option in `cfdisk`. Mark the partition containing `/boot`
+with the **bootable flag**.
+
+### GPT with legacy BIOS
 
 It is possible to use GPT if you create a special partition sized
 1MB with the type `BIOS boot` (`21686148-6449-6E6F-744E-656564454649`)
 and no filesystem at the beginning, which will allow the bootloader
-to install, but unless you have a special reason to do that, you
-should use MBR.
+to install. This may or may not work.
 
-If you end up using MBR, pick the `dos` option if using `cfdisk`.
+## UEFI
 
-You technically only need one partition, the root partition. If you
-want more (e.g. separate `/boot` or `/home`, or swap) that is up to you.
+**Required partitions:**
 
-Ensure to toggle the Bootable flag on the partition containing `/boot`.
+1. EFI System
+2. Root filesystem
 
-## POWER systems
+**Partition table: GPT**
 
-If using an OpenPOWER system, only one partition is necessary (the root
-partition) and the partition table does not matter.
+UEFI is the system of choice on most modern x86_64 systems, as well
+as a variety of systems of other architectures such as AArch64 and
+RISC-V.
 
-PowerVM systems as well as Qemu virtual machines with the `pseries`
-machine types can use both MBR and GPT, but MBR is recommended for
-best compatibility. You will need at very least two partitions, the
-first partition (with bootable flag on) should have around 1 megabyte
-and type `PPC PReP Boot` and the second partition will be your root.
+Create a partition of type `EFI System` that is at least 200 megabytes.
+Smaller partitions will usually work, but some firmware may have issues.
 
-## UEFI systems
+Outside of that, the partition layout is up to you.
 
-You will need a GPT partition table. You will need a partition of type
-`EFI System` that is around 200MB (smaller will generally work, but
-some firmwares may have problems) and then any other partitions you
-want.
+## OpenPOWER
 
-## Swap
+**Required partitions:**
 
-It is not required to have a swap partition, but especially on low RAM
-systems it is recommended (and even if you have plenty, it is still
-recommended to have at least some swap).
+1. Root filesystem
 
-A good amount is at least 4 gigabytes. Swap is mandatory for hibernation,
-if you are going to hibernate you may need a lot more than that to
-be safe.
+**Partition table: any (usually GPT)**
 
-The partition type should be `Linux swap`.
+OpenPOWER systems have an onboard bootloader that is a part of the
+system firmware, and run Linux as their system firmware. Therefore,
+they can use many different partition tables.
 
-## Boot partition
+You will usually want GPT though.
 
-On most systems, you will not need a separate `/boot` partition, but
-if you make one, make sure it will fit at least 4 kernels and their
-initramfs images, a good minimum is around 250 megabytes.
+## PowerVM and other OpenFirmware POWER
 
-On UEFI systems, it is also possible to make your ESP and `/boot`
-a single partition. If it is not, then the ESP will be mounted under
-`/boot/efi` in most cases.
+**Required partitions:**
+
+1. PowerPC PReP Boot
+2. Root filesystem
+
+**Partition table: MBR or GPT**
+
+Non-OpenPOWER systems of the POWER archictecture are usually this.
+Virtual machines (qemu) are usually also this. These systems use
+variants of OpenFirmware (IEEE1275).
+
+The first partition should be of `PowerPC PReP Boot` type and it should
+have around a megabyte. Virtual machines and newer physical systems
+will happily use either MBR or GPT, but you might want to stick with
+MBR for compatibility.
+
+## Other partitions
+
+### Swap
+
+This is not required, but you might want one, depending on your system
+RAM and other requirements (e.g. hibernation). The partition type should
+be `Linux swap`.
+
+A good amount is at least 4 gigabytes. The old guidelines for swap size
+based on your physical RAM no longer apply these days.
+
+Note that if you are planning to use disk encryption with LVM, you will
+most likely want to make swap a part of your LVM, as swap can expose
+secrets.
+
+### Separate `/boot`
+
+You can also have a separate `/boot` partition if you like. On EFI systems
+it is also possible to combine your `/boot` with the ESP. That allows for
+the following layouts:
+
+1. Root, `/boot` and ESP separate (3 partitions)
+2. Root, combined `/boot` and ESP (2 partitions)
+3. Root with `/boot`, separate ESP (2 partitions)
+
+It mostly comes down to your preference and special circumstances such as
+Secure Boot systems and the bootloader of choice.
+
+Sometimes, you may need a separate `/boot` because of your bootloader,
+if the bootloader does not support your root filesystem of choice.
+
+### Separate `/usr`
+
+This configuration is not supported in Chimera, as it's a fully usrmerged
+system. Please do not attempt this.
+
+### Separate `/home`
+
+This is up to you and can be used with all layouts.
