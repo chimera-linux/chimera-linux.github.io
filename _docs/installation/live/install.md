@@ -154,8 +154,8 @@ An example `/etc/fstab` for a root partition, ESP and `/tmp` may look
 for exmaple like this:
 
 ```
-/dev/disk/by-partuuid/... / ext4 defaults 0 1
-/dev/disk/by-partuuid/... /boot/efi vfat defaults 0 2
+UUID=... / ext4 defaults 0 1
+UUID=... /boot/efi vfat defaults 0 2
 tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 ```
 
@@ -163,7 +163,8 @@ It is not necessary to add entries for pseudo-filesystems such as the
 `/proc` or `/sys` mounts, but there is also no harm in adding them.
 
 The first column identifies the device. It is recommended that you always
-use unique paths such as `/dev/disk/by-partuuid` or `/dev/disk/by-uuid`,
+use unique paths such as `UUID=...` or `PARTUUID=...` (using alias paths
+such as `/dev/disk/by-partuuid` or `/dev/disk/by-uuid` will work as well),
 as names such as `/dev/sda` may change. For encrypted devices, you will
 want to use the `/dev/mapper` paths, e.g. `/dev/mapper/crypt-root`.
 
