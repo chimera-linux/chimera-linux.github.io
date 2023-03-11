@@ -52,15 +52,6 @@ simply do the following:
 # echo chimera > /etc/hostname
 ```
 
-You might want to add it to `/etc/hosts` as well, as e.g. `syslog-ng`
-will otherwise perform a blocking DNS lookup on early boot, slowing
-it down:
-
-```
-# echo 127.0.0.1 chimera >> /etc/hosts
-# echo ::1 chimera >> /etc/hosts
-```
-
 ## Set your time zone
 
 The time zones are in `/usr/share/zoneinfo`. Setting the default time
