@@ -26,9 +26,9 @@ of the login. In many non-systemd distributions, the same task is
 done by `elogind`.
 
 In Chimera, `elogind` has this functionality disabled. Instead, it
-is created and tracked by the `dinit-userservd` user service system.
+is created and tracked by the `turnstile` session tracking system.
 That means whichever solution you use for seat management, you will
-always have your runtime directory managed by `dinit-userservd`.
+always have your runtime directory managed by `turnstile`.
 
 The main reason for this is that when using the "linger" option with
 user services, the directory needs to remain there as long as the

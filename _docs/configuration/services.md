@@ -116,10 +116,10 @@ daemons being used.
 Chimera comes with support for user services by default. While Dinit
 itself has satisfactory baseline support for user services, it has no
 infrastructure to manage the user instances. That's why Chimera has its
-own system, [dinit-userservd](https://github.com/chimera-linux/dinit-userservd).
+own system, [turnstile](https://github.com/chimera-linux/turnstile).
 
 This is implicitly activated and works out of box, so the user does not
-have to do anything. The daemon is configured via `/etc/dinit-userservd.conf`.
+have to do anything. The daemon is configured via `/etc/turnstile/turnstiled.conf`.
 
 By default, the following paths are scanned for user services:
 
@@ -132,9 +132,9 @@ Links to services enabled by user are in `~/.config/dinit.d/boot.d`. The
 system can also enable some user services for all users implicitly, by
 placing links in `/usr/lib/dinit.d/user/boot.d`.
 
-There are more things `dinit-userservd` also does, such as managing the
-`XDG_RUNTIME_DIR` environment variable and directory as well as track the
-D-Bus session bus address in the user's environment. See the
+There are more things `turnstile` also does, such as managing the
+`XDG_RUNTIME_DIR` environment variable and directory as well as track
+the D-Bus session bus address in the user's environment. See the
 [Seat management](/docs/configuration/seat) page for more information.
 
 ### User service lingering
@@ -143,14 +143,14 @@ By default, upon first login of the user, the user's activated services come
 up, while upon last logout of the user, they are shut down. This is not
 always the desired behavior.
 
-In order to fix that, `dinit-userservd` provides the "linger" functionality.
+In order to fix that, `turnstile` provides the "linger" functionality.
 When this is on, user services come up with the first login as usual, but
 they do not shut down with the last logout.
 
 By default, this is configured per user. To enable lingering for user `myuser`:
 
 ```
-# touch /var/lib/dinit-userservd/linger/myuser
+# touch /var/lib/turnstiled/linger/myuser
 ```
 
 To disable it, simply remove the file.
