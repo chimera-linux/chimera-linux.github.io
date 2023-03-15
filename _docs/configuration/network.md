@@ -51,7 +51,7 @@ Install it:
 Enable it:
 
 ```
-# apk enable networkmanager
+# dinitctl enable networkmanager
 ```
 
 Configuration can be done with `nmcli` or `nmtui` for command-line
