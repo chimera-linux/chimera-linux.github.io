@@ -212,6 +212,18 @@ If the baud rate or other parameters need tweaking, you can copy them
 from the live system (e.g. `/etc/default/agetty-ttyS0`), as the live
 autodetection generates a configuration file if necessary.
 
+### Initramfs refresh
+
+A bootable system will typically need an initramfs image. You need to
+create one near the end, but before generating your bootloader config,
+as the bootloader needs to be aware of it.
+
+Therefore, best do that now:
+
+```
+# update-initramfs -c -k all
+```
+
 ### GRUB
 
 GRUB is a common bootloader that works on more or less every platform
@@ -310,13 +322,6 @@ Then generate the initial entries:
 
 You do not need to manually regenerate this on kernel updates.
 
-### Initramfs refresh
-
-After you have done everything else, create or refresh the initramfs:
-
-```
-# update-initramfs -c -k all
-```
 
 ## Other post-installation tasks
 
