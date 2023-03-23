@@ -109,8 +109,20 @@ not do anything.
 # apk upgrade --available
 ```
 
-If you run into any errors, such as conflicting packages overwriting
-each other's files, don't worry; just fix it:
+If `apk update` fails, make sure your system date/time is set to a
+correct value. Incorrectly configured date/time can result in HTTPS
+certificate errors. If the date/time is indeed wrong, you can set it
+with the `date` comamnd:
+
+```
+# date YYYYMMDDHHmm
+```
+
+Replace the value with the current date/time, typically in UTC, as you
+do not have a timezone set yet.
+
+If you run into any other errors, such as conflicting packages
+overwriting each other's files, don't worry; just fix it:
 
 ```
 # apk fix
@@ -161,6 +173,10 @@ tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 
 It is not necessary to add entries for pseudo-filesystems such as the
 `/proc` or `/sys` mounts, but there is also no harm in adding them.
+
+In general the order of the rows should be root filesystem first and
+other filesystems after that, as they are mounted in that order and
+parent mounts need to be mounted first.
 
 The first column identifies the device. It is recommended that you always
 use unique paths such as `UUID=...` or `PARTUUID=...` (using alias paths
@@ -260,6 +276,13 @@ for BIOS systems:
 
 ```
 # grub-install /dev/sda
+```
+
+On OpenPOWER systems (which use Petitboot), you will not install the
+bootloader but instead you need to create the directory for the config:
+
+```
+# mkdir /boot/grub
 ```
 
 On POWER systems with a PReP partition:

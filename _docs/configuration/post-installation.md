@@ -77,6 +77,17 @@ If you want to adjust Chimera, you can do something like this:
 
 You can explicitly set `utc` in a similar manner if you wish.
 
+## Time syncing with NTP
+
+You might want to make sure your date/time remains synchronized from
+NTP servers. The recommended option is `chrony`, which you can easily
+add and enable like this:
+
+```
+# apk add chrony
+# dinitctl enable chrony
+```
+
 ## Console setup
 
 Chimera uses the same `console-setup` system as Debian. Most users
@@ -91,3 +102,13 @@ There are two files that should be of interest:
 
 Both files have detailed man pages, see `man 5 console-setup` as well
 as `man 5 keyboard`.
+
+## Additional software
+
+If you need software beyond what the `main` repository provides, you
+might want to enable the `contrib` repo. The `contrib` repository has
+a variety of additional, especially GUI, software that is not a good
+fit for `main`.
+
+The [Package management](/docs/apk) will tell you how, as well as be
+an overall good starting point for other things.
