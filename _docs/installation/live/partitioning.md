@@ -22,8 +22,21 @@ with wiping everything on it:
 # wipefs -a /dev/sda
 ```
 
-Then, the easiest way to initialize a partition table and create
-partitions is with the `cfdisk` TUI program:
+If there was LVM on the drive before, this might fail with an error
+such as `Device or resource busy`. This is because the volume group
+might have gotten set up on boot. In such cases, you will want to
+bring it down, e.g. with:
+
+```
+# vgchange -an
+```
+
+After that, `wipefs -a` should work. You might have to perform
+similar things for `dmraid`/`mdadm` and so on.
+
+In any case, once you have wiped the drive, the easiest way to
+initialize a partition table and create partitions is with the
+`cfdisk` TUI program:
 
 ```
 # cfdisk /dev/sda
