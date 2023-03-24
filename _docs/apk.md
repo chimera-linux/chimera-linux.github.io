@@ -66,11 +66,26 @@ To search for a package in the repositories:
 # apk search firefox
 ```
 
+## Virtual packages
+
+You can also install packages by virtual names instead of by their real
+names. Several things follow a standard convention for virtual provider
+names: commands, shared libraries and `pkg-config` files. This convention
+consists of a prefix (`cmd:`, `so:`, `pc:`) plus the name.
+
+That means if you want to add the package that provides a command `foo`,
+you can simply add it as it is:
+
+```
+# apk add cmd:foo
+```
+
 ## Repositories
 
 By default, you will get packages from the `main` repository. However,
 Chimera also has packages in the `contrib` repository, which contains
-extra software unsuitable for `main`.
+extra software unsuitable for `main`. This includes a large amount of
+non-default GUI software, for instance (e.g. additional web browsers).
 
 You do not need to manually change any config files to enable it.
 The simplest way to get it is the following:
