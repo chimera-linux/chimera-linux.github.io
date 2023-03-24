@@ -25,6 +25,17 @@ Then mount it (assuming `/dev/sda2` for root partition):
 # mount /dev/sda2 /media/root
 ```
 
+Make sure that the root file system's mount has 755 permissions.
+If it for some reason does not and instead it's for example 700,
+it will result in strange issues when logging in as non-root.
+The fix for that is easy:
+
+```
+# chmod 755 /media/root
+```
+
+Then you can move on to the other partitions.
+
 ### UEFI
 
 You will want to mount the EFI System Partition as well. There
