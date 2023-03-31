@@ -180,7 +180,11 @@ UUID=... /boot/efi vfat defaults 0 2
 ```
 
 It is not necessary to add entries for pseudo-filesystems such as the
-`/proc` or `/sys` mounts.
+`/proc` or `/sys` mounts. If you want to have read-only `/` partition
+you will also have to add a `tmpfs` entry for `/tmp`, as the directory
+needs to be globally writable. On other systems, you do not need such
+entry and `/tmp` does not need to be a mount (it will be peridocally
+cleaned).
 
 In general the order of the rows should be root filesystem first and
 other filesystems after that, as they are mounted in that order and
