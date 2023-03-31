@@ -164,26 +164,23 @@ If you wish to use ZFS, add that too:
 
 ### Fstab
 
-Chimera comes with a default example `/etc/fstab`. It only contains
-a definition for the `tmpfs` at `/tmp`.
+Strictly speaking, a Chimera system does not need `/etc/fstab` to boot.
+Having an entry for the root filesystem is optional and you might not
+have any other filesystems. However, it is recommended that you have
+a proper `fstab`, with which you can control mount flags as well as
+`fsck` behavior or e.g. whether the root filesystem is mounted read-only.
 
-Strictly speaking, this is technically enough, as having an entry
-for the root filesystem is optional and you might not have any other
-filesystems. However, it is recommended that you have a proper `fstab`,
-with which you can control mount flags as well as `fsck` behavior or
-e.g. whether the root filesystem is mounted read-only.
+The default `fstab` that comes with the system does not contain any entries.
 
-An example `/etc/fstab` for a root partition, ESP and `/tmp` may look
-for exmaple like this:
+An example `/etc/fstab` for a root partition and ESP may look like this:
 
 ```
 UUID=... / ext4 defaults 0 1
 UUID=... /boot/efi vfat defaults 0 2
-tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 ```
 
 It is not necessary to add entries for pseudo-filesystems such as the
-`/proc` or `/sys` mounts, but there is also no harm in adding them.
+`/proc` or `/sys` mounts.
 
 In general the order of the rows should be root filesystem first and
 other filesystems after that, as they are mounted in that order and
