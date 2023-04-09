@@ -335,29 +335,6 @@ platforms:
 # update-grub
 ```
 
-### EFISTUB
-
-**Note that this may not work on every EFI implementation, and it also requires
-functional persistent NVRAM, and is considered highly experimental.**
-
-On many EFI systems, it is possible to boot Linux kernels directly thanks to
-EFISTUB. You do not necessarily need a bootloader for this, as Chimera can
-automatically manage EFI boot entries for all kernels.
-
-Skip this section if this does not apply to you, e.g. if using GRUB.
-
-Uncomment the `EFIBOOTMGR_ENABLE_HOOK` variable in `/etc/default/efibootmgr-hook`
-and set it to some value, e.g. `1`.
-
-Then generate the initial entries:
-
-```
-# /etc/kernel.d/99-efibootmgr-hook.sh
-```
-
-You do not need to manually regenerate this on kernel updates.
-
-
 ## Other post-installation tasks
 
 At this point, the system should be capable of booting on its own.
