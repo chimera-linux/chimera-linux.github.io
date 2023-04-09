@@ -152,6 +152,10 @@ Secure Boot systems and the bootloader of choice.
 Sometimes, you may need a separate `/boot` because of your bootloader,
 if the bootloader does not support your root filesystem of choice.
 
+It may be a good idea to make the `/boot` partition of type `Linux extended boot`,
+or `bc13c2ff-59e6-4262-a352-b275fd6f7172`, when using GPT. This is for better
+compatibility with some UEFI bootloaders.
+
 ### Separate `/usr`
 
 This configuration is not supported in Chimera, as it's a fully usrmerged
