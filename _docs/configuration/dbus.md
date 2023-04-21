@@ -14,7 +14,7 @@ The system bus runs as `root` and is shared, while the session bus
 runs as user and is specific to some vague session.
 
 D-Bus services can utilize the system bus or session bus depending
-on what they are handling. A lot of desktop thíngs utilize the
+on what they are handling. A lot of desktop things utilize the
 session bus.
 
 Regadless of system or session, a bus has a Unix domain socket somewhere.
