@@ -136,7 +136,8 @@ your case will be re-evaluated.
 
 Specific examples of things considered harmful and not welcome:
 
-* Far-right and adjacent movements
+* Far-right and adjacent movements, tankies, putinists and other
+  equivalent authoritarian chuddery
 * Racism, sexism, homophobia, transphobia, etc.
 * Complaining about SJWs
 * Loud anti-systemd nonsense, dogmatic suckless/"minimalism",
