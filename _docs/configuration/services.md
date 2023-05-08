@@ -90,26 +90,17 @@ Chimera's services suite comes with support for targets. Targets are
 services which do not track any daemons (they are Dinit's `internal`
 service type) and act as ordering sentinels.
 
-Example targets include (not necessarily in this order):
+Outside of their name, they are ordinary services; the name has the `.target`
+suffix. There is a variety of targets that comes with Chimera's core service
+suite.
 
-* `init-prepare.target` - pseudo-filesystems, cgroups and so on are up
-* `init-modules.target` - kernel modules have been loaded
-* `init-devices.target` - `udev` has been run and has settled
-* `init-root-rw.target` - root filesystem has been remounted read-write
-* `init-fs-pre.target` - device-mapper targets are up, but not yet filesystems
-* `init-fs-local.target` - local filesystems have been mounted
-* `init-keyboard.target` - console keymap has been set
-* `init-console.target` - console font and so on has been set
-* `init-done.target` - run before `rc.local` after early services are up
-* `init-local.target` - run after `rc.local`
-* `login.target` - getty is up (login prompt)
-* `network.target` - network is up (after init.target)
+Notable targets that are used by regular daemon services include `login.target`
+as well as `init-done.target` and `init-local.target`. There are also
+targets that define a concrete event, for example `time-sync.target` for
+when date/time has been synchronized, and `network.target`.
 
-For example, services may specify that they start before `login.target`
-to ensure that they are up by the time the login prompt comes up.
-Or, things can specify they start after `network.target` to reliably
-ensure that networking is fully set up, regardless of the networking
-daemons being used.
+The documentation is currently lacking but you can read up on all the targets
+[here](https://github.com/chimera-linux/dinit-chimera/blob/master/README.md).
 
 ## User services
 
