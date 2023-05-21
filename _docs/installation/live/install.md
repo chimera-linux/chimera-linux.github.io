@@ -162,6 +162,19 @@ If you wish to use ZFS, add that too:
 # apk add linux-lts-zfs-bin
 ```
 
+This typically refers to the latest Long Term Support version of the Linux
+kernel. If you'd like to use the latest stable version of the kernel
+instead, for example if LTS is missing some functionality or driver
+that is important to you, you can install `linux-stable` instead:
+
+```
+# apk add linux-stable
+```
+
+Note that the stable kernel branch is not guaranteed to work with ZFS due
+to the way it releases. For that reason, there are also no prebuilt ZFS
+modules for it.
+
 ### Fstab
 
 Strictly speaking, a Chimera system does not need `/etc/fstab` to boot.
