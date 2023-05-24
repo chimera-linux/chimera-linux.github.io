@@ -22,6 +22,15 @@ fine-grained control. Those users may also be interested in the
 `gnome-core` package which only installs a relatively bare desktop
 without auxiliary apps.
 
+## GNOME on Xorg
+
+While it is possible to start GNOME on Xorg either via `.xinitrc`
+and so on or via GDM, it is recommended to use Wayland. GNOME on
+Xorg has been known to have issues with Xorg and certain accelerated
+graphics drivers, so if you encounter issues such as the shell
+hanging on early startup, that may be the cause. The Wayland session
+is known to be stable.
+
 ## Starting
 
 Keep in mind that GNOME requires `elogind`. In a typical setup, this
@@ -35,11 +44,11 @@ typically GDM.
 
 ### Manual startup
 
-For Wayland, all you need to do is log in on your desired tty and
-run:
+For Wayland (recommended), all you need to do is log in on your
+desired tty and run:
 
 ```
-$ gnome-session --wayland
+$ gnome-shell --wayland
 ```
 
 For X11, you can create an `.xinitrc` script, and put the following
