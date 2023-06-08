@@ -59,23 +59,7 @@ of their experience level. Examples of contributing include:
 If you wish to contribute technical work, you should first pick the part
 of the project you want to contribute into (each has their repository)
 and read its documentation. If you need help, you can always ask in one
-of the official channels.
-
-Some core links:
-
-* [Organization](https://github.com/chimera-linux)
-* [Packaging](https://github.com/chimera-linux/cports)
-* [Website](https://github.com/chimera-linux/chimera-linux.github.io)
-
-This list is incomplete. You can look around the organization for more active
-repositories and projects.
-
-We do not and will not ask you to sign any kind of CLA (Contributor License
-Agreement).
-
-If you are unsure whether your work is of sufficient quality, please submit
-it anyway. There is a good chance you will be able to receive helpful feedback
-as a part of the review process.
+of the official channels. See the [Development](/development) page for more.
 
 ## Team
 

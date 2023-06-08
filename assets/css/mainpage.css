@@ -68,11 +68,11 @@ body {
     color: var(--color-fontlight);
 }
 
-#title .buttons #button_github {
+#title .buttons #button_packages {
     color: var(--color-fontlight);
 }
 
-#title .buttons #button_github:hover {
+#title .buttons #button_packages:hover {
     background-color: var(--color-fontlight);
     color: var(--color-chred);
 }

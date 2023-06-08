@@ -24,4 +24,5 @@ collections:
   docs:
     output: true
 
-github_link: "https://github.com/chimera-linux"
+pkgs_link: "https://pkgs.chimera-linux.org"
+buildbot_link: "https://build.chimera-linux.org"
