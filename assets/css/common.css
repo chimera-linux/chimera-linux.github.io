@@ -27,7 +27,7 @@ body {
     --content-altgap: 24px;
     --header-height: var(--content-gap);
     --desc-height: calc(var(--content-gap) * 6);
-    --menu-padding: var(--content-altgap);
+    --menu-padding: var(--content-halfgap);
     --side-padding: var(--content-halfgap);
     --icon-padding: calc(var(--content-gap) / 4);
     --column-width: calc((var(--content-width) - var(--content-gap)) / 2);
