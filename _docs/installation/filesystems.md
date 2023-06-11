@@ -1,16 +1,16 @@
 ---
 layout: book
 title: Filesystems
-section: 2.1.4
+section: 2.5
 ---
 
 This part assumes you have partitioned your drive in a way that
 is satisfactory for both you and your computer.
 
-If you are using root on [Root on ZFS](/docs/installation/zfs),
+If you are using root on [Root on ZFS](/docs/installation/partitioning/zfs),
 chances are you have already formatted your partitions.
 
-Likewise, if you are using [Disk encryption](/docs/installation/encrypted),
+Likewise, if you are using [Disk encryption](/docs/installation/partitioning/encrypted),
 that will influence what you do here.
 
 ## Root filesystem
@@ -24,6 +24,9 @@ An example, assuming `/dev/sda2` is your root partition:
 ```
 # mkfs.ext4 /dev/sda2
 ```
+
+When installing on SD cards, you might want to disable the journal.
+You can do it by passing the option `-O ^has_journal` after `mkfs.ext4`.
 
 ## Boot filesystem
 

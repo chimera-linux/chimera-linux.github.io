@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Root on ZFS
-section: 2.4
+section: 2.4.2
 ---
 
 It is possible to set up Chimera with root filesystem on ZFS. For

@@ -1,18 +1,26 @@
 ---
 layout: book
 title: Partitioning
-section: 2.1.3
+section: 2.4
 ---
 
 This part assumes that you have decided to install Chimera on a disk
-and that you have managed to successfully boot the live media and log
+and that you have managed to successfully boot the media and log
 in to it.
 
-The first part of any installation is to partition your target drive.
-This will differ depending on your architecture and system firmware,
+When installing onto devices that use device images instead of live ISOs,
+an alternative to partitioning and installing the system manually is to
+get the image again and flash it to the target media the same way as you
+flashed it onto the SD card. To do that, follow the
+[Preparing media](/docs/installation/prepare) page again. Do note that
+this comes with reduced flexibility regarding e.g. choosing your
+filesystems.
+
+If you are installing manually, you will need to partition your target
+drive. This will differ depending on your architecture and system firmware,
 but some parts will always be the same.
 
-If you wish to use [Disk encryption](/docs/installation/encrypted),
+If you wish to use [Disk encryption](/docs/installation/partitioning/encrypted),
 that will influence the way you partition your drive.
 
 Let's assume that the target disk drive is `/dev/sda`. Let's start
@@ -43,7 +51,7 @@ initialize a partition table and create partitions is with the
 ```
 
 If you wish to have your root file system on ZFS, please read this
-page and then go to [Root on ZFS](/docs/installation/zfs).
+page and then go to [Root on ZFS](/docs/installation/partitioning/zfs).
 
 ## Legacy BIOS x86 systems
 
@@ -121,6 +129,51 @@ have around a megabyte. Virtual machines and newer physical systems
 will happily use either MBR or GPT, but you might want to stick with
 MBR for compatibility.
 
+## Raspberry Pi
+
+**Required partitions:**
+
+1. The `/boot` partition
+2. Root filesystem
+
+**Partition table: MBR**
+
+For Raspberry Pi, you will need a MBR partition table witha dedicated
+partition for `/boot`. On Raspberry Pi 4 and newer, GPT may technically
+work, but MBR is recommended for best compatibility.
+
+## U-Boot
+
+**Required partitions:**
+
+1. Typically an SPL partition
+2. Typically a U-Boot partition
+3. The `/boot` partition
+4. Root filesystem
+
+**Partition table: typically GPT**
+
+The specifics of U-Boot partitioning vary wildly, but in a typical case
+the arrangement will be two small partitions for SPL and U-Boot, followed
+by a `/boot` partition and a root filesystem.
+
+Technically SPL and U-Boot usually do not need dedicated partitions, but
+it is better to create them for clarity. The alternative is to have only two
+partitions, making sure the first one starts at a sufficient offset not to
+conflict with the firmware, and then manually write the firmware into the
+empty space before at the right offsets.
+
+Some devices do require actual partitions for U-Boot and SPL though, and
+some even need them to be special partition types. For devices where they
+are not needed, a good partition type to use is `Linux reserved` which has
+the GUID `8DA63339-0007-60C0-C436-083AC8230908`. For the `/boot` partition
+you might want to use the type `Linux extended boot` which has the GUID
+`BC13C2FF-59E6-4262-A352-B275FD6F7172`.
+
+In any case, the specifics of your device partitioning should come with
+your device's documentation. For devices that Chimera supports, known
+partition layouts can be found [here](https://github.com/chimera-linux/chimera-live/tree/master/sfdisk).
+
 ## Other partitions
 
 ### Swap
@@ -138,9 +191,9 @@ secrets.
 
 ### Separate `/boot`
 
-You can also have a separate `/boot` partition if you like. On EFI systems
-it is also possible to combine your `/boot` with the ESP. That allows for
-the following layouts:
+You can also have a separate `/boot` partition if you like and not already
+mandatory. On EFI systems it is also possible to combine your `/boot` with
+the ESP. That allows for the following layouts:
 
 1. Root, `/boot` and ESP separate (3 partitions)
 2. Root, combined `/boot` and ESP (2 partitions)

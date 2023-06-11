@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Installing
-section: 2.1.5
+section: 2.6
 ---
 
 This assumes you have partitioned your target drive and formatted
@@ -77,26 +77,35 @@ mounted drive. One is a local installation, which copies the live
 system onto the drive (but without live-related bits), the other
 is a remote installation from the repositories.
 
+Note that local installation is only available when booted from
+a live ISO image. When installing from another Chimera system,
+e.g. when booted from an SD card with a device image flashed,
+you can only perform a network installation.
+
+For both cases, you use the `chimera-bootstrap` program. The
+tool supports `-h` for a help listing.
+
 ### Local installation
 
-The `chimera-live-install` utility exists for that. The usage is
-simple:
+To perform a lkocal installation with `chimera-bootstrap`, the `-l`
+option is required. Invoke it like this:
 
 ```
-# chimera-live-install /media/root
+# chimera-bootstrap -l /media/root
 ```
 
 ### Network installation
 
-The `chimera-live-bootstrap` utility lets you do that. Like the
-local installation tool, it takes the target root, but additionally
-it also needs a list of packages to install.
-
-Typically you would run something like this:
+This is the default mode. By default, `base-full` will be installed
+into the root; you can override this by passing a custom list of
+packages after the root filesystem argument.
 
 ```
-# chimera-live-bootstrap /media/root base-full
+# chimera-bootstrap /media/root
 ```
+
+You can technically perform this from any booted Chimera system, as
+the `chimera-install-scripts` are a part of any base installation.
 
 ## Prepare the system
 
@@ -104,12 +113,12 @@ Regardless of the installation method you choose, you will need to
 open a shell in the target system to install updates, possibly other
 packages you need to boot, and the bootloader.
 
-The `chimera-live-chroot` tool exists to simplify that task for you.
+The `chimera-chroot` tool exists to simplify that task for you.
 It will mount the pseudo-filesystems for the session as well as
 ensure you have network access inside.
 
 ```
-# chimera-live-chroot /media/root
+# chimera-chroot /media/root
 ```
 
 First, update the system. If installing from the network, this might
@@ -145,6 +154,28 @@ After that, try again and there should be no more errors:
 # apk upgrade --available
 ```
 
+### Device base package
+
+For devices that would use device images, a special base package
+is needed.
+
+For example, for Raspberry Pi:
+
+```
+# apk add base-rpi
+```
+
+For Pinebook Pro:
+
+```
+# apk add base-pbp
+```
+
+And so on. The format is always `base-PLATFORM`, with a list of
+platforms available [here](https://github.com/chimera-linux/chimera-live/blob/master/mkrootfs-platform.sh).
+
+**This needs to be done before installing the kernel.**
+
 ### Kernel installation
 
 If you performed a local installation from the live image, it already
@@ -171,9 +202,12 @@ that is important to you, you can install `linux-stable` instead:
 # apk add linux-stable
 ```
 
-Note that the stable kernel branch is not guaranteed to work with ZFS due
-to the way it releases. For that reason, there are also no prebuilt ZFS
-modules for it.
+Likewise, you can add `linux-stable-zfs-bin` for binary ZFS modules.
+
+Device-specific kernel may sometimes be needed. For example for Raspberry Pi,
+you will want to use `linux-rpi` instead of the above (ZFS modules likewise
+exist for it). Chimera typically avoids shipping device-specific kernels
+though, so they are rare in the repositories.
 
 ### Fstab
 
@@ -182,6 +216,23 @@ Having an entry for the root filesystem is optional and you might not
 have any other filesystems. However, it is recommended that you have
 a proper `fstab`, with which you can control mount flags as well as
 `fsck` behavior or e.g. whether the root filesystem is mounted read-only.
+
+The installation scripts come with a `fstab` generator. You can invoke
+it like:
+
+```
+# genfstab / > /etc/fstab
+```
+
+It is also possible to invoke it from the outside of the system, e.g.
+like:
+
+```
+# genfstab /media/root > /media/root/etc/fstab
+```
+
+You might want to manually edit the generated `fstab` to remove useless
+mount options and so on.
 
 The default `fstab` that comes with the system does not contain any entries.
 
@@ -269,7 +320,8 @@ Therefore, best do that now:
 
 GRUB is a common bootloader that works on more or less every platform
 that Chimera supports. If you wish to use a different way to boot your
-system, skip this section.
+system, or you can't use GRUB (e.g. for U-Boot devices, Raspberry Pis,
+and so on), skip this section.
 
 First you will need to add it.
 
@@ -347,6 +399,26 @@ platforms:
 ```
 # update-grub
 ```
+
+### U-Boot
+
+For devices using U-Boot, it is needed to flash it:
+
+```
+# install-u-boot /dev/mmcblk0
+```
+
+The whole target device needs to be passed, not a partition.
+
+After that, you might want to refresh the menu entries just in case:
+
+```
+# update-u-boot
+```
+
+### Raspberry Pi
+
+No special setup is necessary for booting on Raspberry Pi.
 
 ## Other post-installation tasks
 

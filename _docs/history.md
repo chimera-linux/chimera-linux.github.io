@@ -41,5 +41,5 @@ Milestones followed:
 * February 2022: ZFS support
 * February 2022: Initial live ISOs available
 * March 2022: Transition to `apk-tools` 3.x
-
-Since then, development has been mostly stable and continuous.
+* ...
+* June 11 2023: Alpha release

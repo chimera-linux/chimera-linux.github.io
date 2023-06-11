@@ -1,13 +1,15 @@
 ---
 layout: book
 title: Booting
-section: 2.1.2
+section: 2.3
 ---
 
-Once you have prepared your removable media, you can boot from
-it. All our live images use GRUB as the bootloader.
+Once you have prepared your media, you can boot from it. The boot
+will vary depending on the image type you have used. Live images
+use the GRUB bootloader. Device-specific images may use their own
+bootloaders, but typically it is U-Boot.
 
-## Hardware specifics
+## ISO images
 
 ### UEFI systems
 
@@ -33,7 +35,7 @@ When using virtual machines, you can pass the image like this:
 -cdrom /path/to/chimera.iso -boot d
 ```
 
-## Serial console
+### Serial console
 
 If you wish to use a serial terminal, you might have to do some
 additional setup, depending on the configuration.
@@ -57,7 +59,7 @@ and others.
 The Chimera live images are set up to automatically enable a
 login prompt (`getty`) for all consoles the kernel outputs to.
 
-## Picking the boot option
+### Picking the boot option
 
 Console images come with two boot options, regular boot and RAM
 boot. The latter results in the whole system being copied to system
@@ -73,7 +75,7 @@ Desktop images additionally let you pick between Wayland and X11. The
 default option is Wayland. If that is causing problems for you, you
 can try the X11 option, but in most cases Wayland is recommended.
 
-## Logging in
+### Logging in
 
 Once this is set up properly, you will be presented with a login
 prompt on console images. Graphical boots bring you directly to
@@ -83,3 +85,20 @@ You will want to use `anon` or `root` as the user name (depending
 on if you want a superuser) with the password `chimera`. If you
 log in with `anon`, use the `doas` utility to gain superuser
 privileges.
+
+## Device images
+
+Device images are pre-made so that they boot out of box on whichever
+device they made for.
+
+There is no regular user. Log in with `root`, password `chimera`. If
+your device supports serial console, it should be set up and working
+by default, so there is nothing to configure.
+
+Device images never come with a graphical desktop environment, but
+you can install one if you need one.
+
+If the media you have flashed the image to is your final boot media
+and you will not be installing anywhere else, you can skip directly
+to [Configuration](/docs/configuration) as there is nothing else to
+do.

@@ -6,9 +6,6 @@ section: 2
 
 This section describes how to install Chimera in different scenarios.
 
-**Please note that Chimera is in a pre-alpha state.** The system is not
-yet suitable for production or daily driving.
-
 ## System requirements
 
 Chimera is supported on various types of computers. The documentation is
@@ -73,7 +70,9 @@ supported AArch64/RISC-V systems with UEFI.
 
 ### Device-specific images
 
-Use these if your device is explicitly supported.
+Use these if your device is explicitly supported. Device images are typically
+meant to be flashed onto an SD card, but this may vary based on the device.
+Do note that SD card images have the root filesystem journal disabled.
 
 ### Root filesystem tarballs
 

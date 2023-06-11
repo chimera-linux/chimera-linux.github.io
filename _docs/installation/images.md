@@ -1,14 +1,10 @@
 ---
 layout: book
-title: Live images
+title: Image types
 section: 2.1
 ---
 
-This page describes installation using live images. If you are reading
-this, you are expected to have a computer supported by the live images,
-and to have acknowledged that **Chimera is not production-ready yet**.
-
-## Picking the right image
+## Live ISO images
 
 Every ISO image comes in two flavors. You have the base image, and the
 desktop image.
@@ -33,3 +29,13 @@ other basic software.
 Desktop images by default boot into a Wayland environment. There is
 a separate bootloader option if that does not work for you for some
 reason.
+
+## Device images
+
+Some devices cannot be supported with the live images.
+They are typically single-board computers that use the `U-Boot` or a similar
+bootloader.
+
+Chimera has the compressed `.img` files for download, which can be flashed
+onto an SD card or similar. It also comes with rootfs tarballs from which
+the `.img` files can be generated using Chimera's tooling.

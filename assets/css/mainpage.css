@@ -169,8 +169,8 @@ body {
 
 #bottom {
     grid-area: bottom;
-    padding-top: var(--content-gap);
-    padding-bottom: var(--content-gap);
+    padding-top: var(--content-halfgap);
+    padding-bottom: var(--content-halfgap);
 }
 
 #bottom #bottom_warn {
@@ -186,27 +186,21 @@ body {
     padding-top: calc(var(--content-altgap) / 3);
 }
 
-#bottom #bottom_news {
-    border-top: 1px solid;
-    border-color: var(--color-tblsep);
-}
-
-#bottom #bottom_news a {
+#bottom a {
     font-weight: 500;
 }
 
-#bottom #bottom_news h2 {
+#bottom h2 {
     line-height: 1.0;
     margin-bottom: var(--content-altgap);
 }
 
-#bottom #bottom_news .bottom_post h3 {
+#bottom .bottom_post h3 {
     line-height: 1.0;
 }
 
-#bottom #bottom_news .bottom_post {
+#bottom .bottom_post {
     border-top: 1px solid;
-    border-bottom: 1px solid;
     border-color: var(--color-tblsep);
 }
 
