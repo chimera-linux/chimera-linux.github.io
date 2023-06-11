@@ -102,7 +102,7 @@ enable root filesystem journaling, as that is disabled by default
 to reduce SD card wear. You can do it with the following command:
 
 ```
-# tne2fs -O +has_journal /dev/mmcblk0p4
+# tune2fs -O +has_journal /dev/mmcblk0p4
 ```
 
 And that should be it.

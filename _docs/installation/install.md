@@ -87,7 +87,7 @@ tool supports `-h` for a help listing.
 
 ### Local installation
 
-To perform a lkocal installation with `chimera-bootstrap`, the `-l`
+To perform a local installation with `chimera-bootstrap`, the `-l`
 option is required. Invoke it like this:
 
 ```
