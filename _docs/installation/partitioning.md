@@ -174,6 +174,22 @@ In any case, the specifics of your device partitioning should come with
 your device's documentation. For devices that Chimera supports, known
 partition layouts can be found [here](https://github.com/chimera-linux/chimera-live/tree/master/sfdisk).
 
+If your device is in the above list, then you can save yourself some time
+manually partitioning the disk, and do something like the following:
+
+```
+# fetch https://raw.githubusercontent.com/chimera-linux/chimera-live/master/sfdisk/pbp
+# sed -i '' 's/@BOOT_SIZE@/512MiB/' pbp
+# sfdisk /dev/mmcblk2 < pbp
+```
+
+Of course, you will need to substitute the filename for your platform, the
+boot partition size for whatever you like, and the `mmcblk2` for your target
+device. You can also further edit the file for other adjustments. The default
+arrangement should however be usable for most scenarios; when encrypting,
+create your LUKS where the root partition would have been, and then either
+create an LVM or a filesystem on that.
+
 ## Other partitions
 
 ### Swap

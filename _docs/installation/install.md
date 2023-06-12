@@ -174,6 +174,15 @@ For Pinebook Pro:
 And so on. The format is always `base-PLATFORM`, with a list of
 platforms available [here](https://github.com/chimera-linux/chimera-live/blob/master/mkrootfs-platform.sh).
 
+The base packages for U-Boot devices come with a default kernel command
+line in `/etc/u-boot-cmdline`. This contains a pre-defined `root=` parameter
+that is suitable for the default partitioning as shipped with the device
+images. This will not work with custom partition layouts, for exmaple when
+using LVM/LUKS or when your partition label is different, and it's only
+present so that U-Boot configuration can be generated statically without
+executing code in the target root, so you can remove it (the U-Boot menu
+generator will figure out the root from the current configuration).
+
 **This needs to be done before installing the kernel.**
 
 ### Kernel installation
@@ -233,6 +242,10 @@ like:
 
 You might want to manually edit the generated `fstab` to remove useless
 mount options and so on.
+
+If you have a swap partition and you want it automatically included in
+the `fstab`, activate the swap partition before generating it. Otherwise,
+you can also include it manually.
 
 The default `fstab` that comes with the system does not contain any entries.
 
@@ -415,6 +428,10 @@ After that, you might want to refresh the menu entries just in case:
 ```
 # update-u-boot
 ```
+
+If your partitioning is somehow special, double-check whether `/boot/extlinux.conf`
+contains the correct `root=` parameter, in case you forgot to remove the
+pre-defined one.
 
 ### Raspberry Pi
 
