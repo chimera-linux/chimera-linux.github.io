@@ -188,6 +188,13 @@ For LVM-using systems, also make sure LVM is there:
 There is a chance you already have those packages, but you might not,
 depending on the installation method.
 
+### LUKS and fstab
+
+Your `/etc/fstab` needs to be set up with the root filesystem for the
+`cryptsetup` initramfs scripts to recognize it and add it to the initramfs
+`crypttab`. Therefore, make sure that it is set up (as written in the
+standard installation guide).
+
 ### LUKS and crypttab
 
 The next step is to create your `crypttab`. It is a file similar to `fstab`
@@ -220,10 +227,11 @@ is okay though.
 
 ### LUKS and initramfs
 
-Once you have your `crypttab` and all the required stuff is installed, you will
-need to refresh your initial ramdisk, so that this is included. Keep in mind that
-it is necessary to have your `crypttab` set up in order for the initial ramdisk to
-open the LUKS device and find a root filesystem on it.
+Once you have your `crypttab` as well as `fstab` and all the required stuff is
+installed, you will need to refresh your initial ramdisk, so that this is
+included. Keep in mind that it is necessary to have your `crypttab` set up
+in order for the initial ramdisk to open the LUKS device and find a root
+filesystem on it.
 
 To refresh the initramfs:
 
