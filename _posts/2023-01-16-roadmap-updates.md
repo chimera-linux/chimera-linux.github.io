@@ -20,7 +20,7 @@ an updated overview of what's going to happen.
 in-person format, as usual in Brussels, on the first weekend of
 February, which is the 4th and 5th this time. I will be giving a
 [talk](https://fosdem.org/2023/schedule/event/chimera_linux) about
-Chimera, this time in thE BSD devroom (huge thanks to the organizers
+Chimera, this time in the BSD devroom (huge thanks to the organizers
 for letting me have a slot, despite this project being a Linux system).
 
 I will give a general overview of the project, our progress since last
