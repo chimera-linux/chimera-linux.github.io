@@ -71,9 +71,15 @@ you should be using the regular option. The benefit of the RAM option
 is that the system will run faster, and especially for optical media,
 will not result in accesses to the media.
 
-Desktop images additionally let you pick between Wayland and X11. The
-default option is Wayland. If that is causing problems for you, you
-can try the X11 option, but in most cases Wayland is recommended.
+Desktop images come with additional boot options to force console
+boot (the default is to boot into GNOME desktop with Wayland). It
+is also possible to force X11 by editing the graphical boot option
+and adding the `nowayland` kernel command line parameter, but keep
+in mind that GNOME currently has issues under X11 with most accelerated
+drivers (software rendering works fine, so you may use it on systems
+with unaccelerated 2D framebuffers) which may result in it freezing
+on the first frame. Therefore, it is highly recommended to always
+use Wayland for GNOME (X11 works for other window managers/desktops).
 
 ### Logging in
 
