@@ -117,7 +117,7 @@ ol {
 
 /* normally monospace text can blend into the rest, so style it accordingly */
 code, .highlight pre {
-    font-family: "Noto Sans Mono";
+    font-family: "Noto Sans Mono, monospace";
     background-color: var(--color-codebg);
     border: 1px solid var(--color-codebg);
     border-radius: 3px;
