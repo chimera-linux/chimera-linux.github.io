@@ -57,7 +57,7 @@ body {
 
 #content .post_date {
     display: block;
-    font-family: "Poppins";
+    font-family: "Poppins, sans-serif";
     font-weight: 500;
     color: var(--color-chead);
     font-size: 17pt;
