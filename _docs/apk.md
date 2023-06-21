@@ -37,18 +37,21 @@ This is how you remove something:
 This is how you upgrade your system:
 
 ```
-# apk upgrade --available
+# apk upgrade
 ```
 
-**This is currently very important.** The `upgrade` sub-command has
-the flags `--latest` (default) and `--available`. The `--latest`
-flag will prefer packages by latest version, which is what you'd
-usually want.
+There is also the `--available` flag for `apk upgrade`, which was
+formerly recommended. It is no longer necessary to use this flag
+in most cases, with the default `--latest` flag being the correct
+one.
 
-However, since Chimera is in development, it does not yet increment
-revision numbers when doing package updates. That means packages
-may get silently rebuilt without bumping the version. That is why
-you should **currently always use the --available flag when updating**.
+This is because Chimera now increments revision numbers, which
+means it is not necessary to force the versions from repository
+anymore. It may still be a good idea to run it every once in a
+while, e.g. when a package gets downgraded, but be careful with
+it, as it may result in some unintended consequences (e.g. packages
+that installed themselves through `install_if` will get removed if
+they are not found in any repository).
 
 If updates introduce some file conflicts, which may happen this early
 in the development cycle (but will not happen once more stable, at
