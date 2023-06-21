@@ -38,7 +38,7 @@ body {
     /* base attributes */
     background-color: var(--color-bg);
     color: var(--color-fontdef);
-    font-family: "Noto Sans, sans-serif";
+    font-family: "Noto Sans", sans-serif;
     font-size: var(--content-fontsize);
     margin: 0;
     padding: 0;
@@ -85,7 +85,7 @@ ul, ol {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Poppins, sans-serif";
+    font-family: "Poppins", sans-serif;
     font-weight: 500;
     margin-top: var(--content-altgap);
     margin-bottom: var(--content-halfgap);
@@ -117,7 +117,7 @@ ol {
 
 /* normally monospace text can blend into the rest, so style it accordingly */
 code, .highlight pre {
-    font-family: "Noto Sans Mono, monospace";
+    font-family: "Noto Sans Mono", monospace;
     background-color: var(--color-codebg);
     border: 1px solid var(--color-codebg);
     border-radius: 3px;
