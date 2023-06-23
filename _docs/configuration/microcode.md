@@ -41,11 +41,19 @@ If you'd like to instead load your microcode through the bootloader without
 using initramfs (e.g. if you have no initramfs or if you have some other
 reason), you can use full `cpio` images.
 
-For AMD, this is installed with `ucode-amd`, under `/boot/amd-ucode.img`.
+For Intel CPUs:
 
-On Intel, the package is significantly chunkier, so you will have to install
-the `ucode-intel-full` package first (or generate it with `iucode_tool`).
-After that, you will also have `/boot/intel-ucode.img`.
+```
+# apk add ucode-intel-full
+```
+
+For AMD CPUs:
+
+```
+# apk add ucode-amd-full
+```
 
 You can then tweak your bootloader configuration accordingly. Make sure not
-to forget to disable the initramfs hooks if you are using one.
+to forget to disable the initramfs hooks if you are using one. Alternatively,
+you can remove the regular ucode packages, as the `-full` packages do not
+depend on them.
