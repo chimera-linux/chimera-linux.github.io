@@ -55,6 +55,24 @@ Assuming it's `/dev/sda1`, you should erase it:
 # dd if=/dev/zero of=/dev/sda1
 ```
 
+## Apple_Bootstrap partition
+
+On Power Macs using the bootstrap partition, there needs to be a legacy
+HFS created in zeroed space. Given a `/dev/sda2` bootstrap partition,
+do the following:
+
+```
+# dd if=/dev/zero of=/dev/sda2
+# hformat -l bootstrap /dev/sda2
+```
+
+If you don't have `hformat`, at least on Chimera it's present in the
+`hfsutils` package, which can be installed like so:
+
+```
+# apk add hfsutils
+```
+
 ## Swap
 
 Let's assume you have a swap partition at `/dev/sda3`. You will

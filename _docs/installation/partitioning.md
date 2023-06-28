@@ -129,6 +129,110 @@ have around a megabyte. Virtual machines and newer physical systems
 will happily use either MBR or GPT, but you might want to stick with
 MBR for compatibility.
 
+## Power Macs
+
+**Required partitions:**
+
+1. `Apple_Bootstrap`
+2. Root filesystem
+
+**Partition table: APM (Apple Partition Map)**
+
+Power Macs have a special partition table called APM, which needs a special
+tool to manipulate. Depending on the image or system you have booted,
+you may already have it. If not, you can install it, on Chimera using
+the following:
+
+```
+# apk add mac-fdisk
+```
+
+In any case, the bootloader must be on APM, in a bootstrap partition. The
+root filesystem partition can be on any partition table GRUB can handle, but
+if you are installing on a Mac disk, it will typically be the same APM.
+
+The `mac-fdisk` tool is used to manipulate the partitions. A typical partition
+table may look like this:
+
+| Device      | Type                  | Name      | Size | System             |
+|-------------|-----------------------|-----------|------|--------------------|
+| `/dev/sdX1` | `Apple_partition_map` | Apple     | -    | Partition map      |
+| `/dev/sdX2` | `Apple_Bootstrap`     | bootstrap | 800k | NewWorld bootblock |
+| `/dev/sdX3` | `Apple_UNIX_SVR2`     | rootfs    | any  | Linux native       |
+| `/dev/sdX4` | `Apple_UNIX_SVR2`     | swap      | any  | Linux swap         |
+
+In an APM, there is always an implicit first partition representing the APM
+itself.
+
+You can create that layout like this:
+
+```
+# mac-fdisk /dev/sdX
+i                            # initialize partition table, wipes all data
+b 2p                         # bootstrap partition
+c 3p 120G rootfs             # root filesystem
+c 4p 4p swap                 # swap partition, all unused space
+w                            # write
+q                            # quit
+```
+
+The `b` command is equivalent to `C <x> 800k bootstrap Apple_Bootstrap`.
+
+**This will wipe everything on the disk.** That means it is suitable for
+clean installations, but if you wish to dual boot, you have to do a bit
+more work.
+
+### Multiboot
+
+In this case, you will not be reinitializing your partition layout. Depending
+on how your disk is partitioned you may or may not be able to do this.
+
+You can use the `p` command to print the existing layout. You will need to
+have free space, which should be marked `Apple_Free`. If you have some free
+space, you can create the bootstrap partition inside of it. If you do not,
+you will have to delete a partition or shrink one to get some free space.
+
+On installations with OS X, it seems to be common that you have `Apple_Free`
+around 128MB scattered around. These gaps are a good place to create your
+bootstrap partition. OS X does not need anything but its own HFS+ partition,
+which acts as its own bootstrap.
+
+Generally the layout of the disk does not matter as long as you have your
+bootstrap partition somewhere and then another partition (or more) for the
+root filesystem or others.
+
+To make an example, given a layout like this:
+
+| Device      | Type                  | Name      | Size | System             |
+|-------------|-----------------------|-----------|------|--------------------|
+| `/dev/sdX1` | `Apple_partition_map` | Apple     | -    | Partition map      |
+| `/dev/sdX2` | `Apple_Free`          |           | 128M | Free space         |
+| `/dev/sdX3` | `Apple_HFS`           | OS X      | 100G | HFS                |
+| `/dev/sdX4` | `Apple_Free`          |           | 128M | Free space         |
+| `/dev/sdX5` | `Apple_HFS`           | empty     | 50G  | HFS                |
+| `/dev/sdX6` | `Apple_Free`          |           | 8k   | Free space         |
+
+In this context, `sdX3` is OS X, `sdX5` is an empty HFS+ formatted partition
+you want to install the system in. The `sdX2` and `sdX4` are just gaps, as is
+`sdX6`.
+
+You could do something like this:
+
+```
+# mac-fdisk /dev/sdX
+b 2p                         # bootstrap partition in first gap
+d 5p                         # delete the 50G Apple_HFS
+c 4p 46G rootfs              # create root filesystem partition
+c 5p 5p swap                 # create swap partition
+w
+q
+```
+
+The `rootfs` is `4p` here as deleting the `Apple_HFS` will merge the resulting
+three gaps together, forming a single 4th partition.
+
+Other configurations may need adjustments.
+
 ## Raspberry Pi
 
 **Required partitions:**

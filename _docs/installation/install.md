@@ -350,7 +350,7 @@ Example for x86_64 EFI:
 # apk add grub-x86_64-efi
 ```
 
-Example for a POWER virtual machine or PowerVM hardware:
+Example for a POWER virtual machine, Power Mac or PowerVM hardware:
 
 ```
 # apk add grub-powerpc-ieee1275
@@ -381,6 +381,20 @@ On POWER systems with a PReP partition:
 # grub-install /dev/sda1
 ```
 
+On Power Macs it's a little more complicated (and needs `hfsutils`):
+
+```
+# mkdir -p /boot/macppc
+# mount -t hfs /dev/sda2 /boot/macppc
+# grub-install --macppc-directory=/boot/macppc /dev/sda2
+# umount /boot/macppc
+# rmdir /boot/macppc
+# hmount /dev/sda2
+# hattrib -t tbxi -c UNIX :System:Library:CoreServices:BootX
+# hattrib -b :System:Library:CoreServices
+# humount
+```
+
 On EFI systems with separate ESP:
 
 ```
@@ -405,6 +419,11 @@ Without using `--removable`, a similar workaround will also work:
 # mv /boot/efi/EFI/chimera /boot/efi/EFI/BOOT
 # mv /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI
 ```
+
+On Power Macs it is recommended to turn off graphical GRUB, which can be
+done by uncommenting `GRUB_TERMINAL_OUTPUT=console` in `/etc/default/grub`.
+You may also want to add `GRUB_DISABLE_OS_PROBER=true` to prevent GRUB
+from scanning other drives (which slows down the config generation).
 
 In any case, you will want to generate a GRUB configuration file on all
 platforms:

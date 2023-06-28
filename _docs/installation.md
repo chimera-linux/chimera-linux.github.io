@@ -17,6 +17,7 @@ You will need the following:
 | Architecture | Requirements                                        |
 |--------------|-----------------------------------------------------|
 | `x86_64`     | Any UEFI or BIOS-based 64-bit computer              |
+| `ppc64`      | PowerPC 970 (G5) or better                          |
 | `ppc64le`    | POWER8 or better (OpenPOWER, PowerVM)               |
 | `aarch64`    | UEFI devices supported by mainline kernel, or below |
 | `riscv64`    | UEFI devices supported by mainline kernel, or below |

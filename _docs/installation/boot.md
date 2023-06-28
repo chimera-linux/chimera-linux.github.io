@@ -27,6 +27,97 @@ OpenPOWER systems use Petitboot. Simply boot your computer with
 the removable media inserted and the respective boot entries should
 appear.
 
+### Power Mac systems
+
+Power Macs use their flavor of OpenFirmware. You can boot either from
+optical media or from USB.
+
+For optical media, you can use the standard chooser which you can
+bring up by holding the Option (Alt) key, and ignore the rest of this
+section. USB media are somewhat more complicated.
+
+To boot from USB, insert the USB stick in your Mac, power it on and
+as soon as the chime sounds, hold the **Command + Option + O + F**
+combo (Win + Alt + O + F on standard PC keyboards). Keep holding the
+keys until the OpenFirmware console appears:
+
+```
+Release keys to continue!
+```
+
+After you release the keys, a prompt should appear:
+
+```
+ ok
+0 >
+```
+
+IF you are lucky, the `ud` alias should be present already. You can list
+the aliases with the `devalias` command. If the alias is already in place,
+you can boot like this:
+
+```
+0 > boot ud:,\\:tbxi
+```
+
+If this does not work, you can try booting the GRUB image directly, like so:
+
+```
+0 > boot ud:,\boot\grub\powerpc.elf
+```
+
+The GRUB screen should come up, where you can choose the boot option.
+
+Note that booting from USB or optical media may take a while, both to
+show the bootloader screen and to load the kernel.
+
+#### Defining a device alias for USB boot
+
+If the `devalias` command did not print a `ud`, you will have to define one
+before you can boot.
+
+List the device tree:
+
+```
+0 > dev / ls
+```
+
+The listing may be long and you may have to press Space to scroll further.
+A portion of the listing may look like this:
+
+```
+ffXXXXXX: ...
+ffXXXXXX: ...
+ffXXXXXX:  /pci@f2000000
+ffXXXXXX:    /...
+ffXXXXXX:      /...
+ffXXXXXX:      /...
+ffXXXXXX:    /usb@1a
+ffXXXXXX:      /device@1
+ffXXXXXX:        /keyboard@0
+ffXXXXXX:        /mouse@1
+ffXXXXXX:      /device@2
+ffXXXXXX:        /keyboard@0
+ffXXXXXX:        /mouse@1
+ffXXXXXX:        /interface@2
+ffXXXXXX:    /usb@1b
+ffXXXXXX:      /disk@1
+ffXXXXXX:    /...
+ffXXXXXX:    /...
+```
+
+The part you are looking for is the `/disk@1` under `/usb@1b`. On your machine
+this may look different, but in any case it should be a disk under USB.
+
+Once you have located the right part, add the alias. With the above example
+listing it would look like this:
+
+```
+0 > devalias ud /pci@f2000000/usb@1b/disk@1
+```
+
+Once you have made the alias, you can boot from `ud` as described above.
+
 ### Qemu virtual machines
 
 When using virtual machines, you can pass the image like this:
