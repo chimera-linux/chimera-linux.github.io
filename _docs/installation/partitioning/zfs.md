@@ -22,10 +22,16 @@ with Chimera (typically an SD card), boot it and install ZFS in there.
 If you are using an LTS kernel, Chimera typically comes with binary
 ZFS modules for installation.
 
-For the generic kernel:
+For the generic LTS kernel:
 
 ```
 # apk add linux-lts-zfs-bin
+```
+
+For the generic stable kernel:
+
+```
+# apk add linux-stable-zfs-bin
 ```
 
 For Raspberry Pi:
@@ -33,10 +39,6 @@ For Raspberry Pi:
 ```
 # apk add linux-rpi-zfs-bin
 ```
-
-Note that the `linux-stable` kernel that tracks the latest stable branch
-is not guaranteed to work with ZFS, so it does not come with installable
-binary modules.
 
 If you have your own kernel, or a kernel without ZFS binary modules, you
 can try managing the ZFS modules via CKMS:
