@@ -201,6 +201,14 @@ utilities, but we also have a replacement for things such as Busybox at the
 same time, re-using the same environment to power our initramfs and other
 components.
 
+Being a single lightweight package, it makes hardening the userland a lot
+easier too. It is possible to compile the Chimera userland with CFI and
+other techniques very easily, and it applies to all of the tools. With
+GNU tools trying to using these tends to fail, and addressing the issues
+becomes harder because it is out of our control and involves a much
+chunkier codebase where more can go wrong and where things are harder
+to track down.
+
 Relatedly, it also helps cbuild/cports a lot. The way cbuild works, you are
 building everything in a little container that dependencies are installed
 into. Our BSD-ported utilities also replace some core portions of `util-linux`,
