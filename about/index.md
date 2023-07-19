@@ -78,7 +78,7 @@ so that other distributions can adopt it.
 
 Proper service management infrastructure is a major overall goal. For all
 intents and purposes we aim to provide infrastructure that can rival
-systemd in terms of practicality but with a less problematic implemntation.
+systemd in terms of practicality but with a less problematic implementation.
 Most non-systemd distributions have been largely ignoring this aspect to
 say the least, which is now finally getting fixed.
 
