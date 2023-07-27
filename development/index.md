@@ -61,5 +61,7 @@ of `apk` for all supported architectures.
 
 ## Update checking
 
-The `cbuild` system is capable of automated update checking. Automated update
-checks are yet to be set up.
+The `cbuild` system is capable of automated update checking. There is a
+nightly update check [here](https://repo.chimera-linux.org/cports-updates/cports-updates.txt).
+This file contains a list of templates with available updates, sorted by
+maintainer and refreshed every night after midnight CET.
