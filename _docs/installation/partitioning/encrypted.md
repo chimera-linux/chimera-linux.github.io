@@ -117,7 +117,7 @@ example like:
 ```
 
 After that, follow the regular Chimera installation for your device type,
-e.g. using `chimera-live-install` and so on.
+e.g. using `chimera-bootstrap` and so on.
 
 ### Full disk encryption with LVM on LUKS
 
