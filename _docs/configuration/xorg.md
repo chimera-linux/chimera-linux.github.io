@@ -37,12 +37,11 @@ Put your startup commands in there, and run `startx`.
 
 ## Privileged Xorg
 
-By default, Chimera Xorg is unprivileged, and uses `elogind` to negotiate
-permissions for the display device. There are cases when you may want to
-use the legacy method using a `setuid` wrapper:
-
-* Xorg needs to be able to switch VTs, e.g. when using GDM without Wayland.
-* Systems that don't use `elogind` (for now).
+By default, Chimera Xorg is unprivileged, and uses `libseat` to be able to
+negotiate permissions for the display device (which means you need something
+like `elogind` or `seatd` set up for it to work). There are cases when you
+may want to use the legacy method using a `setuid` wrapper, e.g. when using
+GDM without Wayland and the rootless path causes VT switches to fail.
 
 To set that up, you can do the following:
 
@@ -50,5 +49,5 @@ To set that up, you can do the following:
 # echo needs_root_rights = yes > /etc/X11/Xwrapper.config
 ```
 
-Once done, Xorg will no longer require `elogind` and it will have greater
-privileges. Note that doing this is not recommended.
+Once done, Xorg will no longer use `libseat` at all and will have greater
+privileges through `setuid`. Note that doing this is not recommended.

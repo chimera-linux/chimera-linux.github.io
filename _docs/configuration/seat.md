@@ -39,19 +39,25 @@ services are running, which is not possible to reliably ensure with
 The other main reason is convenience, as it means a single solution
 for all seat management daemons.
 
-## elogind
+## Seat daemons
+
+In general you currently have two options as far as seat daemons
+go. Note that things which use `libseat` will work with both options;
+this includes Wayland compositors based on `wlroots` aand Weston,
+as well as Xorg (but not necessarily things using Xorg).
+
+### elogind
 
 The `elogind` daemon manages user logins as well as auxiliary tasks
 such as system power handling. Big desktops will require `elogind`;
-GNOME requires it, and Xorg in Chimera also requires it, as Chimera's
-Xorg is fully unprivileged.
+particularly GNOME requires it.
 
 If installed, it comes with default service links. That means most
 users will get it out of box. It is also a dependency of `base-full`.
 
 It is the recommended solution; avoiding it is at your own risk.
 
-## seatd
+### seatd
 
 Some setups can use an alternative to `elogind` in form of `seatd`,
 particularly some specific Wayland compositors such as Weston and
