@@ -103,6 +103,17 @@ There are two files that should be of interest:
 Both files have detailed man pages, see `man 5 console-setup` as well
 as `man 5 keyboard`.
 
+## System logging
+
+The default logging system on Chimera is `syslog-ng`, which is part of
+`base-full`. Enable the syslog daemon as follows:
+
+```
+# dinitctl enable syslog-ng
+```
+
+By default logs are written to `/var/log/messages`.
+
 ## Additional software
 
 If you need software beyond what the `main` repository provides, you
