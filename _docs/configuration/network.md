@@ -95,7 +95,7 @@ EnableNetworkConfiguration=true
 
 However, using `dhcpcd` is recommended in most cases.
 
-AFter that, you can run `iwctl` as `root`. If you wish to run it as your user,
+After that, you can run `iwctl` as `root`. If you wish to run it as your user,
 you will need to add yourself to the `network` group and re-login.
 
 After that, you will be able to connect to your wireless network from the
