@@ -3,6 +3,42 @@ layout: page
 title: About
 ---
 
+Chimera Linux was started in 2021 after many years of deliberation.
+
+Traditional large distributions are complex and carry a large amount of
+baggage. It is easy to do things with them, but it is difficult to understand
+what is under the hood. That means that as soon as the user strays beyond the
+path set or expected by the developer, the system becomes impenetrable.
+
+Simple, smaller distributions try to provide an answer to that problem. However,
+that often results in a system that requires a lot of manual configuration as
+well as cases where the system deliberately does not address various use cases
+with the excuse of those cases going against the principles of the project.
+
+Chimera was born from the idea that this doesn't have to be the case, that you
+can have your cake and eat it too. A large part of this is breaking up existing
+status quos; the tooling is fresh, the packaging is brand new, and it's not
+built using any existing distro as a base, which gains it flexibility. Good
+software design helps reduce needless complexity, without having to concede
+practicality.
+
+A core tenet of Chimera is that being simple is better than being complex,
+but being complex is better than being complicated. The whole system is
+transparent to the user, aiming to avoid gotchas. This makes debugging
+potential issues (which may always come up, since we are still humans)
+easier, while also ensuring the user is in control. However, a lot of care
+is put into ensuring that everything has reasonable defaults (which does
+not mean magical automatic behaviors) and requires a minimal amount of effort
+to get working (ideally zero, while retaining a methodical approach).
+
+On top of this, the system offers a huge amount of flexibility in terms of
+hardware configurations the user may run the system on, from old hardware
+to current, with multiple CPU architectures supported.
+
+That's the general overview. Below are some of the technical specifics of
+the system. A lot of these are not significant selling points by themselves;
+however, they are important means to an end.
+
 ## Alternative userland
 
 Chimera comes with a novel userland setup based on FreeBSD core tools
