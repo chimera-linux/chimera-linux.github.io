@@ -1,7 +1,7 @@
 ---
 layout: book
 title: GNOME
-section: 4.7
+section: 4.8
 ---
 
 GNOME is the default desktop of Chimera.

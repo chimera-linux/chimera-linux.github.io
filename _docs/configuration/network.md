@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Network
-section: 4.8
+section: 4.9
 ---
 
 There are several ways to configure the network in Chimera.

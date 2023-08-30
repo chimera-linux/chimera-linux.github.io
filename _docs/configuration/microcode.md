@@ -1,7 +1,7 @@
 ---
 layout: book
 title: CPU microcode
-section: 4.9
+section: 4.10
 ---
 
 On specific CPUs, you have CPU microcode, which can be updated through

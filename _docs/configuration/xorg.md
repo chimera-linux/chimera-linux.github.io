@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Xorg
-section: 4.6
+section: 4.7
 ---
 
 On top of Wayland, Chimera supports Xorg. Note that Wayland is recommended
