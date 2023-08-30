@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Seat management
-section: 4.4
+section: 4.04
 ---
 
 This is usually necessary for a graphical session. In most cases,

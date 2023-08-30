@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Post-installation
-section: 4.1
+section: 4.01
 ---
 
 After installation, there are several things you may want to do.

@@ -1,13 +1,13 @@
 ---
 layout: book
 title: Bluetooth
-section: 4.6
+section: 4.06
 ---
 
 The BlueZ project provides the infrastructure, similarly to
 other distributions.
 
-To install it:
+To install it (if it isn't already):
 
 ```
 # apk add bluez

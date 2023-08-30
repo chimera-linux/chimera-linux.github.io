@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Service management
-section: 4.2
+section: 4.02
 ---
 
 Chimera relies on [Dinit](https://davmac.org/projects/dinit) as
