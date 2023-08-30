@@ -23,17 +23,19 @@ This will also automatically install WirePlumber, the default
 session manager.
 
 The primary supported way to get the daemon running is through
-a user service. Simply enable WirePlumber as your user:
+a user service. The user services are enabled by default
+unless masked in `apk`.
+
+You can either restart your user session or start them manually:
 
 ```
-$ dinitctl enable wireplumber
+$ dinitctl start wireplumber
 ```
 
-Doing so also implicitly enables `pipewire` itself. Typically
-you will also want PulseAudio compatibility:
+Typically you will also want PulseAudio compatibility:
 
 ```
-$ dinitctl enable pipewire-pulse
+$ dinitctl start pipewire-pulse
 ```
 
 You can check whether it's running:
@@ -46,4 +48,12 @@ $ dinitctl list
 [{+}     ] pipewire-pulse (pid: 1046)
 [{+}     ] pipewire (pid: 1044)
 [{+}     ] wireplumber (pid: 1045)
+```
+
+If you wish to mask the default links (and therefore prevent
+the services from coming up without being explicitly enabled),
+you can do something like:
+
+```
+# apk add '!pipewire-dinit-links' '!wireplumber-dinit-links'
 ```
