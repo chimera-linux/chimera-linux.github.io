@@ -7,7 +7,10 @@ section: 4.07
 On top of Wayland, Chimera supports Xorg. Note that Wayland is recommended
 by the distribution for most users.
 
-To install Xorg, simply add the necessary package:
+Xorg is in the `contrib` repo. Therefore, enable the repository first if
+it is not already.
+
+Then you can add the necessary package:
 
 ```
 # apk add xserver-xorg
