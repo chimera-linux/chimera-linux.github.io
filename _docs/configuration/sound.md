@@ -57,3 +57,9 @@ you can do something like:
 ```
 # apk add '!pipewire-dinit-links' '!wireplumber-dinit-links'
 ```
+
+This is generally useful when you want fine-grained control
+over which users PipeWire is run for (i.e. it will not run
+automatically for each user that log in on tty). Afterwards,
+you will want to `dinitctl enable` the necessary services
+under each user you want.
