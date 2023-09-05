@@ -72,9 +72,12 @@ project:
 
 * Currently none
 
-The following people have community moderator access:
+The following community members have IRC op privileges:
 
-* Currently none
+* [abby](https://github.com/classabbyamp)
+* [deathmist](https://github.com/JamiKettunen)
+* [psykose](https://github.com/nekopsykose)
+* [zdykstra](https://github.com/zdykstra)
 
 Contributors into different repositories who do not have commit access can
 be found in the individual repositories.
