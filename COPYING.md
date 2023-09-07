@@ -4,7 +4,7 @@ Original code in this repository is provided under
 the terms of the terms of the BSD-2-Clause license.
 
 Original Chimera artwork (logo, website) was designed
-by https://twitter.com/cura_chan for the project and
+by https://cohost.org/cura for the project and
 is hereby available under the CC-BY-SA-4.0.
 
 ## Third party content
@@ -21,4 +21,3 @@ Additionally, social media icons use the following third party branding:
 * Matrix icon, public domain
 * Reddit icon, subject to Reddit's brand guidelines
 * Mastodon icon, subject to Mastodon's brand guidelines
-* Twitter icon, subject to Twitter's brand guidelines

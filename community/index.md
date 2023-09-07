@@ -36,7 +36,6 @@ These are official:
 
 * [Reddit](https://www.reddit.com/r/chimeralinux)
 * [Mastodon](https://floss.social/@chimera_linux)
-* [Twitter](https://twitter.com/chimera_linux)
 
 Unless listed here, anything else is an unofficial space. Creation of such
 spaces is discouraged by the project. Please do not create them. If there
