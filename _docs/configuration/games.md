@@ -44,8 +44,8 @@ the box.
 
 ## Minecraft
 
-You can play Minecraft natively on Chimera on the `x86_64` architecture,
-and possibly others with custom JARs.
+You can play Minecraft natively on Chimera on the `x86_64` architecture
+(and possibly others with custom JARs).
 
 First, you will need Java. Install OpenJDK 17:
 
