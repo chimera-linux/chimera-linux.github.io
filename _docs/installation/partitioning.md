@@ -240,11 +240,17 @@ Other configurations may need adjustments.
 1. The `/boot` partition
 2. Root filesystem
 
-**Partition table: MBR**
+**Partition table: MBR/GPT**
 
-For Raspberry Pi, you will need a MBR partition table witha dedicated
-partition for `/boot`. On Raspberry Pi 4 and newer, GPT may technically
-work, but MBR is recommended for best compatibility.
+For Raspberry Pi 3 you will need a MBR partition table, as the built-in
+firmware cannot deal with GPT (protective MBR hacks aside).
+
+For Raspberry Pi 4, you can use GPT, while MBR will also work.
+
+In both cases, you will need to have a partition for `/boot` as the
+first partition. On MBR, this needs to be marked bootable. On GPT,
+it needs to be of type `Microsoft basic data` or `EFI System`, or
+it will not be found.
 
 ## U-Boot
 
@@ -278,6 +284,13 @@ In any case, the specifics of your device partitioning should come with
 your device's documentation. For devices that Chimera supports, known
 partition layouts can be found [here](https://github.com/chimera-linux/chimera-live/tree/master/sfdisk).
 
+In general, the root partition should be labeled `root` for the default
+cmdlines on most devices to work. If you don't label it, you will have
+to remove the pre-defined `root=` parameter from `/etc/default/u-boot-cmdline`
+and let `update-u-boot` auto-generate a correct `root=` instead (the
+defaults include a static `root=` to ease generation of generic SD card
+images).
+
 If your device is in the above list, then you can save yourself some time
 manually partitioning the disk, and do something like the following:
 
@@ -286,6 +299,8 @@ manually partitioning the disk, and do something like the following:
 # sed -i '' 's/@BOOT_SIZE@/512MiB/' pbp
 # sfdisk /dev/mmcblk2 < pbp
 ```
+
+Doing this will take care of the labeling if necessary.
 
 Of course, you will need to substitute the filename for your platform, the
 boot partition size for whatever you like, and the `mmcblk2` for your target

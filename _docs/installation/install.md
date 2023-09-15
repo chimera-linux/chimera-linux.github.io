@@ -470,7 +470,10 @@ pre-defined one.
 
 ### Raspberry Pi
 
-No special setup is necessary for booting on Raspberry Pi.
+No special setup is necessary for booting on Raspberry Pi, except possibly for
+tweaking the cmdline (`/boot/cmdline.txt`) to reflect your partition and filesystem
+layout. If your filesystem (not partition) is labeled `root`, no changes should
+be necessary.
 
 ## Other post-installation tasks
 

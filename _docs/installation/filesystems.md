@@ -28,6 +28,14 @@ An example, assuming `/dev/sda2` is your root partition:
 When installing on SD cards, you might want to disable the journal.
 You can do it by passing the option `-O ^has_journal` after `mkfs.ext4`.
 
+### Raspberry Pi
+
+Since Raspberry Pi systems often rely on MBR, which does not support
+partition labels, the default cmdline uses a filesystem label as root.
+Therefore, you might want to ensure that your root filesystem is
+labeled `root`. Alternatively, you can edit `/boot/cmdline.txt` after
+installation to reflect your desired configuration.
+
 ## Boot filesystem
 
 A common case for this is if your root filesystem is not supported
