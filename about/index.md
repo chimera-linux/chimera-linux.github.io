@@ -82,7 +82,6 @@ Here is an example table of some major system components and their providers:
 |----------------------------|--------------------------|
 | Compiler and runtime stack | LLVM                     |
 | C standard library         | Musl with Scudo          |
-| `binutils`, `elfutils`     | ELF Toolchain            |
 | Core userland              | FreeBSD, NetBSD, OpenBSD |
 | Init and logging           | Dinit, syslog-ng         |
 | Audio stack                | PipeWire                 |
