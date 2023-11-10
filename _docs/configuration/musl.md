@@ -74,12 +74,7 @@ should be rebooted afterwards.
 
 ### Reverting to Scudo
 
-If you wish to switch back, this has to be done from an external system
-or with a static `apk`. This is because the libc is a core component as
-`musl-mallocng` replaces the `musl` package, trying to force the stock one
-back in will result in `libc.so` missing.
-
-With a static `apk`:
+You can pretty much perform the reverse process:
 
 ```
 # apk del musl-mallocng musl-safety-override
