@@ -57,10 +57,6 @@ intend to further tune the allocator settings in near future).
 In any case, there is a way to install the libc with the stock allocator.
 The package is called `musl-mallocng`.
 
-**Do note that installing it is a one-way path.** If you wish to revert
-back to Scudo afterwards, you need an external system (e.g. a Chimera live
-environment) to do manual fixups, or at least a static `apk` binary.
-
 If you wish to proceed, create a virtual override first:
 
 ```
@@ -88,30 +84,20 @@ With a static `apk`:
 ```
 # apk del musl-mallocng musl-safety-override
 # apk add musl
-# ./apk.static fix musl
-# apk del musl
 ```
 
 The first `del` is harmless by itself. It will merely remove `musl-mallocng`
 and `musl-safety-override` from world, but will not perform any changes.
-The second command is where things go wrong; `apk` will first install `musl`,
-and subsequently purge `musl-mallocng`, which will take `libc.so` with it,
-resulting in a system that cannot run any binaries.
+The second run will replace `musl-mallocng` with regular `musl`.
 
-This is where `apk.static` comes in; as it's static, it can be executed
-directly. Therefore, you use it to reinstall `musl`. Then regular binaries
-should work again, and the last optional `del` will just remove `musl` from
-world so it becomes an implicit dependency again.
-
-Doing all this from an external system is a bit safer. If you wish to do that,
-mount your system somewhere, including pseudo-filesystems. Have an external
-`apk` ready. Then do something like:
+Now you can also remove `musl` from world:
 
 ```
-# apk --root /path/to/mount del musl-mallocng musl-safety-override
-# apk --root /path/to/mount add musl
-# apk --root /path/to/mount fix musl
-# apk --root /path/to/mount del musl
+# apk del musl
 ```
 
-Then things should work again.
+This step is optional.
+
+It is recommended that you have a system with external `apk` available for
+recovery, or at least a static build of `apk` accessible from your current
+shell, in case something goes wrong.
