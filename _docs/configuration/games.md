@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Video games
-section: 4.13
+section: 4.14
 ---
 
 It is possible to play video games on Chimera.
