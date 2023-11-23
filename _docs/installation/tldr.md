@@ -22,7 +22,7 @@ This will install Chimera from the GNOME image with the GNOME desktop,
 using a whole NVMe disk, on an ordinary (usually x86_64) UEFI computer.
 An 8GB swap partition will be used.
 
-The same instructions will work on any UEFI machime, but `grub-x86_64-efi`
+The same instructions will work on any UEFI machine, but `grub-x86_64-efi`
 will need to be changed to `grub-arm64-efi` or whichever the user needs.
 
 ```
