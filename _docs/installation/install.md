@@ -132,7 +132,7 @@ not do anything.
 If `apk update` fails, make sure your system date/time is set to a
 correct value. Incorrectly configured date/time can result in HTTPS
 certificate errors. If the date/time is indeed wrong, you can set it
-with the `date` comamnd:
+with the `date` command:
 
 ```
 # date YYYYMMDDHHmm
@@ -276,7 +276,7 @@ It is not necessary to add entries for pseudo-filesystems such as the
 `/proc` or `/sys` mounts. If you want to have read-only `/` partition
 you will also have to add a `tmpfs` entry for `/tmp`, as the directory
 needs to be globally writable. On other systems, you do not need such
-entry and `/tmp` does not need to be a mount (it will be peridocally
+entry and `/tmp` does not need to be a mount (it will be periodically
 cleaned).
 
 In general the order of the rows should be root filesystem first and
