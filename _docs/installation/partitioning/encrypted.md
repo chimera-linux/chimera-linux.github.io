@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Disk encryption
-section: 2.4.1
+section: 2.5.1
 ---
 
 This largely applies to installation from any source. You should be

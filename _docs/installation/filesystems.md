@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Filesystems
-section: 2.5
+section: 2.6
 ---
 
 This part assumes you have partitioned your drive in a way that

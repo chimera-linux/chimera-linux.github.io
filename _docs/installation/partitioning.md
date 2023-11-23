@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Partitioning
-section: 2.4
+section: 2.5
 ---
 
 This part assumes that you have decided to install Chimera on a disk

@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Booting
-section: 2.3
+section: 2.4
 ---
 
 Once you have prepared your media, you can boot from it. The boot

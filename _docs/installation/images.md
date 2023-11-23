@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Image types
-section: 2.1
+section: 2.2
 ---
 
 ## Live ISO images

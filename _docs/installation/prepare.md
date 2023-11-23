@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Preparing media
-section: 2.2
+section: 2.3
 ---
 
 Once you have downloaded the right image, you will need to prepare

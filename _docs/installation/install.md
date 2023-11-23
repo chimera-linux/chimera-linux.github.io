@@ -1,7 +1,7 @@
 ---
 layout: book
 title: Installing
-section: 2.6
+section: 2.7
 ---
 
 This assumes you have partitioned your target drive and formatted
