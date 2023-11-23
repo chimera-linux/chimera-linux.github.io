@@ -56,7 +56,7 @@ EOF
 ## echo mycomputer > /etc/hostname
 ## ln -sf ../usr/share/zoneinfo/Europe/Prague /etc/localtime
 ## dinitctl -o enable gdm
-## dinitctl- o enable chrony
+## dinitctl -o enable chrony
 ## dinitctl -o enable networkmanager
 ## update-initramfs -c -k all
 ## grub-install --efi-directory=/boot/efi
@@ -106,7 +106,7 @@ EOF
 ## echo mycomputer > /etc/hostname
 ## ln -sf ../usr/share/zoneinfo/Europe/Prague /etc/localtime
 ## dinitctl -o enable gdm
-## dinitctl- o enable chrony
+## dinitctl -o enable chrony
 ## dinitctl -o enable networkmanager
 ## update-initramfs -c -k all
 ## mkdir /boot/grub
