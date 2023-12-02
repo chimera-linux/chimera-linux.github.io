@@ -326,7 +326,7 @@ graphical `getty`.
 So for example you might want to do something like:
 
 ```
-# ln -s ../agetty-ttyS0 /etc/dinit.d/boot.d/agetty-ttyS0
+# dinitctl -o enable agetty-ttyS0
 ```
 
 If the baud rate or other parameters need tweaking, you can copy them
