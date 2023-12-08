@@ -111,6 +111,34 @@ or you can create device images using Chimera's `mkimage.sh` using these.
 In each media bundle, the `sha256sums.txt` file contains SHA256 checksums
 of every file. Use this to check that your downloaded file is not corrupt.
 
+The `sha256sums.txt` file is signed with [minisign](https://jedisct1.github.io/minisign/).
+The signing key is unique for each release batch. You can use this to make
+sure the release has not been tampered with.
+
+If you are running Chimera, the public keys are available in a package called
+`chimera-image-keys`. If you are not running Chimera, you can grab them from
+[cports](https://github.com/chimera-linux/cports/tree/master/main/chimera-image-keys/files).
+
+To verify the media, install `minisign` using your package manager. On Chimera,
+it's a dependency of `chimera-image-keys` already. Then download the checksums
+file, in this case for 20230915:
+
+```
+$ fetch https://repo.chimera-linux.org/live/20230915/sha256sums.txt
+```
+
+As well as the signature:
+
+```
+$ fetch https://repo.chimera-linux.org/live/20230915/sha256sums.txt.minisig
+```
+
+Then you can verify it with the matching public key:
+
+```
+$ minisign -Vm sha256sums.txt -p /usr/share/chimera-image-keys/20230915.pub
+```
+
 ## Installing
 
 Proceed to the section relevant to you.
