@@ -12,3 +12,6 @@ the [parent directory](https://repo.chimera-linux.org/live).
 The [installation](/docs/installation) section has more detailed information
 about what is actually available and what you should end up using, as well
 as how to use it.
+
+OCI containers are avaiable through [DockerHub](https://hub.docker.com/r/chimeralinux/chimera)
+for a subset of officially supported architectures.
