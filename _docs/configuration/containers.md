@@ -99,3 +99,24 @@ It should work then, as root:
 ```
 # docker images
 ```
+
+## Using Chimera as a container
+
+Conversely, Chimera is also available as a container using the same
+above solutions, on any distro supporting them.
+
+Visit [DockerHub](https://hub.docker.com/r/chimeralinux/chimera)
+for further details.
+
+You could do something like the following:
+
+```
+$ podman run -it chimeralinux/chimera:latest
+```
+
+Or from a Dockerfile:
+
+```
+FROM chimeralinux/chimera:latest
+...
+```

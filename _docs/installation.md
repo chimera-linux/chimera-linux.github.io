@@ -26,6 +26,11 @@ In general, for a console-based system, you will need at least 128MB
 or more RAM for the system to be truly usable. A graphical desktop will
 need more, depending on the desktop (1GB is recommended for GNOME installs).
 
+OCI containers are available for `x86_64`, `ppc64e`, `aarch64` as well
+as `riscv64` at `chimeralinux/chimera:latest`. They will run in any
+environment where you can get Docker, Podman, or another similar/compatible
+solution working.
+
 ### AArch64 devices
 
 In addition to generic UEFI targets supported by mainline kernel, there
