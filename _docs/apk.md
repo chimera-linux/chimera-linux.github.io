@@ -83,6 +83,56 @@ you can simply add it as it is:
 # apk add cmd:foo
 ```
 
+## Base packages
+
+Chimera has flexible base package splitting. There are the following main base
+packages:
+
+* `base-bootstrap`
+* `base-minimal`
+* `base-core`
+* `base-full`
+* `base-desktop`
+
+Each adds something more to the previous. The `base-bootstrap` package is a
+minimal setup primarily intended for containers. The others may be bootable,
+but it is recommended that most users always install `base-desktop` or at
+least `base-full` unless you really know what you are doing.
+
+The base packages never install a kernel, as that is separate. There are also
+various device-specific base packages, such as `base-rpi` for Raspberry Pi
+or `base-steamdeck` for the Steam Deck.
+
+The base packages themselves do not depend on anything, instead they act as
+hints for the package manager to auto-install more fine-grained metapackages,
+such as:
+
+* `base-core-fs`
+* `base-core-net`
+* `base-core-misc`
+* `base-full-firmware`
+
+and so on. For the full list, read the templates in `cports` or you can use
+`apk search`:
+
+```
+$ apk search -r -e base-core
+```
+
+The reason for this is so that portions of the base system can be easily
+masked in case some dependencies are not needed. For instance, if you want
+a desktop environment and don't want GNOME, you can for your convenience
+install `base-desktop` but exclude the GNOME part:
+
+```
+# apk add base-desktop '!base-desktop-gnome'
+```
+
+This will install desktop support packages, such as GPU drivers, but not
+the GNOME packages; you can then install whatever else you like.
+
+Read about [the world](/docs/apk/world) for details of how masking works.
+
 ## Repositories
 
 By default, you will get packages from the `main` repository. However,
@@ -113,3 +163,31 @@ You can enable them as follows:
 ```
 
 After that, refresh your indexes. The debug packages are suffixed with `-dbg`.
+
+## Cache and interactive mode
+
+By default, there is cache set up, with `/var/cache/apk` being where the
+cached packages are stored.
+
+If you wish to change this path, first mask the cache provider:
+
+```
+# apk add '!apk-tools-cache'
+```
+
+Then you can symlink `/etc/apk/cache` to a path of your choice.
+
+The package manager is also interactive by default, i.e. it will ask you
+to confirm before installing or removing any packages. It is recommended
+not to turn this off, as it can prevent unintended changes into your
+system (and it can always be overridden with `--no-interactive` on the
+command line).
+
+If you still wish to make the package manager non-interactive, mask the
+provider:
+
+```
+# apk add '!apk-tools-interactive'
+```
+
+Read about [the world](/docs/apk/world) for details of how masking works.
