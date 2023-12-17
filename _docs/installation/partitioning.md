@@ -120,7 +120,7 @@ You will usually want GPT though.
 
 **Partition table: MBR or GPT**
 
-Non-OpenPOWER systems of the POWER archictecture are usually this.
+Non-OpenPOWER systems of the POWER architecture are usually this.
 Virtual machines (qemu) are usually also this. These systems use
 variants of OpenFirmware (IEEE1275).
 

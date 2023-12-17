@@ -23,7 +23,7 @@ notification, rudimentary socket activation and so on.
 
 ## Basic usage
 
-Dinit is controlled with the `dinitctl` command. For exmaple to
+Dinit is controlled with the `dinitctl` command. For example to
 enable or disable a service:
 
 ```

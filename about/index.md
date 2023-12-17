@@ -134,7 +134,7 @@ To build the binary packages, it uses a custom, written-from-scratch
 infrastructure called `cports`, with a build system called `cbuild`,
 written in Python. It is designed to be strict and correct, while
 minimizing the maintenance cost and allowing it to be managed with a
-small number of maintainers. Best practices are enforced via agressive
+small number of maintainers. Best practices are enforced via aggressive
 linting and a strict sandbox. The system is also very fast, improving
 build speeds (by not spending time in `cbuild` pointlessly) and reducing
 reliance on caching.
