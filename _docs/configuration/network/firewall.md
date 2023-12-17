@@ -87,5 +87,5 @@ In any case, enabling the services is as usual:
 # dinitctl enable ip6tables
 ```
 
-Restart the services when you change your rules. Stop the servics to
+Restart the services when you change your rules. Stop the services to
 flush the rules.

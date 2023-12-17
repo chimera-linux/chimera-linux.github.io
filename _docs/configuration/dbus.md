@@ -17,7 +17,7 @@ D-Bus services can utilize the system bus or session bus depending
 on what they are handling. A lot of desktop things utilize the
 session bus.
 
-Regadless of system or session, a bus has a Unix domain socket somewhere.
+Regardless of system or session, a bus has a Unix domain socket somewhere.
 Things using the bus connect to this socket internally. The path to the
 session bus socket is in the user's environment, under the variable
 called `DBUS_SESSION_BUS_ADDRESS`.

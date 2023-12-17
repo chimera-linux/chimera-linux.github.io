@@ -47,7 +47,7 @@ can try managing the ZFS modules via CKMS:
 # apk add zfs-ckms
 ```
 
-Keep in mind that ZFS managed through CKMS wil need to build its kernel
+Keep in mind that ZFS managed through CKMS will need to build its kernel
 modules from source, which may take time, especially on slow devices.
 It may also not be compatible with every kernel at source level.
 
@@ -60,7 +60,7 @@ use the filesystem.
 
 ## Partitioning
 
-The main problem is that most bootloaders do not undestand ZFS. GRUB
+The main problem is that most bootloaders do not understand ZFS. GRUB
 does understand it, but only a fairly old version with a limited feature
 set.
 

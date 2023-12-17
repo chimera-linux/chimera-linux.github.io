@@ -43,7 +43,7 @@ for all seat management daemons.
 
 In general you currently have two options as far as seat daemons
 go. Note that things which use `libseat` will work with both options;
-this includes Wayland compositors based on `wlroots` aand Weston,
+this includes Wayland compositors based on `wlroots` and Weston,
 as well as Xorg (but not necessarily things using Xorg).
 
 ### elogind

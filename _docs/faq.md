@@ -16,7 +16,7 @@ No, it's an independent project not directly derived from anything else.
 
 ## What is the distro's relation to Void Linux?
 
-If Chimera build templates and process seem suspciously similar to Void
+If Chimera build templates and process seem suspiciously similar to Void
 Linux's `xbps-src`, `cbuild` originally started as a rewrite of `xbps-src`
 to attempt to eliminate its various issues, and the main developer/founder
 of Chimera also worked on Void Linux. However, no actual code is shared

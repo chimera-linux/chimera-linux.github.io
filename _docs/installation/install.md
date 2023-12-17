@@ -193,7 +193,7 @@ A lot of the device packages are in the `contrib` repo.
 The base packages for U-Boot devices come with a default kernel command
 line in `/etc/u-boot-cmdline`. This contains a pre-defined `root=` parameter
 that is suitable for the default partitioning as shipped with the device
-images. This will not work with custom partition layouts, for exmaple when
+images. This will not work with custom partition layouts, for example when
 using LVM/LUKS or when your partition label is different, and it's only
 present so that U-Boot configuration can be generated statically without
 executing code in the target root, so you can remove it (the U-Boot menu
@@ -377,7 +377,7 @@ as the machine comes with one, so just add `grub`. On other platforms, there
 are more choices, e.g. `grub-arm64-efi`, `grub-i386-coreboot`, `grub-i386-efi`,
 `grub-riscv64-efi`, `grub-x86_64-xen`.
 
-The installation will differ slightly depending on the platform. For exmaple
+The installation will differ slightly depending on the platform. For example
 for BIOS systems:
 
 ```
