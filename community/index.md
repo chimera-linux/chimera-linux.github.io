@@ -64,12 +64,12 @@ of the official channels. See the [Development](/development) page for more.
 
 The following people have global administrator rights:
 
-* q66 <<q66@chimera-linux.org>>
+* [q66](https://github.com/q66)
 
 The following people have commit access rights in one or more parts of the
 project:
 
-* Currently none
+* [psykose](https://github.com/nekopsykose)
 
 The following community members have IRC op privileges:
 
