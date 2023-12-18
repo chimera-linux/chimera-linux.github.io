@@ -85,6 +85,16 @@ you can only perform a network installation.
 For both cases, you use the `chimera-bootstrap` program. The
 tool supports `-h` for a help listing.
 
+**NOTE:** The tool will abort by default if any of the directories
+within the mounted hierarchy are non-empty. This is a safeguard
+against doing something wrong, since this is a sensitive operation
+that handles user data. However, it can also fail in intended
+scenarios, such as multi-boot setups (pre-existing populated ESP)
+or if the user wishes to keep their `/home` intact. In those cases,
+it is safe to pass the `-f` flag to force proceed, but please do
+verify that you are indeed using the correct destination when
+using this flag.
+
 ### Local installation
 
 To perform a local installation with `chimera-bootstrap`, the `-l`
