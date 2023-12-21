@@ -86,19 +86,18 @@ As a bit of a special case, Chimera also provides root file system tarballs.
 This is a small, pre-packaged Chimera installation. The following flavors
 are always available:
 
-* **Bootstrap tarballs** (created from the `base-bootstrap` metapackage)
-  are suitable for setting up small containers that you can add more
-  software into, e.g. with Docker. They only contain a bare userland
+* **Bootstrap** tarballs (created from the `base-bootstrap` metapackage)
+  are suitable for containers (e.g., Docker). They only contain a bare userland
   and `apk`. They don't contain the init system suite or tools for building
-  an initfs, and won't boot without installing the `base-minimal`
-  metapackage and a kernel.
+  an initfs. They won't boot without installing the `base-minimal` metapackage,
+  a kernel, and a bootloader.
   
-* **Minimal tarballs** (created from the `base-minimal` metapackage) are
+* **Minimal** tarballs (created from the `base-minimal` metapackage) are
   suitable for setting up bare bootable systems. They do not contain a
   kernel or a bootloader, but they do contain an init system suite,
   a `getty`, and user management tools.
   
-* **Core tarballs** (created from the `base-core` metapackage) are larger and
+* **Core** tarballs (created from the `base-core` metapackage) are larger and
   contain packages suitable for most deployments. Like minimal tarballs,
   they do not contain a kernel or a bootloader, but they do contain
   programs for manipulating filesystems and networks, and more.
@@ -113,7 +112,7 @@ or you can create device images using Chimera's `mkimage.sh` using these.
 ## Verifying system media
 
 In each media bundle, the `sha256sums.txt` file contains SHA256 checksums
-of every file. Use this to check that your downloaded file is not corrupt.
+of every file. Use this to check that your downloaded file is not corrupted.
 
 The `sha256sums.txt` file is signed with [minisign](https://jedisct1.github.io/minisign/).
 The signing key is unique for each release batch. You can use this to make
