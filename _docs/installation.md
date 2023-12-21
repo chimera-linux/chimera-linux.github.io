@@ -83,7 +83,7 @@ Do note that SD card images have the root filesystem journal disabled.
 ### Root filesystem tarballs
 
 As a bit of a special case, Chimera also provides root file system tarballs.
-This is a small, pre-packaged Chimera installation. The following flavors
+They are small, pre-packaged Chimera installations. The following flavors
 are always available:
 
 * **Bootstrap** tarballs (created from the `base-bootstrap` metapackage)
