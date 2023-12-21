@@ -86,23 +86,27 @@ As a bit of a special case, Chimera also provides root file system tarballs.
 This is a small, pre-packaged Chimera installation. The following flavors
 are always available:
 
-* Bootstrap tarballs (bootstrapped from the `base-bootstrap` metapackage)
+* **Bootstrap tarballs** (created from the `base-bootstrap` metapackage)
   are suitable for setting up small containers that you can add more
   software into, e.g. with Docker. They only contain a bare userland
-  and `apk`.
-* Minimal tarballs (bootstrapped from the `base-minimal` metapackage) are
+  and `apk`. They don't contain the init system suite or tools for building
+  an initfs, and won't boot without installing the `base-minimal`
+  metapackage and a kernel.
+  
+* **Minimal tarballs** (created from the `base-minimal` metapackage) are
   suitable for setting up bare bootable systems. They do not contain a
   kernel or a bootloader, but they do contain an init system suite,
-  a `getty` and user management tools.
-* Core tarballs (bootstrapped from `base-core` metapackage) are larger and
-  contain packages suitable for most deployments. Like minimal tarballs
+  a `getty`, and user management tools.
+  
+* **Core tarballs** (created from the `base-core` metapackage) are larger and
+  contain packages suitable for most deployments. Like minimal tarballs,
   they do not contain a kernel or a bootloader, but they do contain
-  programs such as those for manipulating filesystems and networks.
+  programs for manipulating filesystems and networks, and more.
 
 They are handy for chroot-style installations that are fully manual, mostly
 to save time bootstrapping with `apk` from scratch.
 
-In addition to this, tarball counterpart for every device-specific image
+In addition to this, a tarball counterpart for every device-specific image
 is available. You can use these for manual installation on such devices,
 or you can create device images using Chimera's `mkimage.sh` using these.
 
