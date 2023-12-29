@@ -22,15 +22,6 @@ fine-grained control. Those users may also be interested in the
 `gnome-core` package which only installs a relatively bare desktop
 without auxiliary apps.
 
-## GNOME on Xorg
-
-While it is possible to start GNOME on Xorg either via `.xinitrc`
-and so on or via GDM, it is recommended to use Wayland. GNOME on
-Xorg has been known to have issues with Xorg and certain accelerated
-graphics drivers, so if you encounter issues such as the shell
-hanging on early startup, that may be the cause. The Wayland session
-is known to be stable.
-
 ## Starting
 
 Keep in mind that GNOME requires `elogind`. In a typical setup, this
@@ -42,36 +33,13 @@ session bus, see [D-Bus](/docs/configuration/dbus).
 You can start GNOME either manually, or from a display manager,
 typically GDM.
 
-### Manual startup
+### GDM
 
-For Wayland (recommended), all you need to do is log in on your
-desired tty and run:
+The recommended way to start GNOME is through GDM. This makes sure
+all the necessary variables are set up as well as enables the lock
+screen to work (which depends on communication with GDM).
 
-```
-$ gnome-shell --wayland
-```
-
-For X11, you can create an `.xinitrc` script, and put the following
-inside:
-
-```
-gnome-session
-```
-
-Then you need to give it appropriate permissions (must be executable
-by your user). Then you can simply use `startx`.
-
-**Note that starting GNOME without GDM will disable some functionality.**
-Most notably, this is the lock screen.
-
-### Display manager
-
-Select the X session you want.
-
-## GDM
-
-GDM is the recommended way to start GNOME, and it can be used to start
-other desktops and window managers as well.
+GDM can also be used to start other desktops.
 
 Typically, all you need to do is enable the service:
 
@@ -86,9 +54,9 @@ once, you can also do:
 # dinitctl start gdm
 ```
 
-After that, you only need to log in and a desktop should come up.
+After that, you only need to log in.
 
-### GDM with Xorg
+#### GDM with Xorg
 
 Normally, GDM will default to Wayland. There are some specific cases
 where Wayland is disabled, most of them not relevant to Chimera, but
@@ -102,3 +70,35 @@ and uncomment the `WaylandEnable=false` line.
 Note that this will not make GDM with Xorg work right away, as Chimera's
 Xorg setup is unprivileged and the X server started by GDM will not be
 allowed to switch VTs, see [Xorg](/docs/configuration/xorg).
+
+### Manual startup
+
+**This is not recommended as some functionality will not work**, such
+as the lock screen, but it can still be useful for debugging and specific
+setups. However, do keep in mind that this will also interfere with
+management of graphical user services and so on at a later point (and
+these instructions will change).
+
+For Wayland (recommended), you need to log in on the desired tty
+and run something like:
+
+```
+$ gnome-shell --wayland
+```
+
+This will give you a shell, but for example the settings app will
+not work. You can fix that by exporting the following variable first:
+
+```
+$ export XDG_CURRENT_DESKTOP=GNOME
+```
+
+For X11, you can create an `.xinitrc` script, and put the following
+inside:
+
+```
+gnome-session
+```
+
+Then you need to give it appropriate permissions (must be executable
+by your user). Then you can simply use `startx`.
