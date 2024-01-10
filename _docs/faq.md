@@ -42,8 +42,8 @@ Python was chosen as it's more or less the standard scripting language on
 Unix-like systems nowadays and is robust and portable. The `cbuild` system
 does not rely on any modules outside of Python's standard library. The
 Python syntax is also flexible and adjustable enough to make for a nice
-syntax for templates without having to invent yet another DSL that would
-introduce its own bugs and need its own parsing.
+syntax for templates without having to invent yet another domain-specific
+language (DSL) that would introduce its own bugs and need its own parsing.
 
 ## What is the project's take on systemd?
 
