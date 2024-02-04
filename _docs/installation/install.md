@@ -256,14 +256,14 @@ The installation scripts come with a `fstab` generator. You can invoke
 it like:
 
 ```
-# genfstab / > /etc/fstab
+# genfstab / >> /etc/fstab
 ```
 
 It is also possible to invoke it from the outside of the system, e.g.
 like:
 
 ```
-# genfstab /media/root > /media/root/etc/fstab
+# genfstab /media/root >> /media/root/etc/fstab
 ```
 
 You might want to manually edit the generated `fstab` to remove useless
