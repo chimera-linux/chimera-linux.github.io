@@ -329,15 +329,29 @@ Set your root password here, or you will not be able to log in:
 
 ### Serial login prompt (getty)
 
+This only applies to you if you wish to have console access over the
+serial port (often the case on embedded devices and servers, but typically
+not normal desktop computers).
+
 While the live image autodetects this and lets you log in over serial
 terminal, the final system does not, and will only by default enable
 graphical `getty`.
 
-So for example you might want to do something like:
+You need to know which serial tty is yours; often this will be something
+like `/dev/ttyS0`, but could be anything else, like `/dev/ttyAMA0`,
+`/dev/ttySIF0`, and others.
+
+Create the file `/etc/default/agetty` that contains something like the
+following:
 
 ```
-# dinitctl -o enable agetty-ttyS0
+EXTRA_GETTYS="/dev/ttyS0"
 ```
+
+Note that this will only work if the corresponding service exists, for
+example `/etc/dinit.d/agetty-ttyS0`. Chimera ships with pre-made service
+files for many serial consoles. However, the characteristics and device
+may differ a lot, so it might not be exhaustive.
 
 If the baud rate or other parameters need tweaking, you can copy them
 from the live system (e.g. `/etc/default/agetty-ttyS0`), as the live
