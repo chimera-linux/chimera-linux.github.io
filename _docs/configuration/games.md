@@ -84,13 +84,11 @@ env LD_PRELOAD=/usr/lib/libgcompat.so.0
 
 This will allow some of the bundled libraries to work. However, the bundled
 OpenAL still will not work because of C++ standard library mismatch; thus
-go to the "Java" tab, check "Java arguments" and add the following:
+go to the "Workarounds" tab, check "Use system installation of OpenAL" and
+add the following:
 
 ```
--Dorg.lwjgl.openal.libname=/usr/lib/libopenal.so.1
+/usr/lib/libopenal.so.1
 ```
-
-The checkboxes in the "Workarounds" tab will not function correctly, so
-do not bother with them.
 
 Close the settings window, and the game should run.
