@@ -112,3 +112,6 @@ simply specify the same `root=` as you would with an unencrypted system.
 
 This is because ZFS is pool-based and the pool will be identified on the
 mapper devices automatically, just like for any other block device.
+
+You also need to use the `initramfs` option in your `crypttab`, see the
+`Disk encryption` section.

@@ -208,8 +208,10 @@ of one or more device lines, each with four fields. The fields are the following
 3. A key file path
 4. Options, comma-separated
 
-There are many options which are out of scope here, and in a lot of cases you do
-not even need any. In our case we will use the `luks` option. If you have an SSD
+There are many options which are out of scope here, e. g. for when you
+want to unlock multiple devices using a single passphrase or other more
+sophisticated setups, but in a lot of cases you do not need any.
+In our case we will use the `luks` option. If you have an SSD
 and wish to enable TRIM, you will also want to add `discard` like `luks,discard`
 (and enable it in LVM, but that is out of scope for this guide).
 
@@ -250,6 +252,14 @@ kernel command line parameter is correct, it should just work.
 When doing root on ZFS, LUKS does not influence the `root=`. You just have to
 specify something like `root=ZFS=mypool/root/whatever` and the initramfs will
 take care of the rest, provided the `crypttab` mappings are correctly set up.
+
+The initramfs hook scripts currently don't detect the root filesystem when it's
+on ZFS (resulting in warnings while creating the initramfs which can be ignored),
+so you need to use the `initramfs` option in `crypttab`, e.g.:
+
+```
+# echo crypt /dev/sda3 none luks,initramfs > /etc/crypttab
+```
 
 ### Bootloader and kernel command line
 
