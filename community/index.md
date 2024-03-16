@@ -73,7 +73,6 @@ project:
 
 The following community members have IRC op privileges:
 
-* [abby](https://github.com/classabbyamp)
 * [deathmist](https://github.com/JamiKettunen)
 * [psykose](https://github.com/nekopsykose)
 * [zdykstra](https://github.com/zdykstra)
