@@ -7,7 +7,7 @@ section: 4.14
 It is possible to play video games on Chimera.
 
 Several open source titles are packaged in the regular repositories in
-the `contrib` section. These include:
+the `contrib` and `user` sections. These include:
 
 * OpenMW
 * Xonotic
