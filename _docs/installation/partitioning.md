@@ -97,6 +97,11 @@ Smaller partitions will usually work, but some firmware may have issues.
 
 Outside of that, the partition layout is up to you.
 
+Notably, if you wish to use `systemd-boot` as your bootloader, you will
+have to either make `/boot` and EFI the same, or create a separate
+physical partition for `/boot` with the type `Linux extended boot` and
+typically the FAT32 file system.
+
 ## OpenPOWER
 
 **Required partitions:**

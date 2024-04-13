@@ -472,6 +472,40 @@ platforms:
 # update-grub
 ```
 
+### systemd-boot
+
+You can use `systemd-boot` as your bootloader on EFI systems. First, make
+sure that you have a compatible partition layout; either your ESP must
+also be your `/boot`, or you need a separate `Linux extended boot` type
+partition for `/boot`, typically also with FAT32.
+
+If you have all that, you can install the package:
+
+```
+# apk add systemd-boot
+```
+
+Then you will need to install the bootloader itself:
+
+```
+# bootctl install
+```
+
+This will set up most of the files. Follow any instructions it prints
+out (e.g. regarding permissions). Afterwards, you may want to modify the
+`/boot/efi/loader/loader.conf` file to configure the bootloder (by default
+it will not even present a menu).
+
+Then you will need to generate boot entries. Chimera comes with an automatic
+hook that kicks in when kernels are installed to refresh your entries. But
+the first time you need to run it manually:
+
+```
+# gen-systemd-boot
+```
+
+You can tweak the behavior of the generator in `/etc/default/systemd-boot`.
+
 ### U-Boot
 
 For devices using U-Boot, it is needed to flash it:

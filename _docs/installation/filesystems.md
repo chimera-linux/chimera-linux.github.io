@@ -40,7 +40,8 @@ installation to reflect your desired configuration.
 
 A common case for this is if your root filesystem is not supported
 by your bootloader, assuming it needs to be. Ext4 is a frequent
-choice as well, some people use Ext2 and others.
+choice as well, some people use Ext2 and others. For `systemd-boot`,
+it usually needs to be FAT32 (and its type must be `Linux extended boot`).
 
 ## EFI System Partition
 
