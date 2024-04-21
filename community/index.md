@@ -76,6 +76,7 @@ The following community members have IRC op privileges:
 * [deathmist](https://github.com/JamiKettunen)
 * [psykose](https://github.com/nekopsykose)
 * [zdykstra](https://github.com/zdykstra)
+* [triallax](https://github.com/triallax)
 
 Contributors into different repositories who do not have commit access can
 be found in the individual repositories.

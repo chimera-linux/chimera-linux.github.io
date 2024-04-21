@@ -40,7 +40,7 @@ Currently, officially supported are the following:
 
 * 64-bit Raspberry Pi (3/4 and variants such as 400 and compute modules)
 * PINE64 Pinebook Pro
-* MNT Reform 2 with i.MX8MQ SOM
+* PINE64 RockPro64
 
 You will need to obtain the correct image for these. The list is subject
 to expansion.
