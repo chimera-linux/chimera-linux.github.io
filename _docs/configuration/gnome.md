@@ -17,10 +17,17 @@ The easiest way is to use the `base-desktop` metapackage.
 This adds `gnome` as well as several things a desktop session
 will typically want, including graphics drivers.
 
-It is possible to install those things individually for more
-fine-grained control. Those users may also be interested in the
-`gnome-core` package which only installs a relatively bare desktop
-without auxiliary apps.
+This is a complete session by default, which includes auxiliary
+apps. If you wish to use only the core desktop and have better
+control over what apps are included, you the `gnome-apps` package
+is an optional dependency that you can mask:
+
+```
+# apk add '!gnome-apps'
+```
+
+This leaves just the core desktop with mandatory applications.
+You can install other applications manually as needed.
 
 ## Starting
 
