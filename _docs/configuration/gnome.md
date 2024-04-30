@@ -19,7 +19,7 @@ will typically want, including graphics drivers.
 
 This is a complete session by default, which includes auxiliary
 apps. If you wish to use only the core desktop and have better
-control over what apps are included, you the `gnome-apps` package
+control over what apps are included, the `gnome-apps` package
 is an optional dependency that you can mask:
 
 ```
