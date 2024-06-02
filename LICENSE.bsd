@@ -1,4 +1,4 @@
-Copyright 2022 Daniel "q66" Kolesa
+Copyright 2022-2024 q66 <q66@chimera-linux.org>
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
