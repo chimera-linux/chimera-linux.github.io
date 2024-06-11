@@ -215,15 +215,22 @@ and wish to enable TRIM, you will also want to add `discard` like `luks,discard`
 
 For full list of options, please refer to `man 5 crypttab`.
 
-In any case:
+For `crypttab` we could use the device name (`/dev/sda3`)
+but that might change when adding or removing other devices,
+so it is better to use a UUID (`/dev/disk/by-uuid/...` or partlabel-based path,
+from best to worst: PARTLABEL=…, LABEL=…, PARTUUID=…, UUID=…, /dev/name)
+instead of direct device path because if the device path changes,
+`update-initramfs` will fail and you would have to boot from an old boot entry.
 
+You can get the `PARTLABEL`, `PARTUUID`, and `UUID` with `blkid`:
 ```
-# echo crypt /dev/sda3 none luks > /etc/crypttab
+blkid /dev/sda3
 ```
 
-You might also want to use a UUID (`/dev/disk/by-uuid/...` or partlabel-based path
-instead of direct device path, in order to make it static. For this example this
-is okay though.
+Using for instance the `PARTUUID`:
+```
+# echo crypt PARTUUID='"'$(blkid --match-tag PARTUUID --output value /dev/sda3)'"' none luks > /etc/crypttab
+```
 
 ### LUKS and initramfs
 
