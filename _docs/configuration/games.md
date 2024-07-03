@@ -47,10 +47,10 @@ the box.
 You can play Minecraft natively on Chimera on the `x86_64` architecture
 (and possibly others with custom JARs).
 
-First, you will need Java. Install OpenJDK 17:
+First, you will need Java. Install OpenJDK:
 
 ```
-# apk add openjdk17
+# apk add java-jdk
 ```
 
 You will then need a launcher; there is PrismLauncher in the `contrib`
@@ -65,11 +65,11 @@ the `gcompat` system is required, as well as some native libraries to
 replace them.
 
 ```
-# apk add gcompat openal-soft
+# apk add gcompat
 ```
 
-Chances are you already had `openal-soft` installed previously, so you may
-only need `gcompat`.
+Since the PrismLauncher package defaults to using the natives, you only
+need to add `gcompat`.
 
 Afterwards, you can open PrismLauncher, log in to your account, and install
 a version of the game.
@@ -80,15 +80,6 @@ you installed, edit it, go to Settings, the "Custom commands" tab, check the
 
 ```
 env LD_PRELOAD=/usr/lib/libgcompat.so.0
-```
-
-This will allow some of the bundled libraries to work. However, the bundled
-OpenAL still will not work because of C++ standard library mismatch; thus
-go to the "Workarounds" tab, check "Use system installation of OpenAL" and
-add the following:
-
-```
-/usr/lib/libopenal.so.1
 ```
 
 Close the settings window, and the game should run.
