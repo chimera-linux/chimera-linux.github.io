@@ -89,47 +89,36 @@ Chimera has flexible base package splitting. There are the following main base
 packages:
 
 * `base-bootstrap`
-* `base-minimal`
-* `base-core`
 * `base-full`
-* `base-desktop`
 
-Each adds something more to the previous. The `base-bootstrap` package is a
-minimal setup primarily intended for containers. The others may be bootable,
-but it is recommended that most users always install `base-desktop` or at
-least `base-full` unless you really know what you are doing.
+The `base-bootstrap` is an extremely minimal package set for bootstrapping
+containers (e.g. the OCI containers are made up of this one). The `base-full`
+is a flexible "full system" metapackage.
 
 The base packages never install a kernel, as that is separate. There are also
 various device-specific base packages, such as `base-rpi` for Raspberry Pi
 or `base-steamdeck` for the Steam Deck.
 
-The base packages themselves do not depend on anything, instead they act as
-hints for the package manager to auto-install more fine-grained metapackages,
-such as:
+The `base-full` package has very few dependencies by itself. Instead, it is
+modular. There are many subpackages defining individual parts, for example
+`base-full-fs`, `base-full-net`, `base-full-kernel`, and so on.
 
-* `base-core-fs`
-* `base-core-net`
-* `base-core-misc`
-* `base-full-firmware`
-
-and so on. For the full list, read the templates in `cports` or you can use
-`apk search`:
+For the full list, read the templates in `cports` or you can use `apk search`:
 
 ```
-$ apk search -r -e base-core
+$ apk search -r -e base-full
 ```
 
 The reason for this is so that portions of the base system can be easily
-masked in case some dependencies are not needed. For instance, if you want
-a desktop environment and don't want GNOME, you can for your convenience
-install `base-desktop` but exclude the GNOME part:
+masked in case some dependencies are not needed. For instance:
 
 ```
-# apk add base-desktop '!base-desktop-gnome'
+# apk add base-full '!base-full-net'
 ```
 
-This will install desktop support packages, such as GPU drivers, but not
-the GNOME packages; you can then install whatever else you like.
+There is also the `base-minimal` package, which acts as a mask for several
+of the modules, for systems that are intentionally small, as a convenience
+feature. Do not use this unless you are absolutely sure what you are doing.
 
 Read about [the world](/docs/apk/world) for details of how masking works.
 

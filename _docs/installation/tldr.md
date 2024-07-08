@@ -92,7 +92,7 @@ EOF
 # mkdir /media/root/boot
 # mount /dev/sda1 /media/root/boot
 # chmod 755 /media/root
-# chimera-bootstrap /media/root base-desktop
+# chimera-bootstrap /media/root base-full gnome
 # chimera-chroot /media/root
 ## apk update
 ## apk add linux-lts grub cryptsetup-scripts lvm2

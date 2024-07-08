@@ -8,14 +8,11 @@ GNOME is the default desktop of Chimera.
 
 ## Installation
 
-The easiest way is to use the `base-desktop` metapackage.
+The easiest way is to use the `gnome` metapackage.
 
 ```
-# apk add base-desktop
+# apk add gnome
 ```
-
-This adds `gnome` as well as several things a desktop session
-will typically want, including graphics drivers.
 
 This is a complete session by default, which includes auxiliary
 apps. If you wish to use only the core desktop and have better

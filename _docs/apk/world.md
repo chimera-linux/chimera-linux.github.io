@@ -13,12 +13,12 @@ may be very small.
 
 ```
 # cat /etc/apk/world
-base-desktop
 base-full
 chimera-repo-contrib
 ckms
 clang-devel
-firefox-esr
+firefox
+gnome
 linux
 linux-modules-zfs
 strace
