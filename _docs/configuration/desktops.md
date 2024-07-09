@@ -8,17 +8,17 @@ Chimera offers a variety of desktop environments.
 
 The primary/official desktop is GNOME, but others are available:
 
-* KDE
+* KDE Plasma 6
 * Xfce
 * Various smaller window managers/compositors
 
 In general every comprehensive desktop has a metapackage you can install:
 
 * For GNOME, it's `gnome`
-* For KDE, it's `plasma-desktop`
-* For Xfce, it's `xfce4`
+* For KDE, it's `plasma-desktop` (in `contrib`)
+* For Xfce, it's `xfce4` (in `contrib`)
 
-Other available packages include:
+Other available packages include (in `contrib` repository):
 
 * `enlightenment`
 * `sway`
@@ -26,6 +26,7 @@ Other available packages include:
 * `labwc`
 * `pekwm`
 * `icewm`
+* `kde1` (in `user`)
 
 and a variety of others.
 
