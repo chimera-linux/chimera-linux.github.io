@@ -65,11 +65,13 @@ of the official channels. See the [Development](/development) page for more.
 The following people have global administrator rights:
 
 * [q66](https://github.com/q66)
+* [psykose](https://github.com/nekopsykose)
+
 
 The following people have commit access rights in one or more parts of the
 project:
 
-* [psykose](https://github.com/nekopsykose)
+* nobody
 
 The following community members have IRC op privileges:
 
