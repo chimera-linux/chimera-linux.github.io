@@ -77,6 +77,20 @@ Note that this will not make GDM with Xorg work right away, as Chimera's
 Xorg setup is unprivileged and the X server started by GDM will not be
 allowed to switch VTs, see [Xorg](/docs/configuration/xorg).
 
+#### Setting the keyboard layout in GDM
+
+Since Chimera does not include `localectl` the keyboard layout for GDM needs
+to be set manually by creating or editing `/etc/X11/xorg.conf.d/00-keyboard.conf`,
+setting the contents to:
+```
+Section "InputClass"
+	Identifier "keyboard-all"
+	MatchIsKeyboard "on"
+	Option "XkbLayout" "<your-layout>"
+	Option "XkbVariant" "<your-variant>"
+EndSection
+```
+
 ## GNOME
 
 The easiest way is by using the `gnome` metapackage:
