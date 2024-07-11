@@ -67,21 +67,21 @@ The following people have global administrator rights:
 * [q66](https://github.com/q66)
 * [psykose](https://github.com/nekopsykose)
 
-
 The following people have commit access rights in one or more parts of the
 project:
 
-* nobody
+* [triallax](https://github.com/triallax)
 
 The following community members have IRC op privileges:
 
 * [deathmist](https://github.com/JamiKettunen)
-* [psykose](https://github.com/nekopsykose)
 * [zdykstra](https://github.com/zdykstra)
-* [triallax](https://github.com/triallax)
 
 Contributors into different repositories who do not have commit access can
 be found in the individual repositories.
+
+All global admins have commit access to every repository. All committers
+have IRC operator privileges.
 
 ## Conduct
 
