@@ -12,12 +12,25 @@ First you should read the [Community](/community) page, as it contains
 important information, such as where to find our communication channels
 and the conduct guidelines. Other links are available below.
 
-We do not and will not ask you to sign any kind of CLA (Contributor License
-Agreement).
-
 If you are unsure whether your work is of sufficient quality, please submit
 it anyway. There is a good chance you will be able to receive helpful feedback
 as a part of the review process.
+
+### Submitting your work
+
+Normally this takes the form of a pull request.
+
+By submitting a pull request, you agree to provide it to the project under
+the same license as the repository you are submitting to. You retain your
+copyright, and we will never ask you to transfer it to us.
+
+We do not and will not ask you to sign any kind of CLA (Contributor License
+Agreement). We do not require sign-offs, and we do not and will not ask you
+to reveal any personal information such as your real or legal name if you
+do not wish to.
+
+However, it is appreciated if you submit your work under a reachable handle,
+as drive-by submissions create additional burden for the maintainers.
 
 ## Code hosting
 

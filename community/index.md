@@ -34,13 +34,15 @@ be keeping their own logs though.
 
 These are official:
 
+* [Fediverse](https://floss.social/@chimera_linux)
 * [Reddit](https://www.reddit.com/r/chimeralinux)
-* [Mastodon](https://floss.social/@chimera_linux)
 
 Unless listed here, anything else is an unofficial space. Creation of such
-spaces is discouraged by the project. Please do not create them. If there
-is enough demand, more official spaces may be created, but please seek
-approval first.
+spaces is discouraged by the project. Please do not create them.
+
+More official spaces may be introduced with time, depending on demand and
+viability of the platform. However, such spaces will always be created and
+managed by the core team; please do not create them by yourself.
 
 ## Contributing
 
@@ -62,26 +64,28 @@ of the official channels. See the [Development](/development) page for more.
 
 ## Team
 
-The following people have global administrator rights:
+Several people have project owner status, which means they have access to
+every repository and possibly other infrastructure. These currently are:
 
 * [q66](https://github.com/q66)
 * [psykose](https://github.com/nekopsykose)
 
-The following people have commit access rights in one or more parts of the
-project:
+Committers have access to specific repositories, typically cports, and
+possibly other infrastrucure on as needed basis. These are:
 
 * [triallax](https://github.com/triallax)
 
-The following community members have IRC op privileges:
+Several community members have moderation rights on IRC. Project owners
+and committers universally do. Non-committers include:
 
 * [deathmist](https://github.com/JamiKettunen)
 * [zdykstra](https://github.com/zdykstra)
 
-Contributors into different repositories who do not have commit access can
-be found in the individual repositories.
-
-All global admins have commit access to every repository. All committers
-have IRC operator privileges.
+Contributors without special access may be found in the individual
+repositories. New committers may be invited from the community,
+and this is decided on individual basis by the project owners.
+Likewise, committers may become project owners if decided by the
+core team.
 
 ## Conduct
 
