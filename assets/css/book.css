@@ -30,6 +30,8 @@
     width: 256px;
     padding: var(--content-halfgap);
     padding-right: 0;
+    position: sticky;
+    top: 0;
 }
 
 #content > nav ol {
