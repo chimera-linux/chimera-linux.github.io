@@ -369,6 +369,16 @@ Therefore, best do that now:
 # update-initramfs -c -k all
 ```
 
+To get video output during initramfs execution on non x86 systems,
+you might need to add your video driver to the initramfs,
+e. g. on OpenPOWER
+
+```
+# echo ast >> /etc/initramfs-tools/modules
+```
+
+before you build the initramfs image.
+
 ### GRUB
 
 GRUB is a common bootloader that works on more or less every platform
