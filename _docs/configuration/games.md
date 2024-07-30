@@ -7,15 +7,17 @@ section: 4.14
 It is possible to play video games on Chimera.
 
 Several open source titles are packaged in the regular repositories in
-the `contrib` and `user` sections. These include:
+the `contrib` section. These include:
 
 * OpenMW
 * Xonotic
 * Sauerbraten
 * Crispy DOOM/Heretic/...
-* The PCSX2 emulator
 * The Ur-Quan Masters
 * with the list growing
+
+Video game console emulators such as Dolphin, Snes9x and PCSX2 (in `user`) are
+also available.
 
 ## Gamescope
 
