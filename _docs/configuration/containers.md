@@ -70,35 +70,63 @@ To use podman, install it:
 # apk add podman
 ```
 
-And enable the service:
+You can use it as both root and your user, provided `subuid`/`subgid` is
+set up correctly. It comes with a native frontend.
+
+### Services
+
+There is a `podman` service in two variants (system and user). Neither is
+needed to use `podman` on its own as `podman` is daemonless, but they
+expose the socket for use by other applications, e.g. `podman-tui`.
+
+Therefore, the system service is for privileged `podman`, while the user
+service is for rootless `podman`.
+
+To enable the system service:
 
 ```
 # dinitctl enable podman
 ```
 
-You can use it as both root and your user, provided `subuid`/`subgid` is
-set up correctly. It comes with a native frontend.
+To enable the user service:
+
+```
+$ dinitctl enable podman
+```
 
 ### Docker frontend
 
-The socket the backend exposes is compatible with Docker. For privileged
-use, you can use the Docker CLI with podman. Install it:
+The socket that `podman` creates is compatible with the Docker client.
+However, it by default resides in a different path than `docker` expects.
+
+For both privileged and unprivileged/rootless operation, you can get around
+it by using the `DOCKER_HOST` environment variable like so:
 
 ```
-# apk add docker-cli
+$ DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock docker images
+# DOCKER_HOST=unix:///run/podman/podman.sock docker images
 ```
 
-Enable the compatibility service:
+For privileged operation we also provide a convenience `podman-docker` service
+that lets you run `docker` as root without exporting any additional variable.
+The service works by creating a symlink to the socket where `docker` normally
+expects it.
+
+You can enable it as such:
 
 ```
 # dinitctl enable podman-docker
 ```
 
-It should work then, as root:
+This also implicitly enables `podman` through a service dependency.
 
-```
-# docker images
-```
+Note that no such service exists for unprivileged `docker`, as `docker` by
+default always tries to open `/var/run/docker.sock` no matter what user it
+is invoked as.
+
+If you wish to have `docker` working as user without exporting anything, it
+is suggested that you add `DOCKER_HOST` with the right value in your shell
+environment or similar.
 
 ## Using Chimera as a container
 
