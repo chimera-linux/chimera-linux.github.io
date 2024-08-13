@@ -23,36 +23,24 @@ On the other hand, it has some good aspects:
 
 ## The allocator
 
-Chimera by default uses the [Scudo](https://llvm.org/docs/ScudoHardenedAllocator.html)
-allocator (notably also used by default by Android). This is unlike default
-musl, which uses its own custom allocator called `mallocng`.
+Chimera by default uses the [mimalloc](https://github.com/microsoft/mimalloc)
+allocator. This is unlike default musl, which uses its own custom allocator
+called `mallocng`.
 
 As the stock allocator is the primary reason for nearly all performance
 issues people generally have with musl (fewer CPU-optimized algorithms
 and so on typically make a negligible impact, while the allocator impact
-can be very significant), Chimera has chosen to patch in Scudo.
-
-Both the stock allocator and Scudo are hardened allocators focused on security.
-Musl's stock allocator is even more so, as it goes as far as keeping a global
-lock in order to ensure consistency, which in turn leads to poor performance
-in multithreaded programs, often things that are user-facing/interactive
-or where performance is otherwise important.
+can be very significant), Chimera has chosen to patch in `mimalloc`.
 
 There are, however, scenarios, where one may want to use the stock allocator:
 
 1. Those who are particularly security-paranoid and are willing to sacrifice
    possibly a large chunk of their performance for the peace of mind
-2. Those for whom memory usage is important to the point of caring about
-   virtual memory; particularly on devices where RAM is very constrained,
-   such as old computers and embedded devices
+2. Those for whom memory usage is extremely important, as `mimalloc` is
+   somewhat heavier.
 
 For most people, the default is going to be fine (i.e. if you are not
-absolutely sure, you should leave things as they are), however, it does
-currently use around 120 megabytes of virtual memory per process (keep in
-mind that this is really virtual memory, not real memory, the real memory
-usage is very low regardless of the allocator, and Linux default configuration
-is set up in a way that this will usually not pose a problem; we also
-intend to further tune the allocator settings in near future).
+absolutely sure, you should leave things as they are).
 
 In any case, there is a way to install the libc with the stock allocator.
 The package is called `musl-mallocng`.
@@ -72,7 +60,7 @@ After that, you will be permitted to install the replacement libc:
 It is recommended that you do this from a console environment. The machine
 should be rebooted afterwards.
 
-### Reverting to Scudo
+### Reverting to mimalloc
 
 You can pretty much perform the reverse process:
 

@@ -51,8 +51,7 @@ Linux in general, instead having its own choices and workflows.
 
 The LLVM/Clang suite provides the system toolchain (`clang`, `lld`) as well
 as runtime parts (`compiler-rt`, `libunwind`, `libc++`). The C library is
-provided by `musl`, patched to use LLVM's (also used e.g. in Android and
-Fuchsia) Scudo allocator for performance as well as security.
+provided by `musl`, patched to use the `mimalloc` allocator.
 
 This means Chimera is not a GNU/Linux system, as it utilizes neither GNU
 utilities, nor GNU libc, nor GNU toolchain. However, the project is not
@@ -81,7 +80,7 @@ Here is an example table of some major system components and their providers:
 | Software                   | Source                   |
 |----------------------------|--------------------------|
 | Compiler and runtime stack | LLVM                     |
-| C standard library         | Musl with Scudo          |
+| C standard library         | Musl with mimalloc       |
 | Core userland              | FreeBSD, NetBSD, OpenBSD |
 | Init and logging           | Dinit, syslog-ng         |
 | Audio stack                | PipeWire                 |
