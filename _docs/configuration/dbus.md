@@ -25,10 +25,10 @@ called `DBUS_SESSION_BUS_ADDRESS`.
 ## Typical non-systemd distribution
 
 In a usual non-systemd distro, the D-Bus session bus is launched either
-explicitly, or by the desktop environment. That means things using
-the session bus for example within an X11 instance will see the
-bus, but if you switch tty and log in, nothing in that tty will
-be able to. The variable may look like this:
+explicitly (using `dbus-launch` or `dbus-run-session` depending on context),
+or by the desktop environment. That means things using the session bus for
+example within an X11 instance will see the bus, but if you switch tty and
+log in, nothing in that tty will be able to. The variable may look like this:
 
 ```
 DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-BlaBlaBla,guid=66699aba75555bbbc31444d363666581
@@ -67,3 +67,8 @@ user's side.
 
 Of course, if that for some reason does not work for you, you can mask
 the `dbus-dinit-links` package, and manage things however you want.
+
+Additionally, you should never run anything with `dbus-run-session` or
+similar. Doing so results in a nested session bus being launched which will
+result in things running in it not being seen by things running in the
+global session bus. It's also completely unnecessary.
