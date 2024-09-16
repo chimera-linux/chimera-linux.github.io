@@ -27,7 +27,7 @@ the apps you need yourself. To do that, use:
 ## Starting a WM/DE
 
 Most people will want to use a display manager, such as GDM. You can find
-instructions for GDM on the [GNOME](/docs/configuration/gnome) page.
+instructions for GDM on the [Desktops](/docs/configuration/desktops) page.
 
 Other people will prefer to use the `startx` tool. To use that, you need
 to create the `.xinitrc` file in either `${XDG_CONFIG_HOME}/.xinitrc`
