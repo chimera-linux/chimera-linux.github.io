@@ -21,7 +21,7 @@ also available.
 
 ## Gamescope
 
-Valve's Gamescope compositor is available in the `main` repository.
+Valve's Gamescope compositor is available in the `user` repository.
 You can install it like:
 
 ```
@@ -37,7 +37,7 @@ such as the Steam Deck.
 Steam may be acquired from Flatpak.
 
 You may want to also install the `steam-devices-udev` package from the
-`main` repository, which will allow various input devices (e.g.
+`user` repository, which will allow various input devices (e.g.
 the DualShock controllers and VR systems) to function out of the box.
 
 ## Flatpak
