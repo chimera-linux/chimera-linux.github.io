@@ -7,7 +7,7 @@ section: 4.14
 It is possible to play video games on Chimera.
 
 Several open source titles are packaged in the regular repositories in
-the `contrib` and `user` sections. These include:
+the `main` and `user` sections. These include:
 
 * OpenMW
 * Xonotic
@@ -21,7 +21,7 @@ also available.
 
 ## Gamescope
 
-Valve's Gamescope compositor is available in the `contrib` repository.
+Valve's Gamescope compositor is available in the `main` repository.
 You can install it like:
 
 ```
@@ -37,7 +37,7 @@ such as the Steam Deck.
 Steam may be acquired from Flatpak.
 
 You may want to also install the `steam-devices-udev` package from the
-`contrib` repository, which will allow various input devices (e.g.
+`main` repository, which will allow various input devices (e.g.
 the DualShock controllers and VR systems) to function out of the box.
 
 ## Flatpak
@@ -56,8 +56,7 @@ First, you will need Java. Install OpenJDK:
 # apk add java-jdk
 ```
 
-You will then need a launcher; there is PrismLauncher in the `contrib`
-repository:
+You will then need a launcher; there is PrismLauncher available:
 
 ```
 # apk add prismlauncher

@@ -14,7 +14,6 @@ may be very small.
 ```
 # cat /etc/apk/world
 base-full
-chimera-repo-contrib
 ckms
 clang-devel
 firefox

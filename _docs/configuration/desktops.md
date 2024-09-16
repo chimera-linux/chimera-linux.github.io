@@ -15,10 +15,10 @@ The primary/official desktop is GNOME, but others are available:
 In general every comprehensive desktop has a metapackage you can install:
 
 * For GNOME, it's `gnome`
-* For KDE, it's `plasma-desktop` (in `contrib`)
-* For Xfce, it's `xfce4` (in `contrib`)
+* For KDE, it's `plasma-desktop`
+* For Xfce, it's `xfce4`
 
-Other available packages include (in `contrib` repository):
+Other available packages include:
 
 * `enlightenment`
 * `sway`
@@ -26,7 +26,7 @@ Other available packages include (in `contrib` repository):
 * `labwc`
 * `pekwm`
 * `icewm`
-* `kde1` (in `user`)
+* `kde1` (in `user` repository)
 
 and a variety of others.
 

@@ -125,22 +125,19 @@ Read about [the world](/docs/apk/world) for details of how masking works.
 ## Repositories
 
 By default, you will get packages from the `main` repository. However,
-Chimera also has packages in the `contrib` and `user` repositories, which
-contain extra software unsuitable for `main`. This includes a large amount of
-non-default GUI software, for instance (e.g. additional web browsers).
+Chimera also has packages in the `user` repository, which contains
+extra software unsuitable for `main`.
 
-The repositories are essentially tiered; `contrib` contains most of the
-packages and is of similar quality to `main`. The `user` repository has
-software that does not meet the general criteria regarding stable versioning,
-dependency vendoring, and so on. That means software in `user` may not be
-of the same quality level as software in `contrib`. Software in `user` may
-additionally not be available on all tier 1 architectures.
+The `user` repository has software that does not meet the general
+criteria regarding stable versioning, dependency vendoring, and so on.
+That means software in `user` may not be of the same quality level as
+software in `main`. Software in `user` may additionally not be available
+on all tier 1 architectures.
 
 You do not need to manually change any config files to enable these.
 The simplest way to get it is the following:
 
 ```
-# apk add chimera-repo-contrib
 # apk add chimera-repo-user
 ```
 
@@ -156,7 +153,6 @@ You can enable them as follows:
 
 ```
 # apk add chimera-repo-main-debug
-# apk add chimera-repo-contrib-debug
 # apk add chimera-repo-user-debug
 ```
 

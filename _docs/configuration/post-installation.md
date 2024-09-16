@@ -107,10 +107,5 @@ By default logs are written to `/var/log/messages`.
 
 ## Additional software
 
-If you need software beyond what the `main` repository provides, you
-might want to enable the `contrib` repo. The `contrib` repository has
-a variety of additional, especially GUI, software that is not a good
-fit for `main`.
-
-The [Package management](/docs/apk) will tell you how, as well as be
-an overall good starting point for other things.
+The [Package management](/docs/apk) will tell you how to manage repos,
+as well as be an overall good starting point for other things.

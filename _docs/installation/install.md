@@ -164,20 +164,6 @@ After that, try again and there should be no more errors:
 # apk upgrade --available
 ```
 
-At this point you might also want to enable the `contrib` repository
-if you plan to install software from there (which there is a good
-chance you will):
-
-```
-# apk add chimera-repo-contrib
-```
-
-And refresh indexes again to make it propagate:
-
-```
-# apk update
-```
-
 ### Device base package
 
 For devices that would use device images, a special base package
@@ -197,8 +183,6 @@ For Pinebook Pro:
 
 And so on. The format is always `base-PLATFORM`, with a list of
 platforms available [here](https://github.com/chimera-linux/chimera-live/blob/master/mkrootfs-platform.sh).
-
-A lot of the device packages are in the `contrib` repo.
 
 The base packages for U-Boot devices come with a default kernel command
 line in `/etc/u-boot-cmdline`. This contains a pre-defined `root=` parameter
