@@ -182,7 +182,7 @@ For Pinebook Pro:
 ```
 
 And so on. The format is always `base-PLATFORM`, with a list of
-platforms available [here](https://github.com/chimera-linux/chimera-live/blob/master/mkrootfs-platform.sh#L27).
+platforms available [here](https://github.com/chimera-linux/chimera-live/blob/master/mkrootfs-platform.sh#L29).
 
 The base packages for U-Boot devices come with a default kernel command
 line in `/etc/u-boot-cmdline`. This contains a pre-defined `root=` parameter
