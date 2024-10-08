@@ -120,17 +120,17 @@
          inkscape:connector-curvature="0"
          id="path3785-0"
          d="M 19.668179,1032.694 H 270.31428 v 0"
-         style="fill:none;stroke:#ffffff;stroke-width:49.3364;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:none;stroke:#ffffff;stroke-width:49.3364;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          inkscape:connector-curvature="0"
          id="path3785-0-9"
          d="M 19.668179,932.694 H 270.31428 v 0"
-         style="fill:none;stroke:#ffffff;stroke-width:49.3364;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:none;stroke:#ffffff;stroke-width:49.3364;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          inkscape:connector-curvature="0"
          id="path3785-0-4"
          d="M 19.668179,832.694 H 270.31428 v 0"
-         style="fill:none;stroke:#ffffff;stroke-width:49.3364;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:none;stroke:#ffffff;stroke-width:49.3364;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
 </svg>
