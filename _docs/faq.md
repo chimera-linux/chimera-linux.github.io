@@ -45,6 +45,18 @@ Python syntax is also flexible and adjustable enough to make for a nice
 syntax for templates without having to invent yet another domain-specific
 language (DSL) that would introduce its own bugs and need its own parsing.
 
+Equivalent packaging systems usually tend to be written with shell scripts,
+Makefiles, or both. These were intentionally avoided for a variety of reasons,
+including performance (`cbuild` is significantly faster than similar systems
+of other distros, being able to parse the entire template collection in around
+a second, which helps keep the builder infrastructure simple as it can do
+things like bulk sorting on every `cports` update without keeping any
+persistent state, besides other things), sandboxing and security, linting,
+and general correctness. Shell-based systems are hard to maintain and expand,
+which goes against the concept of self-contained tooling that is easy to use
+and replicate on a local computer. Shell would also make it hard to restrict
+templates in a way that prevents bad usage patterns from proliferating.
+
 ## What is the project's take on systemd?
 
 The short answer is "it depends".
