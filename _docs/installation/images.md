@@ -7,7 +7,7 @@ section: 2.2
 ## Live ISO images
 
 Every ISO image comes in two flavors. You have the base image, and the
-desktop image.
+desktop images.
 
 ### Base images
 
@@ -19,16 +19,14 @@ final system will be like, but such setups also require more knowledge.
 ### Desktop images
 
 Desktop images come with a full graphical environment. The official
-desktop for Chimera is GNOME. There are other graphical environments
-available in the repositories.
+desktop for Chimera is GNOME. There are also images with KDE Plasma.
+Other graphical environments are available in the repositories.
 
-If you want a GNOME setup, you will want to use a desktop image. It
-comes with a more complete environment including a web browser and
-other basic software.
+Note that any image can be used to install any desktop. The images
+merely boot into that desktop for the live environment and a local
+(non-network) installation will by default install it.
 
-Desktop images by default boot into a Wayland environment. There is
-a separate bootloader option if that does not work for you for some
-reason.
+Desktop images boot into a Wayland environment.
 
 ## Device images
 

@@ -152,7 +152,7 @@ login prompt (`getty`) for all consoles the kernel outputs to.
 
 ### Picking the boot option
 
-Console images come with two boot options, regular boot and RAM
+Images come with two boot options, regular boot and RAM
 boot. The latter results in the whole system being copied to system
 RAM, while the former will create a writable overlay over a read-only
 mount.
@@ -162,15 +162,9 @@ you should be using the regular option. The benefit of the RAM option
 is that the system will run faster, and especially for optical media,
 will not result in accesses to the media.
 
-Desktop images come with additional boot options to force console
-boot (the default is to boot into GNOME desktop with Wayland). It
-is also possible to force X11 by editing the graphical boot option
-and adding the `nowayland` kernel command line parameter, but keep
-in mind that GNOME currently has issues under X11 with most accelerated
-drivers (software rendering works fine, so you may use it on systems
-with unaccelerated 2D framebuffers) which may result in it freezing
-on the first frame. Therefore, it is highly recommended to always
-use Wayland for GNOME (X11 works for other window managers/desktops).
+Desktop images will by default automatically boot into a desktop.
+If you wish to boot into a console environment, edit the boot option
+and add `nogui` to the kernel command line.
 
 ### Logging in
 

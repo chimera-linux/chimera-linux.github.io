@@ -164,6 +164,16 @@ After that, try again and there should be no more errors:
 # apk upgrade --available
 ```
 
+If you did a local installation, you will have the `base-live` package
+installed in the target system. You can remove it with `apk del`, like:
+
+```
+# apk del base-live
+```
+
+It is recommended to do so. If you wish to retain any packages that it
+installs, you can `apk add` them explicitly.
+
 ### Device base package
 
 For devices that would use device images, a special base package
