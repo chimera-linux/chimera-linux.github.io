@@ -321,36 +321,6 @@ Set your root password here, or you will not be able to log in:
 # passwd root
 ```
 
-### Serial login prompt (getty)
-
-This only applies to you if you wish to have console access over the
-serial port (often the case on embedded devices and servers, but typically
-not normal desktop computers).
-
-While the live image autodetects this and lets you log in over serial
-terminal, the final system does not, and will only by default enable
-graphical `getty`.
-
-You need to know which serial tty is yours; often this will be something
-like `/dev/ttyS0`, but could be anything else, like `/dev/ttyAMA0`,
-`/dev/ttySIF0`, and others.
-
-Create the file `/etc/default/agetty` that contains something like the
-following:
-
-```
-EXTRA_GETTYS="/dev/ttyS0"
-```
-
-Note that this will only work if the corresponding service exists, for
-example `/etc/dinit.d/agetty-ttyS0`. Chimera ships with pre-made service
-files for many serial consoles. However, the characteristics and device
-may differ a lot, so it might not be exhaustive.
-
-If the baud rate or other parameters need tweaking, you can copy them
-from the live system (e.g. `/etc/default/agetty-ttyS0`), as the live
-autodetection generates a configuration file if necessary.
-
 ### Initramfs refresh
 
 A bootable system will typically need an initramfs image. You need to
@@ -519,6 +489,43 @@ After that, you might want to refresh the menu entries just in case:
 If your partitioning is somehow special, double-check whether `/boot/extlinux.conf`
 contains the correct `root=` parameter, in case you forgot to remove the
 pre-defined one.
+
+### Serial login prompt (getty)
+
+This only applies to you if you wish to have console access over the
+serial port (often the case on embedded devices and servers, but typically
+not normal desktop computers).
+
+Normally, your serial console is detected automatically and the getty will
+start on it, so you don't have to do anything and may ignore this section.
+However, in some cases the kernel will not automatically output to that serial
+console, or the parameter detection may fail. In those cases, you may want to
+tweak things manually.
+
+You need to know which serial tty is yours; often this will be something
+like `/dev/ttyS0`, but could be anything else, like `/dev/ttyAMA0`,
+`/dev/ttySIF0`, and others.
+
+When the kernel does not automatically output to it, you will need to modify
+your kernel command line (the way to do this depends on the bootloade used)
+to include a parameter such as `console=ttyS0`.
+
+Often, doing the above is enough by itself.
+
+When the kernel does output to it but the parameter detection fails, create
+the file `/etc/default/getty` that contains something like the following:
+
+```
+EXTRA_GETTYS="/dev/ttyS0"
+```
+
+If the baud rate or other parameters need tweaking, you can create a file
+such as `/etc/default/agetty-ttyS0` which may look like this:
+
+```
+GETTY_TERM=vt100
+GETTY_BAUD=115200
+```
 
 ### Raspberry Pi
 
