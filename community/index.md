@@ -64,11 +64,10 @@ of the official channels. See the [Development](/development) page for more.
 
 ## Team
 
-Several people have project owner status, which means they have access to
-every repository and possibly other infrastructure. These currently are:
+Project owners have access to every repository and possible other
+infrastructure. These currently are:
 
 * [q66](https://github.com/q66)
-* [psykose](https://github.com/nekopsykose)
 
 Committers have access to specific repositories, typically cports, and
 possibly other infrastrucure on as needed basis. These are:
