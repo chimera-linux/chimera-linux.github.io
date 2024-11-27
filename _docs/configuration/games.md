@@ -16,7 +16,7 @@ the `main` and `user` sections. These include:
 * The Ur-Quan Masters
 * with the list growing
 
-Video game console emulators such as Dolphin, Snes9x and PCSX2 are
+Video game console emulators such as Dolphin and Snes9x are
 also available.
 
 ## Gamescope
