@@ -72,12 +72,13 @@ infrastructure. These currently are:
 Committers have access to specific repositories, typically cports, and
 possibly other infrastrucure on as needed basis. These are:
 
+* [deathmist](https://github.com/JamiKettunen)
+* [ifreund](https://github.com/ifreund)
 * [triallax](https://github.com/triallax)
 
 Several community members have moderation rights on IRC. Project owners
 and committers universally do. Non-committers include:
 
-* [deathmist](https://github.com/JamiKettunen)
 * [zdykstra](https://github.com/zdykstra)
 
 Contributors without special access may be found in the individual
