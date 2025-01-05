@@ -22,6 +22,13 @@ is the mirror base URL, and `category` is one of `main`, `main/debug`,
 
 The following mirrors are available:
 
-* https://repo.chimera-linux.org (default repository, Czechia)
-* https://chimera.sakamoto.pl (Poland)
-* https://au.mirror.7bit.org/chimera (Australia)
+* [https://repo.chimera-linux.org](https://repo.chimera-linux.org) (hosted by the project, Czechia)
+* [https://chimera.sakamoto.pl](https://chimera.sakamoto.pl) (hosted by sdomi, Poland)
+* [https://au.mirror.7bit.org/chimera](https://au.mirror.7bit.org/chimera) (hosted by wezm, Australia)
+
+Third party mirrors may follow their own schedule when it comes to syncing
+and are not guaranteed to always be up to date. It is recommended that all
+mirrors sync on at least hourly basis.
+
+To set up a new mirror, `rsync://repo.chimera-linux.org/chimera` may be used.
+If you set up a new mirror, please let us know.
