@@ -47,16 +47,16 @@ or similar questions, so we will cover this first.
 Firstly, Chimera is built on the idea of providing strong guarantees for the
 end user device. This means for example the following:
 
-1) Well-integrated, advanced service management with support for things like
-   user services out of the box with no additional configuration, and the system
-   making full use of it by default, including service-driven activation where
-   possible.
-2) Session tracking is built-in, always enabled, and various software makes use
-   of it. We are maintaining our own framework for it.
-3) D-Bus session bus IPC likewise makes use of it, which means a shared session
-   bus that persists for the login (started upon first login, stopped upon last
-   logout) which means no ad-hoc "start with desktop" workarounds (which make
-   the bus local to the specific virtual terminal and so on).
+* Well-integrated, advanced service management with support for things like
+  user services out of the box with no additional configuration, and the system
+  making full use of it by default, including service-driven activation where
+  possible.
+* Session tracking is built-in, always enabled, and various software makes use
+  of it. We are maintaining our own framework for it.
+* D-Bus session bus IPC likewise makes use of it, which means a shared session
+  bus that persists for the login (started upon first login, stopped upon last
+  logout) which means no ad-hoc "start with desktop" workarounds (which make
+  the bus local to the specific virtual terminal and so on).
 
 While systemd-based distributions provide those, there are no other non-systemd
 distributions that do that as of the time this was written. We fully approve of
@@ -67,20 +67,20 @@ Secondly, Chimera streamlines its packaging. That means making use of the full
 potential of its package manager and ensuring the packaging definitions are of
 sufficient quality to for example:
 
-1) Chimera does not need additional tooling for setup; for example, enabling
-   a desktop environment generally means just installing its package and then
-   starting it or enabling a display manager service or similar, and likewise
-   things like alternatives tracking are fully done with apk rather than ad-hoc
-   scripts.
-2) We aim for stateless configuration (packages only installing in `/usr` which
-   is never changed by the user, and all other data being potentially removable)
-3) Packages drive coarse system configuration, which means the apk world file
-   and resulting package graph results in a complete, working system on its own,
-   and this system can always be reproduced from the world file alone.
-4) Packages don't utilize intermediate pre/post install/upgrade/remove scripts,
-   making every apk transaction semi-atomic (files do not need to be committed
-   to their final location until the very end, and any setup is done with
-   idempotent package triggers which react to filesystem changes).
+* Chimera does not need additional tooling for setup; for example, enabling
+  a desktop environment generally means just installing its package and then
+  starting it or enabling a display manager service or similar, and likewise
+  things like alternatives tracking are fully done with apk rather than ad-hoc
+  scripts.
+* We aim for stateless configuration (packages only installing in `/usr` which
+  is never changed by the user, and all other data being potentially removable)
+* Packages drive coarse system configuration, which means the apk world file
+  and resulting package graph results in a complete, working system on its own,
+  and this system can always be reproduced from the world file alone.
+* Packages don't utilize intermediate pre/post install/upgrade/remove scripts,
+  making every apk transaction semi-atomic (files do not need to be committed
+  to their final location until the very end, and any setup is done with
+  idempotent package triggers which react to filesystem changes).
 
 Having a high quality packaging base ensures that the system is flexible for
 many different use cases. Many of these concepts have been driven by for example
