@@ -25,6 +25,7 @@ The following mirrors are available:
 * [https://repo.chimera-linux.org](https://repo.chimera-linux.org) (hosted by the project, Czechia)
 * [https://chimera.sakamoto.pl](https://chimera.sakamoto.pl) (hosted by sdomi, Poland)
 * [https://au.mirror.7bit.org/chimera](https://au.mirror.7bit.org/chimera) (hosted by wezm, Australia)
+* [https://chimera.netig.net](https://chimera.netig.net) (hosted by netig, Sweden)
 
 Third party mirrors may follow their own schedule when it comes to syncing
 and are not guaranteed to always be up to date. It is recommended that all
