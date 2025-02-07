@@ -40,18 +40,17 @@ This is how you upgrade your system:
 # apk upgrade
 ```
 
-There is also the `--available` flag for `apk upgrade`, which was
-formerly recommended. It is no longer necessary to use this flag
-in most cases, with the default `--latest` flag being the correct
-one.
+Once in a while, running `apk upgrade --available` may be a good idea,
+especially if there were significant changes in the packaging earlier.
+This is to properly account for any renames, downgrades, and so on.
+Be careful with using `--available` and always run it in interactive
+mode (which is the default for `apk` in Chimera) to be able to check
+what is being removed or upraded.
 
-This is because Chimera now increments revision numbers, which
-means it is not necessary to force the versions from repository
-anymore. It may still be a good idea to run it every once in a
-while, e.g. when a package gets downgraded, but be careful with
-it, as it may result in some unintended consequences (e.g. packages
-that installed themselves through `install_if` will get removed if
-they are not found in any repository).
+Without `--available`, the default is `--latest` which is safer but may
+miss things occasionally. With `--available`, for instance, packages that
+installed themselves through `install_if` will get removed if they are
+not found in any repository index at the time of upgrade.
 
 If updates introduce some file conflicts, which may happen this early
 in the development cycle (but will not happen once more stable, at
