@@ -159,28 +159,14 @@ After that, refresh your indexes. The debug packages are suffixed with `-dbg`.
 
 ## Cache and interactive mode
 
-By default, there is cache set up, with `/var/cache/apk` being where the
-cached packages are stored.
+The default configuration is set to be interactive (i.e. when run from the
+console, it will ask you about changes) and to cache packages by default.
 
-If you wish to change this path, first mask the cache provider:
+The default location for cache is `/var/cache/apk`.
 
-```
-# apk add '!apk-tools-cache'
-```
+If you wish to disable interactive mode or caching, create the file
+`/etc/apk/config`. Look at `/usr/lib/apk/config` for the default options.
+Put only the ones you want in your config file, it overrides the system one.
 
-Then you can symlink `/etc/apk/cache` to a path of your choice.
-
-The package manager is also interactive by default, i.e. it will ask you
-to confirm before installing or removing any packages. It is recommended
-not to turn this off, as it can prevent unintended changes into your
-system (and it can always be overridden with `--no-interactive` on the
-command line).
-
-If you still wish to make the package manager non-interactive, mask the
-provider:
-
-```
-# apk add '!apk-tools-interactive'
-```
-
-Read about [the world](/docs/apk/world) for details of how masking works.
+If you wish to change the cache location, create a symlink `/etc/apk/cache`
+that points to your desired location.
