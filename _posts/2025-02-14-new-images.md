@@ -1,50 +1,44 @@
 ---
-title: New images and welcoming new committers
+title: New images
 layout: post
 excerpt_separator: <!--more-->
 ---
 
-As of 04 December 2024 new images have been published.
+The 20250214 set of images is now published.
 
-While there weren't originally supposed to be any more images
-before reaching the beta phase, a new apk feature proved to
-be necessary.
-
-Other than that, it's an incremental refresh with software
-updates.
+This took longer than originally expected but there have been
+major changes that warranted waiting a bit longer for it
 
 <!--more-->
 
-## New committers
-
-We have two new committers, Jami Kettunen (deathmist) and
-Isaac Freund (ifreund). Both have been a part of our community
-for a long time and are active contributors; congratulations :)
-
-Unfortunately, another of our contributors, nekopsykose, has
-left the project recently. We thank her for being a part of
-the community and all of the work over the years and wish her
-the best.
-
 ## Changes
 
-The `apk-tools` package manager has been updated again, ahead
-of implementing a new kernel backup system. New static binaries,
-new OCI images, and other things have also been updated to use
-this new version of `apk`.
+The images come with a fresh version of `apk-tools`. This version
+finally supports several features that we began using, particularly
+variable expansion and being able to migrate most of its files into
+a system-wide `/usr` location.
 
-That means this image set is now the minimum that can be used
-to perform new installations, unless you update `apk-tools`
-in the live environment beforehand.
+That means you finally have a way to properly change your mirror
+of choice without having to mess with the repository definitions.
+The process of doing that is in the relevant documentation section.
 
-Various software has been updated. Linux kernel 6.12 is now the
-default, most notably.
+The repository definitions have been updated to use the new v3-style
+index naming, though backwards compatibility is also provided.
 
-The ISOs now have a bootable partition in the protective MBR.
-That means compatibility with certain x86 BIOS machines should
-be better.
+Kernel 6.13 is used in the new images. That means updated hardware
+support and other things.
 
-## Upcoming changes
+Both the GNOME and Plasma images (the latter is still experimental)
+come with the latest versions of their respective desktop environments.
 
-This is likely the last update before entering the beta phase,
-for real this time.
+Various fixes have been made to allow the live system to work better
+and more seamlessly on more machines.
+
+Additionally, 32-bit PowerPC images are now a standard release architecture
+and included in the batch. We have some plans to also introduce support
+for the LoongArch64 ISA, which may join them next time.
+
+Due to all of these changes as well as updates in the infrastructure,
+this new set is the recommended baseline for installation. Older images
+have an out of date package manager and installation scripts, which may
+be problematic with the current layout.
