@@ -111,8 +111,10 @@ The signing key is unique for each release batch. You can use this to make
 sure the release has not been tampered with.
 
 If you are running Chimera, the public keys are available in a package called
-`chimera-image-keys`. If you are not running Chimera, you can grab them from
+`chimera-image-keys`. Regardless of what you are running, copies are available
+[here](https://repo.chimera-linux.org/live/keys) and they always match the files in
 [cports](https://github.com/chimera-linux/cports/tree/master/main/chimera-image-keys/files).
+
 
 To verify the media, install `minisign` using your package manager. On Chimera,
 it's a dependency of `chimera-image-keys` already. Then download the checksums
