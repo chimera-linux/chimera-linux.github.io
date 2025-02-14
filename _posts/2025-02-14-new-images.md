@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 The 20250214 set of images is now published.
 
 This took longer than originally expected but there have been
-major changes that warranted waiting a bit longer for it
+major changes that warranted waiting a bit longer for it.
 
 <!--more-->
 
