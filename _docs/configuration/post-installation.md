@@ -30,10 +30,10 @@ not strictly necessary. Some groups that might be useful:
 * `wheel` is the local administrator group
 * `kvm` will let your user handle virtual machines
 * `plugdev` will let you access removable devices where there is no
-  other (e.g. policy-based) mechanism
-* `audio` and `video` might be necessary to access audio/video devices,
-  but on most systems this is not necessary thanks to `elogind` and
-  similar
+  other (e.g. policy-based) mechanism (usually unnecessary)
+* `audio` and `video` should not be necessary (`elogind` and similar
+  provide better, more secure mechanisms that do not require giving
+  your user raw device access) except in very specific cases
 
 To add your user to a group or groups:
 
