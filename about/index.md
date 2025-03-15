@@ -154,11 +154,10 @@ Here is an example table of some major system components and their providers:
 |----------------------------|--------------------------|
 | Compiler and runtime stack | LLVM                     |
 | C standard library         | Musl with mimalloc       |
-| Core userland              | FreeBSD, NetBSD, OpenBSD |
-| Init and logging           | Dinit, syslog-ng         |
+| Core userland              | FreeBSD                  |
+| Init and services          | Dinit + custom tooling   |
 | Audio stack                | PipeWire                 |
 | Desktop environment        | GNOME                    |
-| Web browser                | GNOME Web                |
 
 Typically there is more than one option available for each component,
 but the defaults tend to be well tested and recommended.
