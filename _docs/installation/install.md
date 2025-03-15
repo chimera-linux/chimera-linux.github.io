@@ -366,10 +366,10 @@ are more choices, e.g. `grub-arm64-efi`, `grub-i386-coreboot`, `grub-i386-efi`,
 `grub-riscv64-efi`, `grub-x86_64-xen`.
 
 The installation will differ slightly depending on the platform. For example
-for BIOS systems:
+for x86 BIOS systems:
 
 ```
-# grub-install /dev/sda
+# grub-install --target i386-pc /dev/sda
 ```
 
 On OpenPOWER systems (which use Petitboot), you will not install the
