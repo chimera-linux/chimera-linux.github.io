@@ -4,6 +4,9 @@ layout: post
 excerpt_separator: <!--more-->
 ---
 
+**UPDATE March 20 2025:** The architecture is not being dropped
+for now after all. See the newer article for details.
+
 The next set of images will drop RISC-V support. The builder is
 currently still going but within the next few days it will stop,
 and the repositories will stay in place but frozen.
