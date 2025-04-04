@@ -62,6 +62,9 @@ of the project you want to contribute into (each has their repository)
 and read its documentation. If you need help, you can always ask in one
 of the official channels. See the [Development](/development) page for more.
 
+Note that AI-generated contributions are **strictly prohibited** and anyone
+found doing them will be barred from further contributing to the project.
+
 ## Team
 
 Project owners have access to every repository and possible other
@@ -126,12 +129,7 @@ is available, and may range from a warning to an expulsion. If you feel you
 have been wronged, you can appeal to anybody with global access rights, and
 your case will be re-evaluated.
 
-Specific examples of things considered harmful and not welcome:
-
-* Far-right and adjacent movements, tankies, putinists and other
-  equivalent authoritarian chuddery
-* Racism, sexism, homophobia, transphobia, etc.
-* Complaining about SJWs
-* Loud anti-systemd nonsense, dogmatic suckless/"minimalism",
-  cat-v, cryptocurrencies and other sketchy religious movements
-* etc.
+Examples of unwanted behavior include bigotry of any kind (racism, sexism,
+homophobia, transphobia, etc.), far-right politics, whining about SJWs or
+codes of conduct, whining about systemd, scam fads (cryptocurrencies, AI,
+etc.), and so on. This is not exhaustive, but in general should be obvious.
