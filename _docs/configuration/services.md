@@ -115,7 +115,7 @@ have to do anything. The daemon is configured via `/etc/turnstile/turnstiled.con
 By default, the following paths are scanned for user services:
 
 * `~/.config/dinit.d`
-* `/etc/init.d/user`
+* `/etc/dinit.d/user`
 * `/usr/local/lib/dinit.d/user`
 * `/usr/lib/dinit.d/user`
 
