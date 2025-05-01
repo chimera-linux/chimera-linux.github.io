@@ -40,15 +40,9 @@ This will let you use it as the superuser, e.g. like this:
 # nerdctl run -it alpine:latest
 ```
 
-To use it rootless, install the support package:
-
-```
-# apk add containerd-rootless
-```
-
-Ensure your `/etc/subuid` and `/etc/subgid` is correctly set up for your
-user. Usually this is done automatically. The files should contain entries
-like
+To use it rootless, ensure your `/etc/subuid` and `/etc/subgid` is correctly
+set up for your user. Usually, this is done automatically. The files should
+contain entries like
 
 ```
 youruser:100000:65536
