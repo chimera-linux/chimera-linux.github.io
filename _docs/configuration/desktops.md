@@ -60,6 +60,27 @@ once, you can also do:
 # dinitctl start gdm
 ```
 
+### SDDM
+
+When using KDE, it is pulled in by default. Otherwise, you can install it:
+
+```
+# apk add sddm
+```
+
+Typically, all you need to do after that is enable the service:
+
+```
+# dinitctl enable sddm
+```
+
+That will make it start on every boot. If you want to run it just
+once, you can also do:
+
+```
+# dinitctl start sddm
+```
+
 After that, you only need to log in.
 
 #### GDM with Xorg
