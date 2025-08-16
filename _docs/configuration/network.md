@@ -117,6 +117,7 @@ Then you can scan for SSIDs:
 
 ```
 [iwd]# station <wlan name> scan
+[iwd]# station <wlan name> get-networks
 ```
 
 Connect to one:
