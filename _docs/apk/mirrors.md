@@ -30,7 +30,7 @@ The following mirrors are available:
 
 * [https://repo.chimera-linux.org](https://repo.chimera-linux.org) (hosted by the project, Prague, Czech Republic)
 * [https://chimera.sakamoto.pl](https://chimera.sakamoto.pl) (hosted by sdomi, Warsaw, Poland)
-* [https://au.mirror.7bit.org/chimera](https://au.mirror.7bit.org/chimera) (hosted by wezm, Australia)
+* [https://au.mirror.7bit.org/chimera](https://au.mirror.7bit.org/chimera) (hosted by wezm, Brisbane, Australia)
 * [https://mirror.accum.se/mirror/chimera-linux.org](https://mirror.accum.se/mirror/chimera-linux.org) (hosted by ACC, Umeå, Sweden)
 * [https://mirror.meowsmp.net/chimera-linux](https://mirror.meowsmp.net/chimera-linux) (hosted by MeowIce, Hanoi, Vietnam)
 
