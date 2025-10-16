@@ -419,9 +419,15 @@ work around it.
 
 Without using `--removable`, a similar workaround will also work:
 
+For x86-64:
 ```
 # mv /boot/efi/EFI/chimera /boot/efi/EFI/BOOT
 # mv /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI
+```
+For ARM64:
+```
+# mv /boot/efi/EFI/chimera /boot/efi/EFI/BOOT
+# mv /boot/efi/EFI/BOOT/grubarm64.efi /boot/efi/EFI/BOOT/BOOTAA64.EFI
 ```
 
 On Power Macs it is recommended to turn off graphical GRUB, which can be
