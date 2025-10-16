@@ -94,6 +94,9 @@ RISC-V.
 
 Create a partition of type `EFI System` that is at least 200 megabytes.
 Smaller partitions will usually work, but some firmware may have issues.
+Note that if you with to have `/boot` and `EFI System` in the same
+partition, you will need extra space to store installed kernels. 800
+megabytes is a safe default.
 
 Outside of that, the partition layout is up to you.
 
