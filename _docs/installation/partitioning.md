@@ -92,6 +92,15 @@ UEFI is the system of choice on most modern x86_64 systems, as well
 as a variety of systems of other architectures such as AArch64 and
 RISC-V.
 
+Create a partition of type `EFI System`. It can be any size; if you
+plan to use it for `/boot`, recommended size is 1 gigabyte to accomodate
+multiple kernels and initramfs.
+
+If you only plan to use it for bootloader, you can make it as small as
+a few megabytes (`systemd-boot` fits under 1M, GRUB is bigger),
+though in rare cases some UEFI implementations may take issue if it's
+smaller than ~200 megabytes.
+
 Create a partition of type `EFI System` that is at least 200 megabytes.
 Smaller partitions will usually work, but some firmware may have issues.
 
