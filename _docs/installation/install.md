@@ -417,12 +417,15 @@ the system may not boot. This does not affect most systems, but if you have
 a board with such buggy firmware, you can pass the `--removable` flag to
 work around it.
 
-Without using `--removable`, a similar workaround will also work:
+Without using `--removable`, a similar workaround will also work, x86_64 example:
 
 ```
 # mv /boot/efi/EFI/chimera /boot/efi/EFI/BOOT
 # mv /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI
 ```
+
+The naming scheme differs depending on architecture; replace "grub" with "boot"
+in the original filename.
 
 On Power Macs it is recommended to turn off graphical GRUB, which can be
 done by uncommenting `GRUB_TERMINAL_OUTPUT=console` in `/etc/default/grub`.
