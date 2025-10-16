@@ -101,9 +101,6 @@ a few megabytes (`systemd-boot` fits under 1M, GRUB is bigger),
 though in rare cases some UEFI implementations may take issue if it's
 smaller than ~200 megabytes.
 
-Create a partition of type `EFI System` that is at least 200 megabytes.
-Smaller partitions will usually work, but some firmware may have issues.
-
 Outside of that, the partition layout is up to you.
 
 Notably, if you wish to use `systemd-boot` as your bootloader, you will
