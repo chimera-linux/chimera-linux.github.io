@@ -217,15 +217,25 @@ and wish to enable TRIM, you will also want to add `discard` like `luks,discard`
 
 For full list of options, please refer to `man 5 crypttab`.
 
-In any case:
+For the device, it is not recommended to use raw `/dev/sdX` or similar as
+that name may not be stable, particularly if you have multiple disks of the
+same type (SATA or NVMe). In setups with only one such disk (e.g. a laptop
+with a single NVMe stick) it is fine; in other cases, there are multiple
+better options.
+
+When using the GPT partition table, it is recommended to label your partitions.
+Then you can use the partition label and achieve the best clarity:
 
 ```
-# echo crypt /dev/sda3 none luks > /etc/crypttab
+# echo crypt PARTLABEL=root none luks
 ```
 
-You might also want to use a UUID (`/dev/disk/by-uuid/...` or partlabel-based path
-instead of direct device path, in order to make it static. For this example this
-is okay though.
+For both GPT and other partition table types, `PARTUUID` is also an option.
+Additionally, UUID is an option as the Linux kernel will generate one for
+LUKS just like it does for file systems.
+
+You can find out the specific label or UUID string by looking at the symlinks
+in `/dev/disk/by-partlabel` or similar.
 
 ### LUKS and initramfs
 
