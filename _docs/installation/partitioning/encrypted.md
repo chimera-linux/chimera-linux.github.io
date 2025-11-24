@@ -227,7 +227,7 @@ When using the GPT partition table, it is recommended to label your partitions.
 Then you can use the partition label and achieve the best clarity:
 
 ```
-# echo crypt PARTLABEL=root none luks
+# echo crypt PARTLABEL=root none luks > /etc/crypttab
 ```
 
 For both GPT and other partition table types, `PARTUUID` is also an option.
