@@ -39,43 +39,28 @@ Every desktop session can be started with a display manager, or it can be
 started manually. Using a display manager is recommended, especially with
 something like GNOME where it facilitates lock screen integration.
 
-### GDM
+### GDM and SDDM
 
-When using GNOME, it is pulled in by default. Otherwise, you can install it:
+GNOME installations will by default pull in GDM and it is recommended that
+you use it for GNOME (as certain desktop functionality depends on it, e.g.
+lockscreen) while SDDM is the default for KDE.
+
+Both can be used for others. When not already pulled in with your desktop,
+you can install the one of your choice:
 
 ```
 # apk add gdm
+# apk add sddm
 ```
 
-Typically, all you need to do after that is enable the service:
+After that, you need to enable the service. The service has the same name.
+So for example, to start GDM on every boot:
 
 ```
 # dinitctl enable gdm
 ```
 
-That will make it start on every boot. If you want to run it just
-once, you can also do:
-
-```
-# dinitctl start gdm
-```
-
-After that, you only need to log in.
-
-#### GDM with Xorg
-
-Normally, GDM will default to Wayland. There are some specific cases
-where Wayland is disabled, most of them not relevant to Chimera, but
-e.g. when missing modesetting.
-
-Other people may want to disable Wayland manually for other reasons.
-
-To force-disable Wayland in GDM, edit the `/etc/gdm/custom.conf` file
-and uncomment the `WaylandEnable=false` line.
-
-Note that this will not make GDM with Xorg work right away, as Chimera's
-Xorg setup is unprivileged and the X server started by GDM will not be
-allowed to switch VTs, see [Xorg](/docs/configuration/xorg).
+Use `dinitctl start` to run it manually just once.
 
 ## GNOME
 
