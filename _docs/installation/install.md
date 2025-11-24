@@ -321,6 +321,32 @@ Set your root password here, or you will not be able to log in:
 # passwd root
 ```
 
+### Early video
+
+On most systems, you will get early video output facilitated by the
+firmware, e.g. BIOS VBE or UEFI or OpenFirmware framebuffers. There
+are systems that do not provide that (e.g. OpenPOWER or non-x86 EFI
+systems without x86 oprom emulation and dedicated GPU without native
+oprom) and you may want to include the native video driver.
+
+There are also cases when you want this for systems with working
+early video, e.g. if you want full console resolution working in
+initramfs stage.
+
+Example for systems using ASpeed BMC framebuffers (typically servers):
+
+```
+# echo ast >> /etc/initramfs-tools/modules
+```
+
+A more conventional example for a modern dedicated AMD GPU:
+
+```
+# echo amdgpu >> /etc/initramfs-tools/modules
+```
+
+The specific module may vary.
+
 ### Initramfs refresh
 
 A bootable system will typically need an initramfs image. You need to
