@@ -77,7 +77,9 @@ possibly other infrastrucure on as needed basis. These are:
 
 * [deathmist](https://github.com/JamiKettunen)
 * [ifreund](https://github.com/ifreund)
+* [jcgruenhage](https://github.com/jcgruenhage)
 * [triallax](https://github.com/triallax)
+* [wezm](https://github.com/wezm)
 
 Several community members have moderation rights on IRC. Project owners
 and committers universally do. Non-committers include:
