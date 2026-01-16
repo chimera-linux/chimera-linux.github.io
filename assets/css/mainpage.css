@@ -171,6 +171,9 @@ body {
     grid-area: bottom;
     padding-top: var(--content-halfgap);
     padding-bottom: var(--content-halfgap);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--content-gap);
 }
 
 #bottom #bottom_warn {
@@ -202,6 +205,43 @@ body {
 #bottom .bottom_post {
     border-top: 1px solid;
     border-color: var(--color-tblsep);
+}
+
+#bottom .bottom_commits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#bottom .bottom_commits li {
+    border-top: 1px solid var(--color-tblsep);
+    padding: 8px 0;
+}
+
+#bottom .bottom_commits li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-fontdef);
+}
+
+#bottom .bottom_commits li a:hover {
+    color: var(--color-chred);
+}
+
+#bottom .bottom_commits a {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bottom .bottom_commits .commit_date {
+    white-space: nowrap;
+    opacity: 0.7;
+}
+
+#bottom .bottom_commits .more {
+    text-align: right;
+    margin-top: var(--content-halfgap);
 }
 
 /* responsive layout adjustments */
@@ -269,6 +309,9 @@ body {
     #tile4 {
         margin-top: var(--side-padding);
         margin-bottom: 0;
+    }
+    #bottom {
+        grid-template-columns: 1fr;
     }
 }
 

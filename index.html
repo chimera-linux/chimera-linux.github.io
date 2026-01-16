@@ -33,7 +33,7 @@ title: Chimera Linux
     </p>
     <p>
         <a href="/about">Read more</a> for details.
-    <p>
+    </p>
 </main>
 
 <div id="tile1" class="tile">
@@ -85,13 +85,25 @@ title: Chimera Linux
 </div>
 
 <div id="bottom">
-    <h2><a href="/news">Recent news</a> <a href="/atom.xml">(feed)</a></h2>
-    {% for post in site.posts limit:2 %}
-    <div class="bottom_post">
-        <h4>{{ post.date | date: "%B %d, %Y" }}</h4>
-        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-        {{ post.excerpt }}
-        <p><a href="{{ post.url }}">Read more</a></p>
+    <div class="bottom_news">
+        <h2><a href="/news">Recent news</a> <a href="/atom.xml">(feed)</a></h2>
+        {% for post in site.posts limit:2 %}
+        <div class="bottom_post">
+            <h4>{{ post.date | date: "%B %d, %Y" }}</h4>
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            {{ post.excerpt }}
+            <p><a href="{{ post.url }}">Read more</a></p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <div class="bottom_commits">
+        <h2><a href="https://github.com/chimera-linux/cports/commits/master">Package updates</a></h2>
+        <ul id="cports_list"></ul>
+        <div class="more">
+            <a href="https://github.com/chimera-linux/cports/commits/master">View all</a>
+        </div>
+    </div>
 </div>
+
+<script src="/assets/js/commits.js"></script>
