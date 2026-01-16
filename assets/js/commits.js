@@ -2,6 +2,7 @@
     "use strict";
 
     var list = document.getElementById("cports_list");
+    var more = document.getElementById("cports_more");
     if (!list) return;
 
     fetch("https://api.github.com/repos/chimera-linux/cports/commits?per_page=10")
@@ -32,5 +33,6 @@
                         '</a></li>';
             }
             list.innerHTML = html;
+            if (more) more.style.display = "block";
         });
 })();
