@@ -8,6 +8,8 @@ Unless circumstances change, we are planning to retire support for the
 big-endian 32-bit PowerPC and 64-bit POWER platforms. Read below for
 when and why and how you can potentially change this.
 
+Note that this is not about ppc64le, which is not affected by this.
+
 <!--more-->
 
 ## Reasons
