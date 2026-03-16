@@ -65,5 +65,6 @@ those based on the `wlroots` library.
 
 Keep in mind that `seatd` very much conflicts with `elogind`, so
 ensure that only one is running. You will need to manually enable
-the `seatd` service. The daemon also does much less than `elogind`
-does, so e.g. system power management is not handled by it.
+the `seatd` service and add your user to the `_seatd` group. The
+daemon also does much less than `elogind` does, so e.g. system
+power management is not handled by it.
