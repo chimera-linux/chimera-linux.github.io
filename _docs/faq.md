@@ -257,7 +257,7 @@ also rather sketchy, and it can be configured in a countless ways with
 different sets of tools, because in the end it's a single multi-call
 executable.
 
-When your goal is a tiny embedded system, using such thing may seem like
+When your goal is a tiny embedded system, using such a thing may seem like
 a good idea. This is not the case in Chimera, so there is no point.
 
 As far as Toybox goes, it's pretty much the same story, except it's even
