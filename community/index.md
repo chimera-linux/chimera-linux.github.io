@@ -35,7 +35,6 @@ be keeping their own logs though.
 These are official:
 
 * [Fediverse](https://gts.chimera-linux.org/@chimera)
-* [Reddit](https://www.reddit.com/r/chimeralinux)
 
 Unless listed here, anything else is an unofficial space. Creation of such
 spaces is discouraged by the project. Please do not create them.
