@@ -37,20 +37,17 @@ This is how you remove something:
 This is how you upgrade your system:
 
 ```
-# apk upgrade
+# apk upgrade --available
 ```
 
-Once in a while, running `apk upgrade --available` may be a good idea,
-especially if there were significant changes in the packaging earlier.
-This is to properly account for any renames, downgrades, and so on.
-Be careful with using `--available` and always run it in interactive
-mode (which is the default for `apk` in Chimera) to be able to check
-what is being removed or upraded.
+Keep in mind the `--available` flag makes upgrades way more thorough
+and always match the available repositories when possible (including
+downgrading to older versions where necessary) so always do upgrades
+in interactive mode (default) and check the output.
 
-Without `--available`, the default is `--latest` which is safer but may
-miss things occasionally. With `--available`, for instance, packages that
-installed themselves through `install_if` will get removed if they are
-not found in any repository index at the time of upgrade.
+Doing just `apk upgrade` is equivalent to `apk upgrade --latest` and
+is safer (e.g. in its treatment of `install_if` packages) but will
+miss things on big repository changes.
 
 If updates introduce some file conflicts, which may happen this early
 in the development cycle (but will not happen once more stable, at
