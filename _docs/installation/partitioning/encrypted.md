@@ -263,14 +263,6 @@ When doing root on ZFS, LUKS does not influence the `root=`. You just have to
 specify something like `root=ZFS=mypool/root/whatever` and the initramfs will
 take care of the rest, provided the `crypttab` mappings are correctly set up.
 
-The initramfs hook scripts currently don't detect the root filesystem when it's
-on ZFS (resulting in warnings while creating the initramfs which can be ignored),
-so you need to use the `initramfs` option in `crypttab`, e.g.:
-
-```
-# echo crypt /dev/sda3 none luks,initramfs > /etc/crypttab
-```
-
 ### Bootloader and kernel command line
 
 With full disk encryption (i.e. encrypted `/boot`), you will need to enable this
