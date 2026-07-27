@@ -61,8 +61,25 @@ of the project you want to contribute into (each has their repository)
 and read its documentation. If you need help, you can always ask in one
 of the official channels. See the [Development](/development) page for more.
 
-Note that AI-generated contributions are **strictly prohibited** and anyone
-found doing them will be barred from further contributing to the project.
+## Project AI policy
+
+Chimera has a strong no-AI policy for contributions in all of its repositories.
+Contributors found using LLMs **will be barred** from further contributing to
+the project.
+
+We take objection against the use of LLMs primarily on ethical grounds. This is
+based on many factors, including societal impact of LLM use, ecological impact,
+and others. We reject arguments about "useful tools" and similar, because
+technical aspects can never be considered in isolation.
+
+LLM-using contributions additionally have a disproportionate burden on reviewers,
+their mental health, as well as project resources, which we have limited amounts
+of.
+
+Chimera is a small project and has limited control over what upstreams do,
+particularly due to dependencies and widespread use of LLM usage in projects
+nowadays. We try to do the right thing when possible, preferring appropriate
+alternatives and so on.
 
 ## Team
 
