@@ -84,4 +84,71 @@ you installed, edit it, go to Settings, the "Custom commands" tab, check the
 env LD_PRELOAD=/usr/lib/libgcompat.so.0
 ```
 
-Close the settings window, and the game should run.
+Additionally, go to Settings and Tweaks, enable `Native Libraries`.
+
+Make sure system OpenAL is enabled with `/usr/lib/libopenal.so.1` in the path.
+
+Make sure system Jemalloc is enabled with `/usr/lib/libjemalloc.so.2` in the path.
+
+### Versions prior to 26.1
+
+System GLFW can be enabled (`/usr/lib/libglfw.so.3`) but the game works
+either way.
+
+No other action should be necessary.
+
+### Versions 26.1 onwards
+
+System GLFW must **not** be enabled (the game will crash with an unknown window
+hint).
+
+Versions 26.x added new dependencies in internal libraries due to Vulkan,
+e.g. the memory allocator library. There are various new natives, such
+as Freetype, Shaderc, and SPIRV-Cross. While some of the new natives can
+be overridden (Settings and then Java, check `Java Arguments`), other
+internal things (particularly the Vulkan Memory Allocator library) depend
+on GCC `libstdc++.so.6` and this cannot change.
+
+Currently, the only way to address this is to obtain a copy of the library.
+It is not safe to use it for binaries in Chimera in general as it clashes
+with the exception handling by our native C++ libraries, but it works for
+this specific case; note that **this is not supported by us in any way**.
+
+You will need a `musl`-linked copy of the library, a good source is e.g.
+Alpine Linux. You can obtain it any way you like but below is one possible
+way using OCI containers (in this case Podman, any frontend can be used):
+
+```
+$ mkdir -p ~/.local/share/PrismLauncher/libstdcpp
+$ podman run -it --mount type=bind,source=$HOME/.local/share/PrismLauncher/libstdcpp,target=/mnt alpine:latest
+# apk update
+# apk add libstdc++
+# cp -a /usr/lib/libstdc++.so.6* /mnt
+# exit
+```
+
+Another way is to obtain the `apk` file from Alpine CDN mirror and extract it.
+
+Then append `LD_LIBRARY_PATH=$HOME/.local/share/PrismLauncher/libstdcpp` to
+the wrapper command where you added the `LD_PRELOAD` previously.
+
+You will also need the `libgcc_s.so.1` compatibility library which you can
+install in Chimera:
+
+```
+# apk add libgcc-chimera
+```
+
+The game should run now.
+
+If you wish to override the natives (not necessary to play the game, may
+become necessary if we come up with a bettter solution for the above), you
+can use the following arguments:
+
+```
+-Dorg.lwjgl.shaderc.libname=/usr/lib/libshaderc_shared.so.1
+-Dorg.lwjgl.freetype.libname=/usr/lib/libfreetype.so.6
+```
+
+SPIRV-Cross is also overridable (`org.lwjgl.spvc.libname`) but not packaged
+as of the time of writing.
