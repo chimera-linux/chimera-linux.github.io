@@ -14,21 +14,20 @@ repositories.
 
 You will need the following:
 
-| Architecture | Requirements                                        |
-|--------------|-----------------------------------------------------|
-| `x86_64`     | Any UEFI or BIOS-based 64-bit computer              |
-| `ppc`        | PowerPC 603 or better                               |
-| `ppc64`      | PowerPC 970 (G5) or better                          |
-| `ppc64le`    | POWER8 or better (OpenPOWER, PowerVM)               |
-| `aarch64`    | UEFI devices supported by mainline kernel, or below |
-| `riscv64`    | UEFI devices supported by mainline kernel, or below |
+| Architecture  | Requirements                                        |
+|---------------|-----------------------------------------------------|
+| `x86_64`      | Any UEFI or BIOS-based 64-bit computer              |
+| `ppc64le`     | POWER8 or better (OpenPOWER, PowerVM)               |
+| `loongarch64` | UEFI devices supported by mainline kernel           |
+| `aarch64`     | UEFI devices supported by mainline kernel, or below |
+| `riscv64`     | UEFI devices supported by mainline kernel, or below |
 
-In general, for a console-based system, you will need at least 128MB
+In general, for a console-based system, you will need at least 512MB
 or more RAM for the system to be truly usable. A graphical desktop will
 need more, depending on the desktop (1GB or more is recommended for
 graphical installs).
 
-OCI containers are available for `x86_64`, `ppc64e`, `aarch64` as well
+OCI containers are available for `x86_64`, `ppc64le`, `aarch64` as well
 as `riscv64` at `chimeralinux/chimera:latest`. They will run in any
 environment where you can get Docker, Podman, or another similar/compatible
 solution working.
@@ -38,11 +37,10 @@ solution working.
 In addition to generic UEFI targets supported by mainline kernel, there
 are also devices with device-specific images, typically using U-Boot.
 
-Currently, officially supported are the following:
+Currently, officially supported (with images) are the following:
 
-* 64-bit Raspberry Pi (3/4 and variants such as 400 and compute modules)
-* PINE64 Pinebook Pro
-* PINE64 RockPro64
+* Raspberry Pi: any 64-bit-capable model
+* PINE64: Pinebook Pro, QuartzPro64, Rock64, RockPro64
 
 You will need to obtain the correct image for these. The list is subject
 to expansion.
@@ -57,6 +55,10 @@ Officially supported are the following:
 * Qemu virtual machines (with and without OpenSBI)
 
 This list is also subject to expansion.
+
+### LoongArch devices
+
+Any standard LoongArch64 board with UEFI should work out of the box.
 
 ## Downloading system media
 

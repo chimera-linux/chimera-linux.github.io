@@ -380,7 +380,7 @@ Example for x86_64 EFI:
 # apk add grub-x86_64-efi
 ```
 
-Example for a POWER virtual machine, Power Mac or PowerVM hardware:
+Example for a POWER virtual machine or PowerVM hardware:
 
 ```
 # apk add grub-powerpc-ieee1275
@@ -409,20 +409,6 @@ On POWER systems with a PReP partition:
 
 ```
 # grub-install /dev/sda1
-```
-
-On Power Macs it's a little more complicated (and needs `hfsutils`):
-
-```
-# mkdir -p /boot/macppc
-# mount -t hfs /dev/sda2 /boot/macppc
-# grub-install --macppc-directory=/boot/macppc /dev/sda2
-# umount /boot/macppc
-# rmdir /boot/macppc
-# hmount /dev/sda2
-# hattrib -t tbxi -c UNIX :System:Library:CoreServices:BootX
-# hattrib -b :System:Library:CoreServices
-# humount
 ```
 
 On EFI systems with separate ESP:
