@@ -172,7 +172,23 @@ installed in the target system. You can remove it with `apk del`, like:
 ```
 
 It is recommended to do so. If you wish to retain any packages that it
-installs, you can `apk add` them explicitly.
+installs, you can `apk add` them explicitly (e.g. for the disk encryption
+packages below).
+
+### Disk encryption support
+
+If you're installing an encrypted system, you will want to have the right
+infrastructure package installed:
+
+```
+# apk add cryptsetup-scripts
+```
+
+If using LVM, make sure that is there too:
+
+```
+# apk add lvm2
+```
 
 ### Device base package
 
@@ -309,6 +325,48 @@ column was `1`.
 
 For more information, see `fstab(5)`.
 
+### Crypttab for LUKS
+
+This requires `fstab` to be set up with the root filesystem. The `crypttab`
+is a file similar to `fstab` that describes the encrypted devices to set up.
+
+In most installations it will only describe one device. The `crypttab` consists
+of one or more device lines, each with four fields. The fields are the following:
+
+1. The name (as in `luksOpen /dev/device name`)
+2. The device
+3. A key file path
+4. Options, comma-separated
+
+There are many options which are out of scope here, e. g. for when you
+want to unlock multiple devices using a single passphrase or other more
+sophisticated setups, but in a lot of cases you do not need any.
+In our case we will use the `luks` option. If you have an SSD
+and wish to enable TRIM, you will also want to add `discard` like `luks,discard`
+(and enable it in LVM, but that is out of scope for this guide).
+
+For full list of options, please refer to `man 5 crypttab`.
+
+For the device, it is not recommended to use raw `/dev/sdX` or similar as
+that name may not be stable, particularly if you have multiple disks of the
+same type (SATA or NVMe). In setups with only one such disk (e.g. a laptop
+with a single NVMe stick) it is fine; in other cases, there are multiple
+better options.
+
+When using the GPT partition table, it is recommended to label your partitions.
+Then you can use the partition label and achieve the best clarity:
+
+```
+# echo crypt PARTLABEL=root none luks > /etc/crypttab
+```
+
+For both GPT and other partition table types, `PARTUUID` is also an option.
+Additionally, UUID is an option as the Linux kernel will generate one for
+LUKS just like it does for file systems.
+
+You can find out the specific label or UUID string by looking at the symlinks
+in `/dev/disk/by-partlabel` or similar.
+
 ### Other packages
 
 You can install whichever other packages you like.
@@ -358,6 +416,12 @@ Therefore, best do that now:
 ```
 # update-initramfs -c -k all
 ```
+
+Keep in mind that for encrypted systems, `crypttab` needs to exist with
+the correct contents by now.
+
+Handling of LVM is automatic. The mappings are created automatically as
+long as all prior steps were followed.
 
 ### GRUB
 
@@ -449,6 +513,16 @@ platforms:
 
 ```
 # update-grub
+```
+
+#### GRUB full-disk encryption
+
+This is not most setups and does not apply to systems that don't encrypt
+the `/boot` partition. With encrypted `/boot` (not supported by other
+bootloaders), modify `/etc/default/grub` and add the following:
+
+```
+GRUB_ENABLE_CRYPTODISK=y
 ```
 
 ### systemd-boot
