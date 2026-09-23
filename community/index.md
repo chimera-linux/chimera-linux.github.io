@@ -92,7 +92,9 @@ Committers have access to specific repositories, typically cports, and
 possibly other infrastrucure on as needed basis. These are:
 
 * [deathmist](https://github.com/JamiKettunen)
+* [flukeeey/bdprom](https://github.com/flukeeey)
 * [ifreund](https://github.com/ifreund)
+* [natthias](https://github.com/natthias)
 * [jcgruenhage](https://github.com/jcgruenhage)
 * [wezm](https://github.com/wezm)
 
