@@ -43,7 +43,7 @@ the later sections):
 5. You can run it on any Linux. If you run it on Chimera, you can immediately
    test your work. You can take the repo and bring it somewhere else. That
    also means the builder machines in the remote infra can run anything.
-6. Chimera is a collective effort. You can expected to share the stuff you
+6. Chimera is a collective effort. You are expected to share the stuff you
    make, and get it upstreamed to us. The tooling is not intended for local
    things that won't get shared, and it provides no guarantees or obligations
    for such usage; `cbuild` is a developer tool, not a user tool. But every
