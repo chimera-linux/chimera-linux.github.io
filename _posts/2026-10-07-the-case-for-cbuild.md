@@ -121,18 +121,18 @@ it integrates git:
 
 ```
 $ # build everything changed in your local commits
-$ ./cbuild pkg git:origin/master..HEAD
+$ ./cbuild bulk-pkg git:origin/master..HEAD
 $ # build a specific commit
-$ ./cbuild pkg git:commithash
+$ ./cbuild bulk-pkg git:commithash
 $ # build a range of commits but skipping stuff that has "test" in commit message
-$ ./cbuild pkg git:from..to+!test
+$ ./cbuild bulk-pkg git:from..to+!test
 ```
 
 It supports common stuff, like
 
 ```
 $ # build everything you have in your local repo that has a newer cports version
-$ ./cbuild pkg status:outdated
+$ ./cbuild bulk-pkg status:outdated
 ```
 
 There is a lot more that I could mention. I also wanted to talk about how
