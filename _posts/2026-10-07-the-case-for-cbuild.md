@@ -1,5 +1,5 @@
 ---
-title: The case for cbuild and building a distro for a small community
+title: Creating distro build tooling for a small community
 layout: post
 excerpt_separator: <!--more-->
 ---
