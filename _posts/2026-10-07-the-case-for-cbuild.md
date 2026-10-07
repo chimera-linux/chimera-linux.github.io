@@ -29,33 +29,33 @@ follow, unfortunately the years have left their mark and I might be taking
 some assumptions for granted, so please bear with me; this also applies in
 the later sections):
 
-1) Everyone uses the same tools. Inefficient UX patterns are identified,
+1. Everyone uses the same tools. Inefficient UX patterns are identified,
    and either fixed, or `cbuild` is extended to mitigate them. Feedback is
    taken into account.
-2) Everything is `cbuild`. One tool does everything, in a streamlined way.
+2. Everything is `cbuild`. One tool does everything, in a streamlined way.
    Managing the repository, the build environment, the repo generation
    and signing, even parts of the VCS handling and common maintenance tasks.
    No external helper stuff.
-3) The remote build infrastructure just runs `cbuild` and not much else.
-4) The tooling does much of the bulk of making sure your packaging is
+3. The remote build infrastructure just runs `cbuild` and not much else.
+4. The tooling does much of the bulk of making sure your packaging is
    correct and clean, most issues are hard errors. Heavy sandboxing,
    build environment consistency, unit tests by default, etc.
-5) You can run it on any Linux. If you run it on Chimera, you can immediately
+5. You can run it on any Linux. If you run it on Chimera, you can immediately
    test your work. You can take the repo and bring it somewhere else. That
    also means the builder machines in the remote infra can run anything.
-6) Chimera is a collective effort. You can expected to share the stuff you
+6. Chimera is a collective effort. You can expected to share the stuff you
    make, and get it upstreamed to us. The tooling is not intended for local
    things that won't get shared, and it provides no guarantees or obligations
    for such usage; `cbuild` is a developer tool, not a user tool. But every
    user can be a developer.
-7) The tooling should easy and straightforward to use, and fun. It should not
+7. The tooling should easy and straightforward to use, and fun. It should not
    make things hard for you. Every user can be a maintainer. It shouldn't
    be unnceessarily intimidating. We don't gatekeep here when possible.
    You should also be having fun using the system and being here.
-8) You can replicate the entire remote infrastructure of the project on your
+8. You can replicate the entire remote infrastructure of the project on your
    machine in an hour or something. You can replicate the heavy bulk of things
    in like 5 minutes.
-9) The way things work is supposed to steer you towards implicitly doing the
+9. The way things work is supposed to steer you towards implicitly doing the
    right thing, and punish incorrect patterns by making them harder than the
    correct ones. E.g. it's really difficult or impossible to manually patch
    files with regex, or to do internet-reaching stuff during the build, or to
@@ -67,7 +67,7 @@ the later sections):
    your metadata including minor things like whether your build dependencies
    are sorted correctly and whether the SPDX license expression is correct
    and lost of other nits, and so on.
-10) Extensive documentation for the build system and packaging.
+10. Extensive documentation for the build system and packaging.
 
 A common workflow setting up everything from scratch would look like so:
 
@@ -294,12 +294,12 @@ pre-existing work, but also I wanted to try out my own take on the build system.
 There were some initial points I was unhappy with in `xbps-src` while
 maintaining the POWER port.
 
-1) The shell-based system was way too slow. Parsing the complete collection
+1. The shell-based system was way too slow. Parsing the complete collection
    of templates in the repository would take potentially as much as half an
    hour, and there weren't other ways to introspect the templates. Therefore,
    my tooling would call into `xbps-src` and employ various caching tricks
    to make things manageable.
-2) The shell-based system was very often fairly sloppy, letting various wrong
+2. The shell-based system was very often fairly sloppy, letting various wrong
    behaviors through. For instance, network access is permitted through the
    whole build, there is nothing ensuring consistency of the build container
    after the build is done (the entire thing is read-write and the template
@@ -307,22 +307,22 @@ maintaining the POWER port.
    are fairly slim, the ELF scan step and other things would take an eternity
    due to slow shell code, and limited opportunities for doing more due to
    shell being excessively slow.
-3) A lot of useful tooling is separate from the main system and maintained
+3. A lot of useful tooling is separate from the main system and maintained
    in the `xtools` repository, including extra lints and so on. This is not
    mandatory or anyhow verified however.
-4) Lots of sloppy templates resulting from the prior points. E.g. the templates
+4. Lots of sloppy templates resulting from the prior points. E.g. the templates
    are often littered from manual in-place `sed` calls and similar rather than
    using proper patches (which leaves in calls that eventually no longer do
    anything due to upstreams changing), patches are applied very fuzzily which
    occasionally results in subtly mispatched things, and so on.
-5) The Void project does not run per-template unit tests (typically the test
+5. The Void project does not run per-template unit tests (typically the test
    suite of the software being packaged) on builders, which would catch a lot
    of errors, particularly on `musl` targets and so on. It does run them in
    pull request CI, but I do not see this as enough. Often the check runs of
    templates are poorly maintained and broken.
-6) The Void project cross-compiles all architectures other than `x86_64` and
+6. The Void project cross-compiles all architectures other than `x86_64` and
    `i686`, resulting in the other-arch ports being notably lower quality.
-7) Void has a wonky staging system. When large batch changes are being done,
+7. Void has a wonky staging system. When large batch changes are being done,
    the repos may end up in a strange state for a while and users are advised
    to avoid upgrading until everything is finished. It has a rudimentary
    staging system which prevents the repos from being changed while a big
@@ -344,20 +344,20 @@ package manager. Thus `cports` was born.
 
 There were two initial goals:
 
-1) Make it fast. I should be able to parse several thousands of build templates
+1. Make it fast. I should be able to parse several thousands of build templates
    and dump all their metadata in under a second, rather than many minutes.
    Chimera currently achieves this.
-2) Make it strict. No network starting with configure step. Read-write access
+2. Make it strict. No network starting with configure step. Read-write access
    only in the build directory (and destination directory for install step)
    and full consistency of the build container guaranteed at all times.
    Heavy linting and straight up denying various misbehaviors at all times.
    Sandboxing done with namespaces only, using Bubblewrap (`bwrap`). The
    `cbuild` system runs outside the sandbox (in your host environment) while
    any calls to the build system of the project being built are sandboxed.
-3) Make it highly portable, with Python (no external modules), Bubblewrap,
+3. Make it highly portable, with Python (no external modules), Bubblewrap,
    and Git, along with the package manager binary, being the only dependencies.
    You can use `cports` on any Linux system with the basic dependencies.
-4) Make it able to do everything `xbps-src` can do, but better.
+4. Make it able to do everything `xbps-src` can do, but better.
 
 Chimera started with the `ppc64le` target only, being developed on a POWER
 workstation. Over time, as things cleared up more, more targets were added,
@@ -389,11 +389,11 @@ We didn't stay on `xbps` for very long. Soon, the switch happened to `apk`.
 
 Using `apk` brought over various benefits.
 
-1) Unlike `xbps` which is driven by ad-hoc logic, `apk` has a real dependency
+1. Unlike `xbps` which is driven by ad-hoc logic, `apk` has a real dependency
    solver. This means way fewer surprising behaviors and way fewer workarounds
    and less effort needed from packagers to make sure that users' systems do
    not break in surprising ways.
-2) Handling of stuff like shared libraries is way nicer in `apk`. In `xbps`,
+2. Handling of stuff like shared libraries is way nicer in `apk`. In `xbps`,
    dependencies are driven purely by name, and shared library providers and
    requires have separate metadata fields. These will get checked and `xbps`
    will not permit things to proceed if unmatched, but dependencies are done
@@ -409,7 +409,7 @@ Using `apk` brought over various benefits.
    That also means more things can participate in the staging system on the
    build system side. And no central mappings, as the build system can easily
    query things from the repository.
-3) Unlike `xbps`, `apk` has real support for triggers. Triggers in `xbps-src`
+3. Unlike `xbps`, `apk` has real support for triggers. Triggers in `xbps-src`
    are emulated with package scripts. As an example, consider e.g. updating
    fonts cache. The `fontconfig` package has a trigger (which is a script) and
    metadata to run the cache update when `/usr/share/fonts` is modified in any
@@ -440,31 +440,31 @@ it does so much work beyond `xbps-src`. I declared an entire new rule that goes:
 
 The build steps of Chimera's infrastructure go approximately like this:
 
-1) Central orchestrator is poked by a webhook that a change in `cports` has
+1. Central orchestrator is poked by a webhook that a change in `cports` has
    happened. It does not matter what change.
-2) Central orchestrator tells worker machines in the fleet (one per arch)
+2. Central orchestrator tells worker machines in the fleet (one per arch)
    that `cports` has changed. It does not tell them what.
-3) Worker machines pull their copy of `cports`. It does not matter what
+3. Worker machines pull their copy of `cports`. It does not matter what
    has changed.
-4) Worker machines update the build container (`./cbuild bootstrap-update`).
+4. Worker machines update the build container (`./cbuild bootstrap-update`).
    This updates the core packages of the container to match the repository.
-5) Worker machines run `./cbuild bulk-print-ver status:unbuilt`. This generates
+5. Worker machines run `./cbuild bulk-print-ver status:unbuilt`. This generates
    a list of all packages along with their versions that are present in `cports`,
    can be built, and are not already built in the repository. This step is
    separate only for the purpose of presenting it to packagers in the Buildbot
    UI, so that you can have a separate view for each package being built and
    so on. This list is correctly sorted. Each entry is saved in a Buildbot
    variable, again for the purpose of presentation mainly.
-6) Each entry in the list from the prior step is built. The result is already
+6. Each entry in the list from the prior step is built. The result is already
    signed and ready to be used, but for now remains in stage area.
-7) An unstage step is attempted. If any provider is removed in the new
+7. An unstage step is attempted. If any provider is removed in the new
    packages (e.g. something rebuilds and stage provides `so:libfoo.so.2`
    while the original provider was `so:libfoo.so.1`) and there is still any
    package depending on the old name, the unstage will fail. That ensures that
    all reverse dependencies are always rebuilt as necessary before publishing.
    On successful unstage, the staging area is merged into the repository.
-7) Repository is pruned for outdated stuff.
-8) Repository syncs to the final primary mirror. First, changed packages get
+8. Repository is pruned for outdated stuff.
+9. Repository syncs to the final primary mirror. First, changed packages get
    uploaded in one step, then indexes are replaced, and only then old packages
    are deleted. This is to ensure that users don't end up with any index that
    contains packages not present yet.
@@ -499,15 +499,15 @@ easily done locally.
 Our fleet is self-hosted. The orchestrator and most builders run on Chimera
 host systems, but they don't have to. Currently these are:
 
-1) The `x86_64` machine, which is a 16-core EPYC root server at Netcup,
+1. The `x86_64` machine, which is a 16-core EPYC root server at Netcup,
    running Chimera.
-2) The `aarch64` machine, which is an 80-core Ampere Altra, running Chimera,
+2. The `aarch64` machine, which is an 80-core Ampere Altra, running Chimera,
    owned by me.
-3) The `ppc64le` machine, which is an 18-core/72-thread POWER9, running Chimera,
+3. The `ppc64le` machine, which is an 18-core/72-thread POWER9, running Chimera,
    owned by me.
-4) The `loongarch64` machine, which is a Loongson 3A6000 4-core/8-thread,
+4. The `loongarch64` machine, which is a Loongson 3A6000 4-core/8-thread,
    likewise running Chimera, owned by me.
-5) The `riscv64` machine, which is a Milk-V Pioneer 64-core machine kindly
+5. The `riscv64` machine, which is a Milk-V Pioneer 64-core machine kindly
    provided to us by Zach van Rijn of Adélie Linux, running Fedora.
 
 The builders do not publicly face the Internet, the orchestrator does, on
