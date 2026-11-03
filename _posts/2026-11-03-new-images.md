@@ -25,7 +25,7 @@ should make networks easier to configure even for base systems
 without GUI (wireless configuration and so on) while being
 ready for removal of AF_ALG.
 
-This set is based on kernel 7.3, GNOME 61, and Plasma 6.8.
+This set is based on kernel 7.3, GNOME 51, and Plasma 6.8.
 Newly, none of them come with the X.org server.
 
 ## Next time
