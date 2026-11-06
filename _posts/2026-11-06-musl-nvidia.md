@@ -132,7 +132,7 @@ $ ldd libnvidia-glcore.so.580.196.07
 	libnvidia-gpucomp.so.580.196.07 => /lib/libnvidia-gpucomp.so.580.196.07 (0x739c3fa00000)
 	libpthread.so.0 => ldd (0x739c4a8b1000)
 	librt.so.1 => ldd (0x739c4a8b1000)
-Error loading shared library ld-linux-x86-64.so.2: No such file or directory (needed by /lib/libnvidia-gpucomp.so.580.196.07)
+Error loading shared library ld-linux-x86-64.so.2: No such file or directory (needed by ...)
 Error relocating /lib/libnvidia-gpucomp.so.580.196.07: mallinfo: symbol not found
 Error relocating /lib/libnvidia-gpucomp.so.580.196.07: __strftime_l: symbol not found
 Error relocating libnvidia-glcore.so.580.196.07: dladdr1: symbol not found
@@ -163,7 +163,11 @@ We use this to sanitize every library and executable being installed. Let's
 begin with something like the following:
 
 ```
-$ patchelf --remove-needed ld-linux-x86-64.so.2 --remove-needed libdl.so.2 --remove-needed libm.so.6 --remove-needed libpthread.so.0 --remove-needed librt.so.1 --replace-needed libc.so.6 libc.so --add-needed libgcompat.so.0 libnvidia-glcore.so.580.196.07
+$ patchelf --remove-needed ld-linux-x86-64.so.2 \
+    --remove-needed libdl.so.2 --remove-needed libm.so.6 \
+    --remove-needed libpthread.so.0 --remove-needed librt.so.1 \
+    --replace-needed libc.so.6 libc.so \
+    --add-needed libgcompat.so.0 libnvidia-glcore.so.580.196.07
 ```
 
 What this does is drop all the dependencies we don't need (this is optional
@@ -285,7 +289,8 @@ int main(void) {
 }
 q66@asusbook: /home/q66$ cc test.c -o test
 q66@asusbook: /home/q66$ ./test
-SO 0 Error relocating /home/q66/dynlib.so: init_ptr: initial-exec TLS resolves to dynamic definition in /home/q66/dynlib.so
+SO 0 Error relocating /home/q66/dynlib.so: init_ptr: initial-exec TLS resolves \
+    to dynamic definition in /home/q66/dynlib.so
 zsh: segmentation fault  ./test
 q66@asusbook: /home/q66$ LD_PRELOAD=/home/q66/dynlib.so ./test
 SO 0x700c30811080 
@@ -340,14 +345,13 @@ I ran `ls` with `libnvidia-glcore` preloaded and saw:
 ```
 (lldb) bt
 * thread #1, name = 'ls', stop reason = signal SIGSTOP
-    frame #0: 0x00007b0f72259376 ld-musl-x86_64.so.1`__syscall_cp_c(nr=202, u=<unavailable>, v=<unavailable>, w=<unavailable>, x=<unavailable>, y=<unavailable>, z=0) at pthre
-ad_cancel.c:38:1
-    frame #1: 0x00007b0f7225843f ld-musl-x86_64.so.1`__futex4_cp(addr=0x00007b0f6b6c7b44, op=<unavailable>, val=<unavailable>, to=0x0000000000000000) at __timedwait.c:24:6 [i
+    frame #0: 0x00007b0f72259376 ld-musl-x86_64.so.1`__syscall_cp_c(...) at pthread_cancel.c:38:1
+    frame #1: 0x00007b0f7225843f ld-musl-x86_64.so.1`__futex4_cp(...) at __timedwait.c:24:6 [i
 nlined]
-    frame #2: 0x00007b0f7225841b ld-musl-x86_64.so.1`__timedwait_cp(addr=0x00007b0f6b6c7b44, val=-2147483632, clk=0, at=0x0000000000000000, priv=<unavailable>) at __timedwait
+    frame #2: 0x00007b0f7225841b ld-musl-x86_64.so.1`__timedwait_cp(...) at __timedwait
 .c:52:7
-    frame #3: 0x00007b0f72258526 ld-musl-x86_64.so.1`__timedwait(addr=0x00007b0f6b6c7b44, val=-2147483632, clk=0, at=0x0000000000000000, priv=128) at __timedwait.c:68:6
-    frame #4: 0x00007b0f7225b6d3 ld-musl-x86_64.so.1`__pthread_mutex_timedlock(m=0x00007b0f6b6c7b40, at=0x0000000000000000) at pthread_mutex_timedlock.c:85:7
+    frame #3: 0x00007b0f72258526 ld-musl-x86_64.so.1`__timedwait(...) at __timedwait.c:68:6
+    frame #4: 0x00007b0f7225b6d3 ld-musl-x86_64.so.1`__pthread_mutex_timedlock(...) at pthread_mutex_timedlock.c:85:7
   * frame #5: 0x00007b0f67c033db libnvidia-gpucomp.so.580.196.07`___lldb_unnamed_symbol_a033b0 + 43
     frame #6: 0x00007b0f67bd8036 libnvidia-gpucomp.so.580.196.07`___lldb_unnamed_symbol_9d8000 + 54
     frame #7: 0x00007b0f67bd980d libnvidia-gpucomp.so.580.196.07`___lldb_unnamed_symbol_9d9710 + 253
@@ -403,7 +407,13 @@ That means it's initializing the structure with the `kind` field.
 Meanwhile, `musl` mutex type is opaque:
 
 ```
-typedef struct { union { int __i[sizeof(long)==8?10:6]; volatile int __vi[sizeof(long)==8?10:6]; volatile void *volatile __p[sizeof(long)==8?5:6]; } __u; } pthread_mutex_t;
+typedef struct {
+    union {
+        int __i[sizeof(long)==8?10:6];
+        volatile int __vi[sizeof(long)==8?10:6];
+        volatile void *volatile __p[sizeof(long)==8?5:6];
+    } __u;
+} pthread_mutex_t;
 ```
 
 The mutex type is encoded in the first integer:
@@ -429,7 +439,10 @@ int __nvcompat_mutex_lock(pthread_mutex_t *m) {
     return pthread_mutex_lock(m);
 }
 
-int __nvcompat_mutex_timedlock(pthread_mutex_t *restrict m, const struct timespec *restrict at) {
+int __nvcompat_mutex_timedlock(
+    pthread_mutex_t *restrict m,
+    const struct timespec *restrict at
+) {
     patch_mutex_kind(m);
     return pthread_mutex_timedlock(m, at);
 }
