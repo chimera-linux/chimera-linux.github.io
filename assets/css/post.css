@@ -33,6 +33,7 @@ body {
 
 #content {
     grid-area: content;
+    min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
     padding-left: var(--content-gap);
     padding-right: var(--content-gap);
     padding-top: var(--content-altgap);
