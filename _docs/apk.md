@@ -167,3 +167,6 @@ Put only the ones you want in your config file, it overrides the system one.
 
 If you wish to change the cache location, create a symlink `/etc/apk/cache`
 that points to your desired location.
+
+The cache is cleaned manually, for instance using `apk cache` (see
+`apk-cache(8)`).
