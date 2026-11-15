@@ -17,9 +17,9 @@ encouraged to idle in the channel (by e.g. using a bouncer) rather than
 re-connecting, especially if you have questions, as it may take a while
 to get answers (people do not always monitor their chats).
 
-The secondary channel is on Matrix, at `#chimera-linux:matrix.org`. The channels
-are linked, so you can use whichever you prefer. Messages are relayed between
-them transparently.
+There is currently a deprecated channel on Matrix, at `#chimera-linux:matrix.org`.
+This channel is linked to the IRC channel (messages are relayed) but will
+become read-only at the beginning of 2027.
 
 We ask you to refrain from using advanced Matrix features, such as reactions,
 editing, message removal, markup and multi-line messages while using the chat.
