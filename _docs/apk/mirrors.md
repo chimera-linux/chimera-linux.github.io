@@ -33,6 +33,7 @@ The following mirrors are available:
 * [https://au.mirror.7bit.org/chimera](https://au.mirror.7bit.org/chimera) (hosted by wezm, Brisbane, Australia)
 * [https://mirror.accum.se/mirror/chimera-linux.org](https://mirror.accum.se/mirror/chimera-linux.org) (hosted by ACC, Umeå, Sweden)
 * [https://mirror.meowsmp.net/chimera-linux](https://mirror.meowsmp.net/chimera-linux) (hosted by MeowIce, Hanoi, Vietnam)
+* [https://repo.chimera-linux.us](https://repo.chimera-linux.us) (hosted by eholzbach, New York, United States)
 
 This information is also available in a pure text form [here](https://repo.chimera-linux.org/mirrors.txt).
 
