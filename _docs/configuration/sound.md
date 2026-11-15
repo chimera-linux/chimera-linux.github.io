@@ -63,3 +63,7 @@ over which users PipeWire is run for (i.e. it will not run
 automatically for each user that log in on tty). Afterwards,
 you will want to `dinitctl enable` the necessary services
 under each user you want.
+
+Add your user to the `_pipewire` group if you need permission
+to real time audio. This is often required for professional
+audio applications.
