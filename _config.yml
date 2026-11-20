@@ -15,7 +15,6 @@ plugins:
 
 social_links:
   - ["irc", "IRC chat", "https://webchat.oftc.net/?channels=#chimera-linux"]
-  - ["matrix", "Matrix chat", "https://matrix.to/#/%23chimera-linux:matrix.org"]
   - ["fediverse", "Chimera Linux Fediverse", "https://gts.chimera-linux.org/@chimera"]
 
 collections:
