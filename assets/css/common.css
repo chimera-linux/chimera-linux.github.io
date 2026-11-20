@@ -147,6 +147,18 @@ a:hover {
 }
 a:active { text-decoration: none; }
 
+/* skip to content link*/ 
+.skip-link a {
+  position: absolute;
+  left: 0em;
+  top: -3em;
+}
+
+.skip-link a:focus {
+  top: 0px;
+  z-index: 999;
+}
+
 /* navigation header */
 
 #header_bg {
