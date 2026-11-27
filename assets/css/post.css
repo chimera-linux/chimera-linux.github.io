@@ -27,6 +27,7 @@ body {
 #title > h1 {
     color: var(--color-fontlight);
     margin-top: 0px;
+    font-size: clamp(24pt, 10vw, 34pt);
 }
 
 /* content */
