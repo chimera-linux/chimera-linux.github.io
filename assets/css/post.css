@@ -87,3 +87,8 @@ body {
         margin-top: vaR(--content-altgap);
     }
 }
+
+.img-thumb {
+    max-width: 100%;
+    height: auto;
+}
