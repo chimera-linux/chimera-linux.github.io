@@ -134,6 +134,12 @@ code, .highlight pre {
     padding-right: 0px;
 }
 
+/* wrap inline code blocks to prevent global page width scroll with long lines on mobile */
+code.highlighter-rouge {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
 a {
     color: var(--color-clink);
     font-weight: 700;

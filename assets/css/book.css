@@ -24,6 +24,8 @@
     --moz-appearance: none;
     -webkit-appearance: none;
     pointer-events: none;
+    position: relative;
+    z-index: 1;
 }
 
 #content > nav > #content_list {
@@ -97,5 +99,16 @@
 
     #content > nav > input:checked ~ #content_list {
         display: block;
+    }
+}
+
+/* fix ugly scrooll with opened sidebar on small mobile screens */
+@media (max-width: 425px) {
+    #content > nav > #content_list {
+        width: 200px;
+    }
+
+    #content > nav ol > li:before {
+        padding-right: 0.25em;
     }
 }

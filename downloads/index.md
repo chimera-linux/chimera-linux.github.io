@@ -3,7 +3,9 @@ layout: page
 title: Downloads
 ---
 
-[![Desktop screenshot thumbnail](/assets/thumb.png)](/assets/screenshot.png)
+<a href="/assets/screenshot.png">
+    <img class="img-thumb" src="/assets/thumb.png" alt="Desktop screenshot thumbnail">
+</a>
 
 Latest images are available [here](https://repo.chimera-linux.org/live/latest).
 It is also possible to download some of the historical images, by visiting
