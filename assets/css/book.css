@@ -101,3 +101,14 @@
         display: block;
     }
 }
+
+/* fix ugly scrooll with opened sidebar on small mobile screens */
+@media (max-width: 425px) {
+    #content > nav > #content_list {
+        width: 200px;
+    }
+
+    #content > nav ol > li:before {
+        padding-right: 0.25em;
+    }
+}
