@@ -24,6 +24,8 @@
     --moz-appearance: none;
     -webkit-appearance: none;
     pointer-events: none;
+    position: relative;
+    z-index: 1;
 }
 
 #content > nav > #content_list {
